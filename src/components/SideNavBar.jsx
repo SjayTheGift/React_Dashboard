@@ -140,25 +140,25 @@ const SideNavBar = ({nav, setNav, display}) => {
                                 <div className={`${ leave ? "max-h-40 visible ease-in" : "max-h-0 invisible ease-out"} transition-all duration-500 overflow-hidden`}>
                                     <ul className="pl-9 mt-1 false">
                                         <li className="mb-1 last:mb-0">
-                                            <Link to="/holidays" className="block transition duration-150 truncate text-slate-400 hover:text-slate-200">
-                                                <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Holidays</span>
-                                            </Link>
-                                        </li>
-                                        <li className="mb-1 last:mb-0">
                                             <Link to="/leave-type" className="block transition duration-150 truncate text-slate-400 hover:text-slate-200">
                                                 <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Leave Types</span>
                                             </Link>
                                         </li>
                                         <li className="mb-1 last:mb-0">
-                                            <Link to="/leave-application" className="block transition duration-150 truncate text-slate-400 hover:text-slate-200">
-                                                <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Leave Application</span>
+                                            <Link to="/apply-leave" className="block transition duration-150 truncate text-slate-400 hover:text-slate-200">
+                                                <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Apply Leave</span>
                                             </Link>
                                         </li>
                                         <li className="mb-1 last:mb-0">
+                                            <Link to="/manage-stuff-leave" className="block transition duration-150 truncate text-slate-400 hover:text-slate-200">
+                                                <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Manage Stuff Leave</span>
+                                            </Link>
+                                        </li>
+                                        {/* <li className="mb-1 last:mb-0">
                                             <Link to="/earned-leave" className="block transition duration-150 truncate text-slate-400 hover:text-slate-200">
                                                 <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Earned Leave</span>
                                             </Link>
-                                        </li>
+                                        </li> */}
                                     </ul>
                                 </div>
                             </li>

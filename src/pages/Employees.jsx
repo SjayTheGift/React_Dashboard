@@ -2,11 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { classNames } from 'primereact/utils';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
-import { ProductService } from '../service/ProductService';
-
-import { EmployeesService } from '../service/EmployeesService';
-
-
 import { Toast } from 'primereact/toast';
 import { Button } from 'primereact/button';
 import { FileUpload } from 'primereact/fileupload';
@@ -19,6 +14,8 @@ import { InputNumber } from 'primereact/inputnumber';
 import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
 import { Tag } from 'primereact/tag';
+
+import { EmployeesService } from '../service/EmployeesService';
 
 const Employees = () => {
     let emptyEmployee = {
@@ -152,13 +149,6 @@ const Employees = () => {
         toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Employees Deleted', life: 3000 });
     };
 
-    // const onCategoryChange = (e) => {
-    //     let _employee = { ...employee };
-
-    //     _employee['category'] = e.value;
-    //     setProduct(_employee);
-    // };
-
     const formatDate = (value) => {
         return value;
     };
@@ -196,7 +186,7 @@ const Employees = () => {
     const leftToolbarTemplate = () => {
         return (
             <div className="flex flex-wrap gap-2">
-                <Button label="New" icon="pi pi-plus" severity="success" onClick={openNew} />
+                <Button label="Add Employee" icon="pi pi-plus" severity="success" onClick={openNew} />
                 <Button label="Delete" icon="pi pi-trash" severity="danger" onClick={confirmDeleteSelected} disabled={!selectedEmployees || !selectedEmployees.length} />
             </div>
         );
@@ -223,25 +213,9 @@ const Employees = () => {
         );
     };
 
-    // const getSeverity = (product) => {
-    //     switch (product.inventoryStatus) {
-    //         case 'INSTOCK':
-    //             return 'success';
-
-    //         case 'LOWSTOCK':
-    //             return 'warning';
-
-    //         case 'OUTOFSTOCK':
-    //             return 'danger';
-
-    //         default:
-    //             return null;
-    //     }
-    // };
-
     const header = (
-        <div className="flex flex-wrap gap-2 align-items-center justify-content-between">
-            <h4 className="m-0">Manage Products</h4>
+        <div className="flex flex-wrap gap-2 items-center justify-between">
+            <h4 className="m-0">Manage Employees</h4>
             <span className="p-input-icon-left">
                 <i className="pi pi-search" />
                 <InputText type="search" onInput={(e) => setGlobalFilter(e.target.value)} placeholder="Search..." />
@@ -272,7 +246,7 @@ const Employees = () => {
     <>
       <div className="col-span-full mr-8 md:mr-0 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
             <header className="px-1 py-1 border-b border-slate-100 dark:border-slate-700">
-                <h2 className="font-semibold text-slate-800 dark:text-slate-100">Organization {'>'} Employees</h2>
+                <h2 className="font-semibold text-slate-800 dark:text-slate-100">Employees {'>'} Employees</h2>
             </header>
       </div>
       <div className='col-span-full'>
@@ -299,8 +273,8 @@ const Employees = () => {
         </div>
 
         {/* Edit Dialog modal  */}
-        <Dialog visible={employeeDialog} style={{ width: '32rem' }} breakpoints={{ '960px': '75vw', '641px': '90vw' }} header="Product Details" modal className="p-fluid" footer={employeeDialogFooter} onHide={hideDialog}>
-                {employee.image && <img src={`${employee.image}`} alt={employee.image} className="product-image block m-auto pb-3" />}
+        <Dialog visible={employeeDialog} style={{ width: '32rem' }} breakpoints={{ '960px': '75vw', '641px': '90vw' }} header="Employee Details" modal className="p-fluid" footer={employeeDialogFooter} onHide={hideDialog}>
+                {employee.image && <img src={`${employee.image}`} alt={employee.image} className="block m-auto pb-3" />}
                 <div className="field">
                     <label htmlFor="firstName" className="font-bold">
                         First Name
@@ -340,7 +314,7 @@ const Employees = () => {
                     <label htmlFor="birthDate" className="font-bold">
                         Birth Date
                     </label>
-                    <Calendar id="birthDate"  value={Date(employee.birthDate)} name={employee.birthDate} onChange={(e) => onInputChangeDate(e, 'birthDate')}  dateFormat="yy-mm-dd"  required className={classNames({ 'p-invalid': submitted && !employee.birthDate })} ></Calendar>
+                    <Calendar id="birthDate"  value={employee.birthDate} name={employee.birthDate} onChange={(e) => onInputChangeDate(e, 'birthDate')}  dateFormat="yy-mm-dd"  required className={classNames({ 'p-invalid': submitted && !employee.birthDate })} ></Calendar>
                     {submitted && !employee.birthDate && <small className="p-error">Birth Date is required.</small>}
                 </div>
                 <div className="field">

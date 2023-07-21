@@ -93,7 +93,7 @@ const hideDialog = () => {
               </div>
               <div className="card flex flex-col sm:flex-row justify-between gap-3 text-white mr-5">
                 {leaveTypes.map((leaveType) =>
-                  <Card title={leaveType.name} className="gap-3 mr-3 bg-slate-800 text-gray-400 md:w-[20%]">
+                  <Card key={leaveType.id} title={leaveType.name} className="gap-3 mr-3 bg-slate-800 text-gray-400 md:w-[20%]">
                     <p className="m-0">
                         {leaveType.numberOfDays}
                     </p>

@@ -10,7 +10,7 @@ export const CustomerService = {
                 },
                 company: 'Benton, John B Jr',
                 date: '2015-09-13',
-                status: 'unqualified',
+                status: 'approved',
                 verified: true,
                 activity: 17,
                 representative: {
@@ -28,7 +28,7 @@ export const CustomerService = {
                 },
                 company: 'Chanay, Jeffrey A Esq',
                 date: '2019-02-09',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 0,
                 representative: {
@@ -46,7 +46,7 @@ export const CustomerService = {
                 },
                 company: 'Chemel, James L Cpa',
                 date: '2017-05-13',
-                status: 'qualified',
+                status: 'approved',
                 verified: false,
                 activity: 63,
                 representative: {
@@ -74,24 +74,6 @@ export const CustomerService = {
                 balance: 88521
             },
             {
-                id: 1004,
-                name: 'Donette Foller',
-                country: {
-                    name: 'South Africa',
-                    code: 'za'
-                },
-                company: 'Printing Dimensions',
-                date: '2016-05-20',
-                status: 'proposal',
-                verified: true,
-                activity: 33,
-                representative: {
-                    name: 'Asiya Javayant',
-                    image: 'asiyajavayant.png'
-                },
-                balance: 93905
-            },
-            {
                 id: 1005,
                 name: 'Simona Morasca',
                 country: {
@@ -100,7 +82,7 @@ export const CustomerService = {
                 },
                 company: 'Chapman, Ross E Esq',
                 date: '2018-02-16',
-                status: 'qualified',
+                status: 'approved',
                 verified: false,
                 activity: 68,
                 representative: {
@@ -109,42 +91,7 @@ export const CustomerService = {
                 },
                 balance: 50041
             },
-            {
-                id: 1006,
-                name: 'Mitsue Tollner',
-                country: {
-                    name: 'Paraguay',
-                    code: 'py'
-                },
-                company: 'Morlong Associates',
-                date: '2018-02-19',
-                status: 'renewal',
-                verified: true,
-                activity: 54,
-                representative: {
-                    name: 'Ivan Magalhaes',
-                    image: 'ivanmagalhaes.png'
-                },
-                balance: 58706
-            },
-            {
-                id: 1007,
-                name: 'Leota Dilliard',
-                country: {
-                    name: 'Serbia',
-                    code: 'rs'
-                },
-                company: 'Commercial Press',
-                date: '2019-08-13',
-                status: 'renewal',
-                verified: true,
-                activity: 69,
-                representative: {
-                    name: 'Onyama Limba',
-                    image: 'onyamalimba.png'
-                },
-                balance: 26640
-            },
+
             {
                 id: 1008,
                 name: 'Sage Wieser',
@@ -154,7 +101,7 @@ export const CustomerService = {
                 },
                 company: 'Truhlar And Truhlar Attys',
                 date: '2018-11-21',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 76,
                 representative: {
@@ -162,24 +109,6 @@ export const CustomerService = {
                     image: 'ivanmagalhaes.png'
                 },
                 balance: 65369
-            },
-            {
-                id: 1009,
-                name: 'Kris Marrier',
-                country: {
-                    name: 'Mexico',
-                    code: 'mx'
-                },
-                company: 'King, Christopher A Esq',
-                date: '2015-07-07',
-                status: 'proposal',
-                verified: false,
-                activity: 3,
-                representative: {
-                    name: 'Onyama Limba',
-                    image: 'onyamalimba.png'
-                },
-                balance: 63451
             },
             {
                 id: 1010,
@@ -190,7 +119,7 @@ export const CustomerService = {
                 },
                 company: 'Dorl, James J Esq',
                 date: '2018-11-07',
-                status: 'qualified',
+                status: 'approved',
                 verified: false,
                 activity: 38,
                 representative: {
@@ -208,7 +137,7 @@ export const CustomerService = {
                 },
                 company: 'Rangoni Of Florence',
                 date: '2017-03-11',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 87,
                 representative: {
@@ -226,7 +155,7 @@ export const CustomerService = {
                 },
                 company: 'Feiner Bros',
                 date: '2015-10-20',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: false,
                 activity: 80,
                 representative: {
@@ -298,7 +227,7 @@ export const CustomerService = {
                 },
                 company: 'Bolton, Wilbur Esq',
                 date: '2018-07-04',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: false,
                 activity: 31,
                 representative: {
@@ -316,7 +245,7 @@ export const CustomerService = {
                 },
                 company: 'T M Byxbee Company Pc',
                 date: '2020-02-27',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 48,
                 representative: {
@@ -352,7 +281,7 @@ export const CustomerService = {
                 },
                 company: 'Post Box Services Plus',
                 date: '2016-01-04',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 19,
                 representative: {
@@ -370,7 +299,7 @@ export const CustomerService = {
                 },
                 company: 'Sport En Art',
                 date: '2016-10-21',
-                status: 'renewal',
+                status: 'approved',
                 verified: false,
                 activity: 100,
                 representative: {
@@ -388,7 +317,7 @@ export const CustomerService = {
                 },
                 company: 'C 4 Network Inc',
                 date: '2017-03-24',
-                status: 'renewal',
+                status: 'approved',
                 verified: false,
                 activity: 72,
                 representative: {
@@ -406,7 +335,7 @@ export const CustomerService = {
                 },
                 company: 'Ingalls, Donald R Esq',
                 date: '2017-04-15',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 94,
                 representative: {
@@ -424,7 +353,7 @@ export const CustomerService = {
                 },
                 company: 'Franklin, Peter L Esq',
                 date: '2017-03-11',
-                status: 'qualified',
+                status: 'approved',
                 verified: false,
                 activity: 56,
                 representative: {
@@ -442,7 +371,7 @@ export const CustomerService = {
                 },
                 company: 'Wtlz Power 107 Fm',
                 date: '2018-03-27',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 7,
                 representative: {
@@ -460,7 +389,7 @@ export const CustomerService = {
                 },
                 company: 'Ledecky, David Esq',
                 date: '2016-02-20',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 1,
                 representative: {
@@ -514,7 +443,7 @@ export const CustomerService = {
                 },
                 company: 'U Pull It',
                 date: '2020-04-11',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 7,
                 representative: {
@@ -532,7 +461,7 @@ export const CustomerService = {
                 },
                 company: 'Clark, Richard Cpa',
                 date: '2018-04-11',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 81,
                 representative: {
@@ -568,7 +497,7 @@ export const CustomerService = {
                 },
                 company: 'Cascade Realty Advisors Inc',
                 date: '2017-08-02',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 94,
                 representative: {
@@ -586,7 +515,7 @@ export const CustomerService = {
                 },
                 company: 'Knwz Newsradio',
                 date: '2018-06-06',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 68,
                 representative: {
@@ -594,24 +523,6 @@ export const CustomerService = {
                     image: 'xuxuefeng.png'
                 },
                 balance: 76017
-            },
-            {
-                id: 1033,
-                name: 'Albina Glick',
-                country: {
-                    name: 'Ukraine',
-                    code: 'ua'
-                },
-                company: 'Giampetro, Anthony D',
-                date: '2019-08-08',
-                status: 'proposal',
-                verified: true,
-                activity: 85,
-                representative: {
-                    name: 'Bernardo Dominic',
-                    image: 'bernardodominic.png'
-                },
-                balance: 91201
             },
             {
                 id: 1034,
@@ -640,7 +551,7 @@ export const CustomerService = {
                 },
                 company: 'Mosocco, Ronald A',
                 date: '2015-02-12',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 32,
                 representative: {
@@ -658,7 +569,7 @@ export const CustomerService = {
                 },
                 company: 'Tri State Refueler Co',
                 date: '2018-04-25',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 77,
                 representative: {
@@ -676,7 +587,7 @@ export const CustomerService = {
                 },
                 company: 'Parkway Company',
                 date: '2016-02-27',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 66,
                 representative: {
@@ -694,7 +605,7 @@ export const CustomerService = {
                 },
                 company: 'Fbs Business Finance',
                 date: '2019-09-17',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 25,
                 representative: {
@@ -712,7 +623,7 @@ export const CustomerService = {
                 },
                 company: 'Eder Assocs Consltng Engrs Pc',
                 date: '2016-12-03',
-                status: 'renewal',
+                status: 'approved',
                 verified: false,
                 activity: 51,
                 representative: {
@@ -748,7 +659,7 @@ export const CustomerService = {
                 },
                 company: 'International Eyelets Inc',
                 date: '2017-02-02',
-                status: 'qualified',
+                status: 'approved',
                 verified: false,
                 activity: 5,
                 representative: {
@@ -766,7 +677,7 @@ export const CustomerService = {
                 },
                 company: 'Rapid Trading Intl',
                 date: '2018-12-25',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: false,
                 activity: 100,
                 representative: {
@@ -784,7 +695,7 @@ export const CustomerService = {
                 },
                 company: 'Abc Enterprises Inc',
                 date: '2018-04-10',
-                status: 'qualified',
+                status: 'approved',
                 verified: false,
                 activity: 71,
                 representative: {
@@ -802,7 +713,7 @@ export const CustomerService = {
                 },
                 company: 'Cindy Turner Associates',
                 date: '2018-05-06',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 54,
                 representative: {
@@ -820,7 +731,7 @@ export const CustomerService = {
                 },
                 company: 'Stanton, James D Esq',
                 date: '2019-07-10',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 93,
                 representative: {
@@ -838,7 +749,7 @@ export const CustomerService = {
                 },
                 company: 'Grace Pastries Inc',
                 date: '2018-02-19',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: false,
                 activity: 97,
                 representative: {
@@ -910,7 +821,7 @@ export const CustomerService = {
                 },
                 company: 'Orinda News',
                 date: '2019-09-06',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 72,
                 representative: {
@@ -928,7 +839,7 @@ export const CustomerService = {
                 },
                 company: 'Ballard Spahr Andrews',
                 date: '2018-04-26',
-                status: 'renewal',
+                status: 'approved',
                 verified: false,
                 activity: 36,
                 representative: {
@@ -982,7 +893,7 @@ export const CustomerService = {
                 },
                 company: 'Rossi, Michael M',
                 date: '2017-04-17',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 27,
                 representative: {
@@ -1000,7 +911,7 @@ export const CustomerService = {
                 },
                 company: 'Northwest Publishing',
                 date: '2019-04-14',
-                status: 'qualified',
+                status: 'approved',
                 verified: false,
                 activity: 27,
                 representative: {
@@ -1036,7 +947,7 @@ export const CustomerService = {
                 },
                 company: 'East Coast Marketing',
                 date: '2017-02-18',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 39,
                 representative: {
@@ -1054,7 +965,7 @@ export const CustomerService = {
                 },
                 company: 'Wye Technologies Inc',
                 date: '2020-10-05',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: false,
                 activity: 55,
                 representative: {
@@ -1090,7 +1001,7 @@ export const CustomerService = {
                 },
                 company: 'Alpenlite Inc',
                 date: '2016-06-16',
-                status: 'renewal',
+                status: 'approved',
                 verified: false,
                 activity: 49,
                 representative: {
@@ -1098,24 +1009,6 @@ export const CustomerService = {
                     image: 'bernardodominic.png'
                 },
                 balance: 99235
-            },
-            {
-                id: 1061,
-                name: 'Jamal Vanausdal',
-                country: {
-                    name: 'Morocco',
-                    code: 'ma'
-                },
-                company: 'Hubbard, Bruce Esq',
-                date: '2017-05-25',
-                status: 'proposal',
-                verified: true,
-                activity: 87,
-                representative: {
-                    name: 'Ioni Bowcher',
-                    image: 'ionibowcher.png'
-                },
-                balance: 15656
             },
             {
                 id: 1062,
@@ -1144,7 +1037,7 @@ export const CustomerService = {
                 },
                 company: 'George Jessop Carter Jewelers',
                 date: '2019-09-07',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 77,
                 representative: {
@@ -1162,7 +1055,7 @@ export const CustomerService = {
                 },
                 company: 'Schultz, Thomas C Md',
                 date: '2015-08-10',
-                status: 'renewal',
+                status: 'approved',
                 verified: false,
                 activity: 94,
                 representative: {
@@ -1198,7 +1091,7 @@ export const CustomerService = {
                 },
                 company: 'Hawaiian King Hotel',
                 date: '2020-03-03',
-                status: 'qualified',
+                status: 'approved',
                 verified: false,
                 activity: 96,
                 representative: {
@@ -1216,7 +1109,7 @@ export const CustomerService = {
                 },
                 company: 'Killion Industries',
                 date: '2018-09-18',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 38,
                 representative: {
@@ -1270,7 +1163,7 @@ export const CustomerService = {
                 },
                 company: 'Rowley Schlimgen Inc',
                 date: '2017-04-05',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: false,
                 activity: 25,
                 representative: {
@@ -1306,7 +1199,7 @@ export const CustomerService = {
                 },
                 company: 'Smits, Patricia Garity',
                 date: '2018-08-17',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 85,
                 representative: {
@@ -1324,7 +1217,7 @@ export const CustomerService = {
                 },
                 company: 'H Lee Leonard Attorney At Law',
                 date: '2018-09-08',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 92,
                 representative: {
@@ -1332,24 +1225,6 @@ export const CustomerService = {
                     image: 'asiyajavayant.png'
                 },
                 balance: 3308
-            },
-            {
-                id: 1074,
-                name: 'Tamar Hoogland',
-                country: {
-                    name: 'Guatemala',
-                    code: 'gt'
-                },
-                company: 'A K Construction Co',
-                date: '2018-11-13',
-                status: 'proposal',
-                verified: true,
-                activity: 22,
-                representative: {
-                    name: 'Asiya Javayant',
-                    image: 'asiyajavayant.png'
-                },
-                balance: 19711
             },
             {
                 id: 1075,
@@ -1360,7 +1235,7 @@ export const CustomerService = {
                 },
                 company: 'Ambelang, Jessica M Md',
                 date: '2019-08-18',
-                status: 'renewal',
+                status: 'approved',
                 verified: false,
                 activity: 64,
                 representative: {
@@ -1396,7 +1271,7 @@ export const CustomerService = {
                 },
                 company: 'Wood & Whitacre Contractors',
                 date: '2017-09-15',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: false,
                 activity: 70,
                 representative: {
@@ -1414,7 +1289,7 @@ export const CustomerService = {
                 },
                 company: 'Mark Iv Press Ltd',
                 date: '2017-03-27',
-                status: 'qualified',
+                status: 'approved',
                 verified: false,
                 activity: 16,
                 representative: {
@@ -1422,42 +1297,6 @@ export const CustomerService = {
                     image: 'stephenshaw.png'
                 },
                 balance: 7460
-            },
-            {
-                id: 1079,
-                name: 'Elza Lipke',
-                country: {
-                    name: 'Ireland',
-                    code: 'ie'
-                },
-                company: 'Museum Of Science & Industry',
-                date: '2017-06-01',
-                status: 'proposal',
-                verified: true,
-                activity: 90,
-                representative: {
-                    name: 'Elwin Sharvill',
-                    image: 'elwinsharvill.png'
-                },
-                balance: 42251
-            },
-            {
-                id: 1080,
-                name: 'Devorah Chickering',
-                country: {
-                    name: 'Spain',
-                    code: 'es'
-                },
-                company: 'Garrison Ind',
-                date: '2017-03-14',
-                status: 'proposal',
-                verified: true,
-                activity: 96,
-                representative: {
-                    name: 'Asiya Javayant',
-                    image: 'asiyajavayant.png'
-                },
-                balance: 36435
             },
             {
                 id: 1081,
@@ -1468,7 +1307,7 @@ export const CustomerService = {
                 },
                 company: 'Saronix Nymph Products',
                 date: '2018-07-09',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 77,
                 representative: {
@@ -1476,24 +1315,6 @@ export const CustomerService = {
                     image: 'asiyajavayant.png'
                 },
                 balance: 39197
-            },
-            {
-                id: 1082,
-                name: 'Arlette Honeywell',
-                country: {
-                    name: 'Panama',
-                    code: 'pa'
-                },
-                company: 'Smc Inc',
-                date: '2018-09-11',
-                status: 'proposal',
-                verified: true,
-                activity: 46,
-                representative: {
-                    name: 'Amy Elsner',
-                    image: 'amyelsner.png'
-                },
-                balance: 72707
             },
             {
                 id: 1083,
@@ -1504,7 +1325,7 @@ export const CustomerService = {
                 },
                 company: 'E A I Electronic Assocs Inc',
                 date: '2017-11-12',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 83,
                 representative: {
@@ -1522,7 +1343,7 @@ export const CustomerService = {
                 },
                 company: 'Conte, Christopher A Esq',
                 date: '2016-03-01',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 83,
                 representative: {
@@ -1540,7 +1361,7 @@ export const CustomerService = {
                 },
                 company: 'Anker Law Office',
                 date: '2016-05-21',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 49,
                 representative: {
@@ -1576,7 +1397,7 @@ export const CustomerService = {
                 },
                 company: 'Fligg, Kenneth I Jr',
                 date: '2016-07-26',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: false,
                 activity: 64,
                 representative: {
@@ -1594,7 +1415,7 @@ export const CustomerService = {
                 },
                 company: 'Sharp, J Daniel Esq',
                 date: '2020-07-24',
-                status: 'renewal',
+                status: 'approved',
                 verified: false,
                 activity: 51,
                 representative: {
@@ -1630,7 +1451,7 @@ export const CustomerService = {
                 },
                 company: 'Jewel My Shop Inc',
                 date: '2016-06-05',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 64,
                 representative: {
@@ -1666,7 +1487,7 @@ export const CustomerService = {
                 },
                 company: 'Stevens, Charles T',
                 date: '2018-12-13',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 62,
                 representative: {
@@ -1694,24 +1515,6 @@ export const CustomerService = {
                 balance: 87736
             },
             {
-                id: 1094,
-                name: 'Elvera Benimadho',
-                country: {
-                    name: 'Malaysia',
-                    code: 'my'
-                },
-                company: 'Tree Musketeers',
-                date: '2019-02-17',
-                status: 'proposal',
-                verified: true,
-                activity: 50,
-                representative: {
-                    name: 'Onyama Limba',
-                    image: 'onyamalimba.png'
-                },
-                balance: 38674
-            },
-            {
                 id: 1095,
                 name: 'Carma Vanheusen',
                 country: {
@@ -1720,7 +1523,7 @@ export const CustomerService = {
                 },
                 company: 'Springfield Div Oh Edison Co',
                 date: '2019-11-26',
-                status: 'renewal',
+                status: 'approved',
                 verified: false,
                 activity: 84,
                 representative: {
@@ -1748,24 +1551,6 @@ export const CustomerService = {
                 balance: 81299
             },
             {
-                id: 1097,
-                name: 'Natalie Fern',
-                country: {
-                    name: 'Canada',
-                    code: 'ca'
-                },
-                company: 'Kelly, Charles G Esq',
-                date: '2019-10-02',
-                status: 'proposal',
-                verified: true,
-                activity: 44,
-                representative: {
-                    name: 'Amy Elsner',
-                    image: 'amyelsner.png'
-                },
-                balance: 64794
-            },
-            {
                 id: 1098,
                 name: 'Lisha Centini',
                 country: {
@@ -1784,24 +1569,6 @@ export const CustomerService = {
                 balance: 7815
             },
             {
-                id: 1099,
-                name: 'Arlene Klusman',
-                country: {
-                    name: 'Jamaica',
-                    code: 'jm'
-                },
-                company: 'Beck Horizon Builders',
-                date: '2018-05-14',
-                status: 'proposal',
-                verified: true,
-                activity: 99,
-                representative: {
-                    name: 'Elwin Sharvill',
-                    image: 'elwinsharvill.png'
-                },
-                balance: 37976
-            },
-            {
                 id: 1100,
                 name: 'Alease Buemi',
                 country: {
@@ -1810,7 +1577,7 @@ export const CustomerService = {
                 },
                 company: 'Porto Cayo At Hawks Cay',
                 date: '2018-03-14',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 0,
                 representative: {
@@ -1828,7 +1595,7 @@ export const CustomerService = {
                 },
                 company: 'Pacific Grove Museum Ntrl Hist',
                 date: '2018-09-23',
-                status: 'qualified',
+                status: 'approved',
                 verified: false,
                 activity: 3,
                 representative: {
@@ -1846,7 +1613,7 @@ export const CustomerService = {
                 },
                 company: 'Bender & Hatley Pc',
                 date: '2018-04-10',
-                status: 'qualified',
+                status: 'approved',
                 verified: false,
                 activity: 88,
                 representative: {
@@ -1864,7 +1631,7 @@ export const CustomerService = {
                 },
                 company: 'Di Cristina J & Son',
                 date: '2017-09-18',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: false,
                 activity: 92,
                 representative: {
@@ -1890,24 +1657,6 @@ export const CustomerService = {
                     image: 'asiyajavayant.png'
                 },
                 balance: 63863
-            },
-            {
-                id: 1105,
-                name: 'Celeste Korando',
-                country: {
-                    name: 'Costa Rica',
-                    code: 'cr'
-                },
-                company: 'American Arts & Graphics',
-                date: '2020-06-18',
-                status: 'proposal',
-                verified: true,
-                activity: 21,
-                representative: {
-                    name: 'Amy Elsner',
-                    image: 'amyelsner.png'
-                },
-                balance: 37510
             },
             {
                 id: 1106,
@@ -1936,7 +1685,7 @@ export const CustomerService = {
                 },
                 company: 'Marking Devices Pubg Co',
                 date: '2017-06-25',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: false,
                 activity: 27,
                 representative: {
@@ -1990,7 +1739,7 @@ export const CustomerService = {
                 },
                 company: 'Sampler',
                 date: '2017-10-15',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 54,
                 representative: {
@@ -1998,24 +1747,6 @@ export const CustomerService = {
                     image: 'asiyajavayant.png'
                 },
                 balance: 41466
-            },
-            {
-                id: 1111,
-                name: 'Sue Kownacki',
-                country: {
-                    name: 'Jamaica',
-                    code: 'jm'
-                },
-                company: 'Juno Chefs Incorporated',
-                date: '2017-03-17',
-                status: 'proposal',
-                verified: false,
-                activity: 31,
-                representative: {
-                    name: 'Onyama Limba',
-                    image: 'onyamalimba.png'
-                },
-                balance: 38918
             },
             {
                 id: 1112,
@@ -2026,7 +1757,7 @@ export const CustomerService = {
                 },
                 company: 'Carroccio, A Thomas Esq',
                 date: '2017-04-06',
-                status: 'renewal',
+                status: 'approved',
                 verified: false,
                 activity: 28,
                 representative: {
@@ -2044,7 +1775,7 @@ export const CustomerService = {
                 },
                 company: 'Stanley, Richard L Esq',
                 date: '2019-02-03',
-                status: 'qualified',
+                status: 'approved',
                 verified: false,
                 activity: 45,
                 representative: {
@@ -2062,7 +1793,7 @@ export const CustomerService = {
                 },
                 company: 'K Cs Cstm Mouldings Windows',
                 date: '2016-09-22',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 34,
                 representative: {
@@ -2080,7 +1811,7 @@ export const CustomerService = {
                 },
                 company: 'Comfort Inn',
                 date: '2017-09-27',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 36,
                 representative: {
@@ -2098,7 +1829,7 @@ export const CustomerService = {
                 },
                 company: 'Windsor, James L Esq',
                 date: '2017-06-25',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 69,
                 representative: {
@@ -2106,24 +1837,6 @@ export const CustomerService = {
                     image: 'bernardodominic.png'
                 },
                 balance: 89060
-            },
-            {
-                id: 1117,
-                name: 'Brandon Callaro',
-                country: {
-                    name: 'Romania',
-                    code: 'ro'
-                },
-                company: 'Jackson Shields Yeiser',
-                date: '2016-07-13',
-                status: 'proposal',
-                verified: true,
-                activity: 55,
-                representative: {
-                    name: 'Anna Fali',
-                    image: 'annafali.png'
-                },
-                balance: 52474
             },
             {
                 id: 1118,
@@ -2134,7 +1847,7 @@ export const CustomerService = {
                 },
                 company: 'Box, J Calvin Esq',
                 date: '2018-09-13',
-                status: 'renewal',
+                status: 'approved',
                 verified: false,
                 activity: 1,
                 representative: {
@@ -2152,7 +1865,7 @@ export const CustomerService = {
                 },
                 company: 'Custom Engineering Inc',
                 date: '2017-09-11',
-                status: 'renewal',
+                status: 'approved',
                 verified: false,
                 activity: 8,
                 representative: {
@@ -2170,7 +1883,7 @@ export const CustomerService = {
                 },
                 company: 'Bresler Eitel Framg Gllry Ltd',
                 date: '2019-07-06',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: false,
                 activity: 50,
                 representative: {
@@ -2179,24 +1892,7 @@ export const CustomerService = {
                 },
                 balance: 77388
             },
-            {
-                id: 1121,
-                name: 'Xuan Rochin',
-                country: {
-                    name: 'Colombia',
-                    code: 'co'
-                },
-                company: 'Carol, Drake Sparks Esq',
-                date: '2018-05-22',
-                status: 'proposal',
-                verified: true,
-                activity: 77,
-                representative: {
-                    name: 'Amy Elsner',
-                    image: 'amyelsner.png'
-                },
-                balance: 48759
-            },
+
             {
                 id: 1122,
                 name: 'Lindsey Dilello',
@@ -2206,7 +1902,7 @@ export const CustomerService = {
                 },
                 company: 'Biltmore Investors Bank',
                 date: '2017-07-18',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 65,
                 representative: {
@@ -2224,7 +1920,7 @@ export const CustomerService = {
                 },
                 company: 'Desco Equipment Corp',
                 date: '2017-10-09',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 30,
                 representative: {
@@ -2232,24 +1928,6 @@ export const CustomerService = {
                     image: 'onyamalimba.png'
                 },
                 balance: 4477
-            },
-            {
-                id: 1124,
-                name: 'Herman Demesa',
-                country: {
-                    name: 'Paraguay',
-                    code: 'py'
-                },
-                company: 'Merlin Electric Co',
-                date: '2019-05-23',
-                status: 'proposal',
-                verified: true,
-                activity: 10,
-                representative: {
-                    name: 'Asiya Javayant',
-                    image: 'asiyajavayant.png'
-                },
-                balance: 13764
             },
             {
                 id: 1125,
@@ -2260,7 +1938,7 @@ export const CustomerService = {
                 },
                 company: 'Bailey Cntl Co Div Babcock',
                 date: '2019-03-02',
-                status: 'qualified',
+                status: 'approved',
                 verified: false,
                 activity: 22,
                 representative: {
@@ -2332,7 +2010,7 @@ export const CustomerService = {
                 },
                 company: 'Nelson Hawaiian Ltd',
                 date: '2016-11-10',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 41,
                 representative: {
@@ -2350,7 +2028,7 @@ export const CustomerService = {
                 },
                 company: 'Neland Travel Agency',
                 date: '2016-07-11',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 84,
                 representative: {
@@ -2404,7 +2082,7 @@ export const CustomerService = {
                 },
                 company: 'Honey Bee Breeding Genetics &',
                 date: '2016-05-02',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 47,
                 representative: {
@@ -2422,7 +2100,7 @@ export const CustomerService = {
                 },
                 company: 'Wells Kravitz Schnitzer',
                 date: '2018-04-13',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 62,
                 representative: {
@@ -2440,7 +2118,7 @@ export const CustomerService = {
                 },
                 company: 'Prohab Rehabilitation Servs',
                 date: '2020-01-04',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 55,
                 representative: {
@@ -2458,7 +2136,7 @@ export const CustomerService = {
                 },
                 company: 'Eldridge, Kristin K Esq',
                 date: '2016-02-05',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: false,
                 activity: 3,
                 representative: {
@@ -2476,7 +2154,7 @@ export const CustomerService = {
                 },
                 company: 'Vlahos, John J Esq',
                 date: '2017-03-12',
-                status: 'proposal',
+                status: 'rejected',
                 verified: false,
                 activity: 3,
                 representative: {
@@ -2494,7 +2172,7 @@ export const CustomerService = {
                 },
                 company: 'Ninas Indian Grs & Videos',
                 date: '2019-03-27',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: false,
                 activity: 67,
                 representative: {
@@ -2512,7 +2190,7 @@ export const CustomerService = {
                 },
                 company: 'Schmid, Gayanne K Esq',
                 date: '2019-08-06',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 14,
                 representative: {
@@ -2530,7 +2208,7 @@ export const CustomerService = {
                 },
                 company: 'Moapa Valley Federal Credit Un',
                 date: '2018-03-20',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 8,
                 representative: {
@@ -2548,7 +2226,7 @@ export const CustomerService = {
                 },
                 company: 'Kentucky Tennessee Clay Co',
                 date: '2016-02-15',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 17,
                 representative: {
@@ -2566,7 +2244,7 @@ export const CustomerService = {
                 },
                 company: 'Admiral Party Rentals & Sales',
                 date: '2016-02-10',
-                status: 'proposal',
+                status: 'rejected',
                 verified: false,
                 activity: 58,
                 representative: {
@@ -2584,7 +2262,7 @@ export const CustomerService = {
                 },
                 company: 'Nelson, Karolyn King Esq',
                 date: '2019-07-16',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: false,
                 activity: 82,
                 representative: {
@@ -2620,7 +2298,7 @@ export const CustomerService = {
                 },
                 company: 'Shank, Edward L Esq',
                 date: '2017-07-02',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 92,
                 representative: {
@@ -2638,7 +2316,7 @@ export const CustomerService = {
                 },
                 company: 'Megibow & Edwards',
                 date: '2019-08-17',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 18,
                 representative: {
@@ -2674,7 +2352,7 @@ export const CustomerService = {
                 },
                 company: 'Woodbridge Free Public Library',
                 date: '2020-03-14',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 44,
                 representative: {
@@ -2710,7 +2388,7 @@ export const CustomerService = {
                 },
                 company: 'Alinabal Inc',
                 date: '2017-03-04',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: false,
                 activity: 21,
                 representative: {
@@ -2746,7 +2424,7 @@ export const CustomerService = {
                 },
                 company: 'Chang, Carolyn Esq',
                 date: '2019-05-28',
-                status: 'renewal',
+                status: 'approved',
                 verified: false,
                 activity: 30,
                 representative: {
@@ -2764,7 +2442,7 @@ export const CustomerService = {
                 },
                 company: 'Silver Bros Inc',
                 date: '2016-08-19',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 14,
                 representative: {
@@ -2782,7 +2460,7 @@ export const CustomerService = {
                 },
                 company: 'Newtec Inc',
                 date: '2020-02-09',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 77,
                 representative: {
@@ -2800,7 +2478,7 @@ export const CustomerService = {
                 },
                 company: 'Creative Business Systems',
                 date: '2020-04-03',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 58,
                 representative: {
@@ -2818,7 +2496,7 @@ export const CustomerService = {
                 },
                 company: 'Dal Tile Corporation',
                 date: '2015-01-27',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 78,
                 representative: {
@@ -2854,7 +2532,7 @@ export const CustomerService = {
                 },
                 company: 'Oh My Goodknits Inc',
                 date: '2020-02-20',
-                status: 'renewal',
+                status: 'approved',
                 verified: false,
                 activity: 29,
                 representative: {
@@ -2872,7 +2550,7 @@ export const CustomerService = {
                 },
                 company: 'Redeker, Debbie',
                 date: '2015-05-28',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 13,
                 representative: {
@@ -2890,7 +2568,7 @@ export const CustomerService = {
                 },
                 company: 'Desert Sands Motel',
                 date: '2016-09-05',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 75,
                 representative: {
@@ -2926,7 +2604,7 @@ export const CustomerService = {
                 },
                 company: 'Lehigh Furn Divsn Lehigh',
                 date: '2015-11-28',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: false,
                 activity: 13,
                 representative: {
@@ -2944,7 +2622,7 @@ export const CustomerService = {
                 },
                 company: 'United Van Lines Agent',
                 date: '2018-11-11',
-                status: 'renewal',
+                status: 'approved',
                 verified: false,
                 activity: 73,
                 representative: {
@@ -2962,7 +2640,7 @@ export const CustomerService = {
                 },
                 company: 'Capitol Reporters',
                 date: '2016-11-05',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 76,
                 representative: {
@@ -2980,7 +2658,7 @@ export const CustomerService = {
                 },
                 company: 'Kwik Kopy Printing',
                 date: '2020-08-13',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 60,
                 representative: {
@@ -3016,7 +2694,7 @@ export const CustomerService = {
                 },
                 company: 'Campbell, Jan Esq',
                 date: '2020-02-25',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 93,
                 representative: {
@@ -3034,7 +2712,7 @@ export const CustomerService = {
                 },
                 company: 'Evans, C Kelly Esq',
                 date: '2017-12-19',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: false,
                 activity: 30,
                 representative: {
@@ -3070,7 +2748,7 @@ export const CustomerService = {
                 },
                 company: 'Nagle, Daniel J Esq',
                 date: '2016-12-24',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 88,
                 representative: {
@@ -3106,7 +2784,7 @@ export const CustomerService = {
                 },
                 company: 'Ray Carolyne Realty',
                 date: '2018-02-12',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 61,
                 representative: {
@@ -3124,7 +2802,7 @@ export const CustomerService = {
                 },
                 company: 'Berg, Charles E',
                 date: '2018-06-10',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: false,
                 activity: 91,
                 representative: {
@@ -3142,7 +2820,7 @@ export const CustomerService = {
                 },
                 company: 'Ray, Milbern D',
                 date: '2017-04-11',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 98,
                 representative: {
@@ -3160,7 +2838,7 @@ export const CustomerService = {
                 },
                 company: 'Chadds Ford Winery',
                 date: '2019-07-27',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 97,
                 representative: {
@@ -3178,7 +2856,7 @@ export const CustomerService = {
                 },
                 company: 'A R Packaging',
                 date: '2020-04-23',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 56,
                 representative: {
@@ -3196,7 +2874,7 @@ export const CustomerService = {
                 },
                 company: 'Corn Popper',
                 date: '2020-09-16',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 76,
                 representative: {
@@ -3232,7 +2910,7 @@ export const CustomerService = {
                 },
                 company: 'Anchorage Museum Of Hist & Art',
                 date: '2018-06-22',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 58,
                 representative: {
@@ -3250,7 +2928,7 @@ export const CustomerService = {
                 },
                 company: 'Haber, George D Md',
                 date: '2018-10-25',
-                status: 'qualified',
+                status: 'approved',
                 verified: false,
                 activity: 72,
                 representative: {
@@ -3268,7 +2946,7 @@ export const CustomerService = {
                 },
                 company: 'Royal Pontiac Olds Inc',
                 date: '2018-07-19',
-                status: 'proposal',
+                status: 'rejected',
                 verified: false,
                 activity: 24,
                 representative: {
@@ -3286,7 +2964,7 @@ export const CustomerService = {
                 },
                 company: 'Leonards Antiques Inc',
                 date: '2015-03-15',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 86,
                 representative: {
@@ -3304,7 +2982,7 @@ export const CustomerService = {
                 },
                 company: 'Meca',
                 date: '2017-04-14',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 15,
                 representative: {
@@ -3322,7 +3000,7 @@ export const CustomerService = {
                 },
                 company: 'Nercon Engineering & Mfg Inc',
                 date: '2015-02-19',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 9,
                 representative: {
@@ -3340,7 +3018,7 @@ export const CustomerService = {
                 },
                 company: 'Replica I',
                 date: '2016-03-25',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 82,
                 representative: {
@@ -3358,7 +3036,7 @@ export const CustomerService = {
                 },
                 company: '20 20 Printing Inc',
                 date: '2020-10-13',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 13,
                 representative: {
@@ -3376,7 +3054,7 @@ export const CustomerService = {
                 },
                 company: 'Publishers Group West',
                 date: '2019-12-21',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 57,
                 representative: {
@@ -3394,7 +3072,7 @@ export const CustomerService = {
                 },
                 company: 'Nischwitz, Jeffrey L Esq',
                 date: '2016-02-26',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 45,
                 representative: {
@@ -3448,7 +3126,7 @@ export const CustomerService = {
                 },
                 company: 'Computer Repair Service',
                 date: '2016-02-13',
-                status: 'proposal',
+                status: 'rejected',
                 verified: false,
                 activity: 79,
                 representative: {
@@ -3502,7 +3180,7 @@ export const CustomerService = {
                 },
                 company: 'New England Taxidermy',
                 date: '2019-01-07',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 4,
                 representative: {
@@ -3520,7 +3198,7 @@ export const CustomerService = {
                 },
                 company: 'Ludcke, George O Esq',
                 date: '2016-08-14',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 62,
                 representative: {
@@ -3538,7 +3216,7 @@ export const CustomerService = {
                 },
                 company: 'Mccorkle, Tom S Esq',
                 date: '2016-03-05',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 64,
                 representative: {
@@ -3556,7 +3234,7 @@ export const CustomerService = {
                 },
                 company: 'Eagle Software Inc',
                 date: '2015-12-14',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 91,
                 representative: {
@@ -3574,7 +3252,7 @@ export const CustomerService = {
                 },
                 company: 'Juvenile & Adult Super',
                 date: '2019-06-01',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 40,
                 representative: {
@@ -3592,7 +3270,7 @@ export const CustomerService = {
                 },
                 company: 'Perez, Joseph J Esq',
                 date: '2015-12-09',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 27,
                 representative: {
@@ -3646,7 +3324,7 @@ export const CustomerService = {
                 },
                 company: 'Art Crafters',
                 date: '2018-04-11',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 5,
                 representative: {
@@ -3700,7 +3378,7 @@ export const CustomerService = {
                 },
                 company: 'Bjork, Robert D Jr',
                 date: '2015-03-12',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 90,
                 representative: {
@@ -3718,7 +3396,7 @@ export const CustomerService = {
                 },
                 company: 'Carmichael, Jeffery L Esq',
                 date: '2019-06-11',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 48,
                 representative: {
@@ -3736,7 +3414,7 @@ export const CustomerService = {
                 },
                 company: 'Andrews, J Robert Esq',
                 date: '2020-11-25',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 59,
                 representative: {
@@ -3754,7 +3432,7 @@ export const CustomerService = {
                 },
                 company: 'Winship & Byrne',
                 date: '2018-04-13',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 94,
                 representative: {
@@ -3790,7 +3468,7 @@ export const CustomerService = {
                 },
                 company: 'Olympic Graphic Arts',
                 date: '2018-02-25',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 95,
                 representative: {
@@ -3808,7 +3486,7 @@ export const CustomerService = {
                 },
                 company: 'Magnuson',
                 date: '2017-10-03',
-                status: 'renewal',
+                status: 'approved',
                 verified: false,
                 activity: 20,
                 representative: {
@@ -3826,7 +3504,7 @@ export const CustomerService = {
                 },
                 company: 'A All American Travel Inc',
                 date: '2016-11-26',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 81,
                 representative: {
@@ -3844,7 +3522,7 @@ export const CustomerService = {
                 },
                 company: 'Polykote Inc',
                 date: '2019-06-22',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 45,
                 representative: {
@@ -3862,7 +3540,7 @@ export const CustomerService = {
                 },
                 company: 'Jets Cybernetics',
                 date: '2019-06-07',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 56,
                 representative: {
@@ -3880,7 +3558,7 @@ export const CustomerService = {
                 },
                 company: 'Metlab Testing Services',
                 date: '2015-02-13',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 99,
                 representative: {
@@ -3970,7 +3648,7 @@ export const CustomerService = {
                 },
                 company: 'Dill Dill Carr & Stonbraker Pc',
                 date: '2017-07-27',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 63,
                 representative: {
@@ -3988,7 +3666,7 @@ export const CustomerService = {
                 },
                 company: 'Kleensteel',
                 date: '2018-05-19',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 55,
                 representative: {
@@ -4024,7 +3702,7 @@ export const CustomerService = {
                 },
                 company: 'Kansas City Insurance Report',
                 date: '2019-07-02',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 4,
                 representative: {
@@ -4042,7 +3720,7 @@ export const CustomerService = {
                 },
                 company: 'Berhanu International Foods',
                 date: '2017-10-09',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 62,
                 representative: {
@@ -4060,7 +3738,7 @@ export const CustomerService = {
                 },
                 company: 'Roland Ashcroft',
                 date: '2018-03-27',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 90,
                 representative: {
@@ -4078,7 +3756,7 @@ export const CustomerService = {
                 },
                 company: 'Hispanic Magazine',
                 date: '2017-08-10',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 34,
                 representative: {
@@ -4096,7 +3774,7 @@ export const CustomerService = {
                 },
                 company: 'Little Sheet Metal Co',
                 date: '2016-06-22',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 38,
                 representative: {
@@ -4114,7 +3792,7 @@ export const CustomerService = {
                 },
                 company: 'Holmes, Armstead J Esq',
                 date: '2020-02-24',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 96,
                 representative: {
@@ -4186,7 +3864,7 @@ export const CustomerService = {
                 },
                 company: 'Dunnells & Duvall',
                 date: '2016-07-22',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 12,
                 representative: {
@@ -4204,7 +3882,7 @@ export const CustomerService = {
                 },
                 company: 'Deltam Systems Inc',
                 date: '2019-06-23',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 67,
                 representative: {
@@ -4222,7 +3900,7 @@ export const CustomerService = {
                 },
                 company: 'Hammill Mfg Co',
                 date: '2016-08-02',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 0,
                 representative: {
@@ -4240,7 +3918,7 @@ export const CustomerService = {
                 },
                 company: 'Sams Corner Store',
                 date: '2017-08-06',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 73,
                 representative: {
@@ -4276,7 +3954,7 @@ export const CustomerService = {
                 },
                 company: 'Cape & Associates Real Estate',
                 date: '2016-08-25',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 37,
                 representative: {
@@ -4294,7 +3972,7 @@ export const CustomerService = {
                 },
                 company: 'Merrill Lynch',
                 date: '2018-11-04',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 71,
                 representative: {
@@ -4312,7 +3990,7 @@ export const CustomerService = {
                 },
                 company: 'Sublett, Scott Esq',
                 date: '2016-01-07',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: false,
                 activity: 22,
                 representative: {
@@ -4348,7 +4026,7 @@ export const CustomerService = {
                 },
                 company: 'Professionals Unlimited',
                 date: '2016-04-27',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 30,
                 representative: {
@@ -4366,7 +4044,7 @@ export const CustomerService = {
                 },
                 company: 'Southern Steel Shelving Co',
                 date: '2017-05-13',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 43,
                 representative: {
@@ -4384,7 +4062,7 @@ export const CustomerService = {
                 },
                 company: 'Bosco, Paul J',
                 date: '2017-09-11',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 60,
                 representative: {
@@ -4402,7 +4080,7 @@ export const CustomerService = {
                 },
                 company: 'Longo, Nicholas J Esq',
                 date: '2018-05-10',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 51,
                 representative: {
@@ -4420,7 +4098,7 @@ export const CustomerService = {
                 },
                 company: 'Henry County Middle School',
                 date: '2019-11-03',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 41,
                 representative: {
@@ -4438,7 +4116,7 @@ export const CustomerService = {
                 },
                 company: 'Edison Supply & Equipment Co',
                 date: '2016-03-08',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 9,
                 representative: {
@@ -4456,7 +4134,7 @@ export const CustomerService = {
                 },
                 company: 'Wolf, Warren R Esq',
                 date: '2016-03-25',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 30,
                 representative: {
@@ -4474,7 +4152,7 @@ export const CustomerService = {
                 },
                 company: 'Linguistic Systems Inc',
                 date: '2017-08-04',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 86,
                 representative: {
@@ -4492,7 +4170,7 @@ export const CustomerService = {
                 },
                 company: 'Peace Christian Center',
                 date: '2020-01-13',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 30,
                 representative: {
@@ -4510,7 +4188,7 @@ export const CustomerService = {
                 },
                 company: 'Double B Foods Inc',
                 date: '2016-06-19',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 68,
                 representative: {
@@ -4564,7 +4242,7 @@ export const CustomerService = {
                 },
                 company: 'Cali Sportswear Cutting Dept',
                 date: '2019-01-21',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 95,
                 representative: {
@@ -4600,7 +4278,7 @@ export const CustomerService = {
                 },
                 company: 'Thompson Fabricating Co',
                 date: '2016-02-12',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 7,
                 representative: {
@@ -4618,7 +4296,7 @@ export const CustomerService = {
                 },
                 company: 'Century 21 Krall Real Estate',
                 date: '2018-09-26',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 96,
                 representative: {
@@ -4636,7 +4314,7 @@ export const CustomerService = {
                 },
                 company: 'Mid Contntl Rlty & Prop Mgmt',
                 date: '2015-07-27',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 96,
                 representative: {
@@ -4708,7 +4386,7 @@ export const CustomerService = {
                 },
                 company: 'Oshins & Gibbons',
                 date: '2017-09-23',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 32,
                 representative: {
@@ -4726,7 +4404,7 @@ export const CustomerService = {
                 },
                 company: 'Price Business Services',
                 date: '2019-10-11',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 98,
                 representative: {
@@ -4744,7 +4422,7 @@ export const CustomerService = {
                 },
                 company: 'Wise, Dennis W Md',
                 date: '2017-08-01',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 57,
                 representative: {
@@ -4780,7 +4458,7 @@ export const CustomerService = {
                 },
                 company: 'John Wagner Associates',
                 date: '2016-08-25',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 85,
                 representative: {
@@ -4798,7 +4476,7 @@ export const CustomerService = {
                 },
                 company: 'Thrifty Oil Co',
                 date: '2019-06-02',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 1,
                 representative: {
@@ -4816,7 +4494,7 @@ export const CustomerService = {
                 },
                 company: 'Larkfield Photo',
                 date: '2020-05-14',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 9,
                 representative: {
@@ -4834,7 +4512,7 @@ export const CustomerService = {
                 },
                 company: 'Silverman Planetarium',
                 date: '2019-08-23',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 31,
                 representative: {
@@ -4852,7 +4530,7 @@ export const CustomerService = {
                 },
                 company: 'J & F Lumber',
                 date: '2015-05-11',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 52,
                 representative: {
@@ -4870,7 +4548,7 @@ export const CustomerService = {
                 },
                 company: 'Cleaning Station Inc',
                 date: '2016-04-17',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 80,
                 representative: {
@@ -4888,7 +4566,7 @@ export const CustomerService = {
                 },
                 company: 'Ames Stationers',
                 date: '2019-11-26',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 53,
                 representative: {
@@ -4906,7 +4584,7 @@ export const CustomerService = {
                 },
                 company: 'Midas Muffler Shops',
                 date: '2017-08-26',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 52,
                 representative: {
@@ -4924,7 +4602,7 @@ export const CustomerService = {
                 },
                 company: 'Seaboard Securities Inc',
                 date: '2017-07-09',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 45,
                 representative: {
@@ -4960,7 +4638,7 @@ export const CustomerService = {
                 },
                 company: 'Development Authority',
                 date: '2016-02-11',
-                status: 'qualified',
+                status: 'approved',
                 verified: false,
                 activity: 2,
                 representative: {
@@ -4978,7 +4656,7 @@ export const CustomerService = {
                 },
                 company: 'Schott Fiber Optics Inc',
                 date: '2019-06-05',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 95,
                 representative: {
@@ -4996,7 +4674,7 @@ export const CustomerService = {
                 },
                 company: 'Stuart J Agins',
                 date: '2016-08-04',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 35,
                 representative: {
@@ -5014,7 +4692,7 @@ export const CustomerService = {
                 },
                 company: 'Mitsumi Electronics Corp',
                 date: '2015-06-05',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 78,
                 representative: {
@@ -5032,7 +4710,7 @@ export const CustomerService = {
                 },
                 company: 'Italian Express Franchise Corp',
                 date: '2015-06-20',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 86,
                 representative: {
@@ -5050,7 +4728,7 @@ export const CustomerService = {
                 },
                 company: 'American Council On Sci & Hlth',
                 date: '2018-06-24',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 4,
                 representative: {
@@ -5068,7 +4746,7 @@ export const CustomerService = {
                 },
                 company: 'Kleri, Patricia S Esq',
                 date: '2017-08-15',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 66,
                 representative: {
@@ -5140,7 +4818,7 @@ export const CustomerService = {
                 },
                 company: 'Geonex Martel Inc',
                 date: '2015-03-19',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 64,
                 representative: {
@@ -5212,7 +4890,7 @@ export const CustomerService = {
                 },
                 company: 'Stephen Kennerly Archts Inc Pc',
                 date: '2017-11-27',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 14,
                 representative: {
@@ -5248,7 +4926,7 @@ export const CustomerService = {
                 },
                 company: 'Flash, Elena Salerno Esq',
                 date: '2018-01-28',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 0,
                 representative: {
@@ -5266,7 +4944,7 @@ export const CustomerService = {
                 },
                 company: 'Neeley, Gregory W Esq',
                 date: '2019-11-16',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 59,
                 representative: {
@@ -5284,7 +4962,7 @@ export const CustomerService = {
                 },
                 company: 'Alabama Educational Tv Comm',
                 date: '2019-06-09',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 30,
                 representative: {
@@ -5302,7 +4980,7 @@ export const CustomerService = {
                 },
                 company: 'Franz Inc',
                 date: '2017-02-07',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 59,
                 representative: {
@@ -5320,7 +4998,7 @@ export const CustomerService = {
                 },
                 company: 'Plantation Restaurant',
                 date: '2020-09-14',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 86,
                 representative: {
@@ -5338,7 +5016,7 @@ export const CustomerService = {
                 },
                 company: 'Radio Communications Co',
                 date: '2017-01-06',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 33,
                 representative: {
@@ -5392,7 +5070,7 @@ export const CustomerService = {
                 },
                 company: 'Grayson, Grant S Esq',
                 date: '2019-12-22',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 22,
                 representative: {
@@ -5428,7 +5106,7 @@ export const CustomerService = {
                 },
                 company: 'Haavisto, Brian F Esq',
                 date: '2019-07-27',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 13,
                 representative: {
@@ -5446,7 +5124,7 @@ export const CustomerService = {
                 },
                 company: 'Wmmt Radio Station',
                 date: '2016-03-28',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 73,
                 representative: {
@@ -5464,7 +5142,7 @@ export const CustomerService = {
                 },
                 company: 'Colony Paints Sales Ofc & Plnt',
                 date: '2018-04-15',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 70,
                 representative: {
@@ -5500,7 +5178,7 @@ export const CustomerService = {
                 },
                 company: 'Casco Services Inc',
                 date: '2018-03-27',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 81,
                 representative: {
@@ -5518,7 +5196,7 @@ export const CustomerService = {
                 },
                 company: 'Reuter, Arthur C Jr',
                 date: '2015-04-21',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 8,
                 representative: {
@@ -5536,7 +5214,7 @@ export const CustomerService = {
                 },
                 company: 'Kaminski, Katherine Andritsaki',
                 date: '2015-07-17',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 29,
                 representative: {
@@ -5554,7 +5232,7 @@ export const CustomerService = {
                 },
                 company: 'Sidewinder Products Corp',
                 date: '2015-12-12',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 42,
                 representative: {
@@ -5608,7 +5286,7 @@ export const CustomerService = {
                 },
                 company: 'Anchor Computer Inc',
                 date: '2018-12-08',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 89,
                 representative: {
@@ -5626,7 +5304,7 @@ export const CustomerService = {
                 },
                 company: 'Sebring & Co',
                 date: '2017-11-04',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 22,
                 representative: {
@@ -5644,7 +5322,7 @@ export const CustomerService = {
                 },
                 company: 'H A C Farm Lines Co Optv Assoc',
                 date: '2017-02-17',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 58,
                 representative: {
@@ -5662,7 +5340,7 @@ export const CustomerService = {
                 },
                 company: 'Hunter, John J Esq',
                 date: '2017-04-15',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 79,
                 representative: {
@@ -5680,7 +5358,7 @@ export const CustomerService = {
                 },
                 company: 'Freehold Fence Co',
                 date: '2017-11-16',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 6,
                 representative: {
@@ -5698,7 +5376,7 @@ export const CustomerService = {
                 },
                 company: 'Binswanger',
                 date: '2019-07-24',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 64,
                 representative: {
@@ -5716,7 +5394,7 @@ export const CustomerService = {
                 },
                 company: 'Chilton Malting Co',
                 date: '2016-11-05',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 57,
                 representative: {
@@ -5734,7 +5412,7 @@ export const CustomerService = {
                 },
                 company: 'Schoen, Edward J Jr',
                 date: '2017-03-03',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 29,
                 representative: {
@@ -5752,7 +5430,7 @@ export const CustomerService = {
                 },
                 company: 'Helderman, Seymour Cpa',
                 date: '2018-03-13',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 19,
                 representative: {
@@ -5788,7 +5466,7 @@ export const CustomerService = {
                 },
                 company: 'Lippitt, Mike',
                 date: '2019-09-28',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 62,
                 representative: {
@@ -5824,7 +5502,7 @@ export const CustomerService = {
                 },
                 company: 'In Travel Agency',
                 date: '2016-12-14',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 22,
                 representative: {
@@ -5842,7 +5520,7 @@ export const CustomerService = {
                 },
                 company: 'Newhart Foods Inc',
                 date: '2015-09-07',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 7,
                 representative: {
@@ -5860,7 +5538,7 @@ export const CustomerService = {
                 },
                 company: 'Courtyard By Marriott',
                 date: '2018-05-26',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 59,
                 representative: {
@@ -5896,7 +5574,7 @@ export const CustomerService = {
                 },
                 company: 'Seashore Supply Co Waretown',
                 date: '2015-10-23',
-                status: 'renewal',
+                status: 'approved',
                 verified: false,
                 activity: 21,
                 representative: {
@@ -5932,7 +5610,7 @@ export const CustomerService = {
                 },
                 company: 'National Medical Excess Corp',
                 date: '2019-09-01',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 8,
                 representative: {
@@ -5950,7 +5628,7 @@ export const CustomerService = {
                 },
                 company: 'Stero Company',
                 date: '2018-01-28',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 46,
                 representative: {
@@ -5968,7 +5646,7 @@ export const CustomerService = {
                 },
                 company: 'Hasting, H Duane Esq',
                 date: '2018-10-24',
-                status: 'renewal',
+                status: 'approved',
                 verified: false,
                 activity: 2,
                 representative: {
@@ -5986,7 +5664,7 @@ export const CustomerService = {
                 },
                 company: 'Insty Prints',
                 date: '2019-02-02',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 8,
                 representative: {
@@ -6004,7 +5682,7 @@ export const CustomerService = {
                 },
                 company: 'Glenridge Manor Mobile Home Pk',
                 date: '2019-08-16',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 8,
                 representative: {
@@ -6022,7 +5700,7 @@ export const CustomerService = {
                 },
                 company: 'Circuit Solution Inc',
                 date: '2019-07-10',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 88,
                 representative: {
@@ -6040,7 +5718,7 @@ export const CustomerService = {
                 },
                 company: 'Local Office',
                 date: '2016-05-21',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 85,
                 representative: {
@@ -6058,7 +5736,7 @@ export const CustomerService = {
                 },
                 company: 'Lee Kilkelly Paulson & Kabaker',
                 date: '2019-11-10',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 24,
                 representative: {
@@ -6076,7 +5754,7 @@ export const CustomerService = {
                 },
                 company: 'Davis, Maxon R Esq',
                 date: '2019-06-20',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 44,
                 representative: {
@@ -6094,7 +5772,7 @@ export const CustomerService = {
                 },
                 company: 'Garrison, Paul E Esq',
                 date: '2019-08-01',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 91,
                 representative: {
@@ -6112,7 +5790,7 @@ export const CustomerService = {
                 },
                 company: 'Black History Resource Center',
                 date: '2017-06-09',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 79,
                 representative: {
@@ -6148,7 +5826,7 @@ export const CustomerService = {
                 },
                 company: 'Grant Family Health Center',
                 date: '2016-10-06',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 90,
                 representative: {
@@ -6166,7 +5844,7 @@ export const CustomerService = {
                 },
                 company: 'Goeman Wood Products Inc',
                 date: '2019-01-02',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 72,
                 representative: {
@@ -6220,7 +5898,7 @@ export const CustomerService = {
                 },
                 company: 'H P G Industrys Inc',
                 date: '2019-12-15',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 20,
                 representative: {
@@ -6238,7 +5916,7 @@ export const CustomerService = {
                 },
                 company: 'Bailey Transportation Prod Inc',
                 date: '2016-09-22',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 26,
                 representative: {
@@ -6274,7 +5952,7 @@ export const CustomerService = {
                 },
                 company: 'Mutual Fish Co',
                 date: '2019-11-26',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 70,
                 representative: {
@@ -6310,7 +5988,7 @@ export const CustomerService = {
                 },
                 company: 'Logan, Ronald J Esq',
                 date: '2016-02-13',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 5,
                 representative: {
@@ -6328,7 +6006,7 @@ export const CustomerService = {
                 },
                 company: 'Advantage Martgage Company',
                 date: '2019-10-22',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 38,
                 representative: {
@@ -6346,7 +6024,7 @@ export const CustomerService = {
                 },
                 company: 'Germer And Gertz Llp',
                 date: '2015-01-03',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 66,
                 representative: {
@@ -6364,7 +6042,7 @@ export const CustomerService = {
                 },
                 company: 'Spence Law Offices',
                 date: '2016-11-03',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 77,
                 representative: {
@@ -6382,7 +6060,7 @@ export const CustomerService = {
                 },
                 company: 'John Ortiz Nts Therapy Center',
                 date: '2016-04-11',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 62,
                 representative: {
@@ -6400,7 +6078,7 @@ export const CustomerService = {
                 },
                 company: 'Mike Uchrin Htg & Air Cond Inc',
                 date: '2017-11-22',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 12,
                 representative: {
@@ -6436,7 +6114,7 @@ export const CustomerService = {
                 },
                 company: 'Kbor 1600 Am',
                 date: '2016-01-04',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 25,
                 representative: {
@@ -6454,7 +6132,7 @@ export const CustomerService = {
                 },
                 company: 'Quality Inn Northwest',
                 date: '2016-04-05',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 14,
                 representative: {
@@ -6508,7 +6186,7 @@ export const CustomerService = {
                 },
                 company: 'Ravaal Enterprises Inc',
                 date: '2016-11-14',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 47,
                 representative: {
@@ -6544,7 +6222,7 @@ export const CustomerService = {
                 },
                 company: 'Anderson, Mark A Esq',
                 date: '2020-03-06',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 33,
                 representative: {
@@ -6562,7 +6240,7 @@ export const CustomerService = {
                 },
                 company: 'Womack & Galich',
                 date: '2015-11-22',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 31,
                 representative: {
@@ -6580,7 +6258,7 @@ export const CustomerService = {
                 },
                 company: 'Valerie & Company',
                 date: '2015-08-12',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 26,
                 representative: {
@@ -6598,7 +6276,7 @@ export const CustomerService = {
                 },
                 company: 'Gehring Pumps Inc',
                 date: '2018-10-21',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 90,
                 representative: {
@@ -6634,7 +6312,7 @@ export const CustomerService = {
                 },
                 company: 'Spoor Behrins Campbell & Young',
                 date: '2019-02-03',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 68,
                 representative: {
@@ -6670,7 +6348,7 @@ export const CustomerService = {
                 },
                 company: 'Potter, Brenda J Cpa',
                 date: '2017-01-04',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 86,
                 representative: {
@@ -6706,7 +6384,7 @@ export const CustomerService = {
                 },
                 company: 'Minor, Cynthia A Esq',
                 date: '2020-09-25',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 17,
                 representative: {
@@ -6814,7 +6492,7 @@ export const CustomerService = {
                 },
                 company: 'Galaxy International Inc',
                 date: '2019-02-11',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 79,
                 representative: {
@@ -6850,7 +6528,7 @@ export const CustomerService = {
                 },
                 company: 'Soward, Anne Esq',
                 date: '2018-10-07',
-                status: 'proposal',
+                status: 'rejected',
                 verified: false,
                 activity: 28,
                 representative: {
@@ -6886,7 +6564,7 @@ export const CustomerService = {
                 },
                 company: 'Students In Free Entrprs Natl',
                 date: '2019-07-28',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 24,
                 representative: {
@@ -6904,7 +6582,7 @@ export const CustomerService = {
                 },
                 company: 'Johnson, Robert M Esq',
                 date: '2018-04-02',
-                status: 'renewal',
+                status: 'approved',
                 verified: false,
                 activity: 24,
                 representative: {
@@ -6922,7 +6600,7 @@ export const CustomerService = {
                 },
                 company: 'Del Charro Apartments',
                 date: '2020-02-16',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 61,
                 representative: {
@@ -6940,7 +6618,7 @@ export const CustomerService = {
                 },
                 company: 'Legal Search Inc',
                 date: '2019-10-16',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 98,
                 representative: {
@@ -6976,7 +6654,7 @@ export const CustomerService = {
                 },
                 company: 'Sameshima, Douglas J Esq',
                 date: '2019-11-27',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 85,
                 representative: {
@@ -6994,7 +6672,7 @@ export const CustomerService = {
                 },
                 company: 'Thompson, John Randolph Jr',
                 date: '2017-08-13',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 40,
                 representative: {
@@ -7012,7 +6690,7 @@ export const CustomerService = {
                 },
                 company: 'E T Balancing Co Inc',
                 date: '2019-04-20',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 57,
                 representative: {
@@ -7066,7 +6744,7 @@ export const CustomerService = {
                 },
                 company: 'Brooks, Morris J Jr',
                 date: '2020-09-12',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 82,
                 representative: {
@@ -7084,7 +6762,7 @@ export const CustomerService = {
                 },
                 company: 'Printing Images Corp',
                 date: '2017-05-26',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 21,
                 representative: {
@@ -7102,7 +6780,7 @@ export const CustomerService = {
                 },
                 company: 'Roberts Supply Co Inc',
                 date: '2017-04-21',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 54,
                 representative: {
@@ -7120,7 +6798,7 @@ export const CustomerService = {
                 },
                 company: 'Vico Products Mfg Co',
                 date: '2017-10-02',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 53,
                 representative: {
@@ -7156,7 +6834,7 @@ export const CustomerService = {
                 },
                 company: 'Farrell & Johnson Office Equip',
                 date: '2017-06-24',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 39,
                 representative: {
@@ -7174,7 +6852,7 @@ export const CustomerService = {
                 },
                 company: 'Millers Market & Deli',
                 date: '2016-02-23',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 89,
                 representative: {
@@ -7192,7 +6870,7 @@ export const CustomerService = {
                 },
                 company: 'Holiday Inn Naperville',
                 date: '2020-07-17',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 0,
                 representative: {
@@ -7228,7 +6906,7 @@ export const CustomerService = {
                 },
                 company: 'Dock Seal Specialty',
                 date: '2017-08-13',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 59,
                 representative: {
@@ -7246,7 +6924,7 @@ export const CustomerService = {
                 },
                 company: 'Five Star Limousines Of Tx Inc',
                 date: '2015-05-21',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 9,
                 representative: {
@@ -7264,7 +6942,7 @@ export const CustomerService = {
                 },
                 company: 'Barkan, Neal J Esq',
                 date: '2019-02-19',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 38,
                 representative: {
@@ -7282,7 +6960,7 @@ export const CustomerService = {
                 },
                 company: 'Campbell, Robert A',
                 date: '2016-03-06',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 25,
                 representative: {
@@ -7300,7 +6978,7 @@ export const CustomerService = {
                 },
                 company: 'Dee, Deanna',
                 date: '2020-12-19',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 32,
                 representative: {
@@ -7318,7 +6996,7 @@ export const CustomerService = {
                 },
                 company: 'Young, Timothy L Esq',
                 date: '2019-02-05',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 55,
                 representative: {
@@ -7336,7 +7014,7 @@ export const CustomerService = {
                 },
                 company: 'Wells, D Fred Esq',
                 date: '2016-02-09',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: false,
                 activity: 26,
                 representative: {
@@ -7372,7 +7050,7 @@ export const CustomerService = {
                 },
                 company: 'Toledo Iv Care',
                 date: '2016-03-10',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 86,
                 representative: {
@@ -7408,7 +7086,7 @@ export const CustomerService = {
                 },
                 company: 'Sat Poly Inc',
                 date: '2020-10-19',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 69,
                 representative: {
@@ -7426,7 +7104,7 @@ export const CustomerService = {
                 },
                 company: 'Midwest Contracting & Mfg Inc',
                 date: '2018-03-14',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 81,
                 representative: {
@@ -7444,7 +7122,7 @@ export const CustomerService = {
                 },
                 company: 'Print Doctor',
                 date: '2016-09-23',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 39,
                 representative: {
@@ -7462,7 +7140,7 @@ export const CustomerService = {
                 },
                 company: 'Nordic Group Inc',
                 date: '2018-08-13',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 95,
                 representative: {
@@ -7480,7 +7158,7 @@ export const CustomerService = {
                 },
                 company: 'Jackson Millwork Co',
                 date: '2017-07-24',
-                status: 'renewal',
+                status: 'approved',
                 verified: false,
                 activity: 23,
                 representative: {
@@ -7498,7 +7176,7 @@ export const CustomerService = {
                 },
                 company: 'Harris Corporation',
                 date: '2018-03-15',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 9,
                 representative: {
@@ -7516,7 +7194,7 @@ export const CustomerService = {
                 },
                 company: 'United Cerebral Palsy Of Ne Pa',
                 date: '2020-12-11',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 0,
                 representative: {
@@ -7570,7 +7248,7 @@ export const CustomerService = {
                 },
                 company: 'Terk, Robert E Esq',
                 date: '2017-01-26',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 12,
                 representative: {
@@ -7588,7 +7266,7 @@ export const CustomerService = {
                 },
                 company: 'Cullen, Terrence P Esq',
                 date: '2016-06-28',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 89,
                 representative: {
@@ -7624,7 +7302,7 @@ export const CustomerService = {
                 },
                 company: 'Centerline Engineering',
                 date: '2019-02-04',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 41,
                 representative: {
@@ -7660,7 +7338,7 @@ export const CustomerService = {
                 },
                 company: 'Riley Riper Hollin & Colagreco',
                 date: '2019-05-28',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 76,
                 representative: {
@@ -7696,7 +7374,7 @@ export const CustomerService = {
                 },
                 company: 'Water Office',
                 date: '2020-12-26',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 76,
                 representative: {
@@ -7732,7 +7410,7 @@ export const CustomerService = {
                 },
                 company: 'Armon Communications',
                 date: '2018-02-16',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 84,
                 representative: {
@@ -7768,7 +7446,7 @@ export const CustomerService = {
                 },
                 company: 'Forest Fire Laboratory',
                 date: '2018-06-12',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 96,
                 representative: {
@@ -7786,7 +7464,7 @@ export const CustomerService = {
                 },
                 company: 'Haughey, Charles Jr',
                 date: '2016-11-03',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 63,
                 representative: {
@@ -7822,7 +7500,7 @@ export const CustomerService = {
                 },
                 company: 'Reese Plastics',
                 date: '2018-11-20',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 83,
                 representative: {
@@ -7840,7 +7518,7 @@ export const CustomerService = {
                 },
                 company: 'Nazette Marner Good Wendt',
                 date: '2015-08-18',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 66,
                 representative: {
@@ -7858,7 +7536,7 @@ export const CustomerService = {
                 },
                 company: 'Levinson Axelrod Wheaton',
                 date: '2016-02-11',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 64,
                 representative: {
@@ -7876,7 +7554,7 @@ export const CustomerService = {
                 },
                 company: 'Egnor, W Dan Esq',
                 date: '2018-07-09',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 99,
                 representative: {
@@ -7894,7 +7572,7 @@ export const CustomerService = {
                 },
                 company: 'Portland Central Thriftlodge',
                 date: '2018-05-28',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 51,
                 representative: {
@@ -7930,7 +7608,7 @@ export const CustomerService = {
                 },
                 company: 'Tipiak Inc',
                 date: '2015-08-24',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 46,
                 representative: {
@@ -7966,7 +7644,7 @@ export const CustomerService = {
                 },
                 company: 'Hawkes, Douglas D',
                 date: '2018-11-09',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 43,
                 representative: {
@@ -7984,7 +7662,7 @@ export const CustomerService = {
                 },
                 company: 'Accurel Systems Intrntl Corp',
                 date: '2016-06-02',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 48,
                 representative: {
@@ -8002,7 +7680,7 @@ export const CustomerService = {
                 },
                 company: 'Santa Cruz Community Internet',
                 date: '2019-11-08',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 39,
                 representative: {
@@ -8020,7 +7698,7 @@ export const CustomerService = {
                 },
                 company: 'Gersh & Danielson',
                 date: '2017-09-24',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 86,
                 representative: {
@@ -8038,7 +7716,7 @@ export const CustomerService = {
                 },
                 company: 'Cobb, James O Esq',
                 date: '2015-09-08',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 85,
                 representative: {
@@ -8074,7 +7752,7 @@ export const CustomerService = {
                 },
                 company: 'Systems Graph Inc Ab Dick Dlr',
                 date: '2017-05-09',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 92,
                 representative: {
@@ -8128,7 +7806,7 @@ export const CustomerService = {
                 },
                 company: 'Dimmock, Thomas J Esq',
                 date: '2017-02-10',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 9,
                 representative: {
@@ -8146,7 +7824,7 @@ export const CustomerService = {
                 },
                 company: 'Intermed Inc',
                 date: '2016-08-17',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 99,
                 representative: {
@@ -8182,7 +7860,7 @@ export const CustomerService = {
                 },
                 company: 'Sportmaster Intrnatl',
                 date: '2017-06-10',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 61,
                 representative: {
@@ -8200,7 +7878,7 @@ export const CustomerService = {
                 },
                 company: 'W W John Holden Inc',
                 date: '2015-12-08',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 74,
                 representative: {
@@ -8218,7 +7896,7 @@ export const CustomerService = {
                 },
                 company: 'Maccani & Delp',
                 date: '2018-08-16',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 14,
                 representative: {
@@ -8272,7 +7950,7 @@ export const CustomerService = {
                 },
                 company: 'Switchcraft Inc',
                 date: '2019-06-08',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 21,
                 representative: {
@@ -8290,7 +7968,7 @@ export const CustomerService = {
                 },
                 company: 'C W D C Metal Fabricators',
                 date: '2016-11-26',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 50,
                 representative: {
@@ -8308,7 +7986,7 @@ export const CustomerService = {
                 },
                 company: 'Shimotani, Grace T',
                 date: '2020-11-15',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 94,
                 representative: {
@@ -8326,7 +8004,7 @@ export const CustomerService = {
                 },
                 company: 'Lisatoni, Jean Esq',
                 date: '2019-11-22',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 41,
                 representative: {
@@ -8434,7 +8112,7 @@ export const CustomerService = {
                 },
                 company: 'Versatile Sash & Woodwork',
                 date: '2019-11-25',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 23,
                 representative: {
@@ -8452,7 +8130,7 @@ export const CustomerService = {
                 },
                 company: 'Warner Electric Brk & Cltch Co',
                 date: '2019-02-12',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 71,
                 representative: {
@@ -8470,7 +8148,7 @@ export const CustomerService = {
                 },
                 company: 'New York Public Library',
                 date: '2017-02-12',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 91,
                 representative: {
@@ -8488,7 +8166,7 @@ export const CustomerService = {
                 },
                 company: 'Mccaleb, John A Esq',
                 date: '2017-06-13',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 35,
                 representative: {
@@ -8524,7 +8202,7 @@ export const CustomerService = {
                 },
                 company: 'Irving Foot Center',
                 date: '2015-07-22',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 72,
                 representative: {
@@ -8542,7 +8220,7 @@ export const CustomerService = {
                 },
                 company: 'Acme Supply Co',
                 date: '2018-05-13',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 78,
                 representative: {
@@ -8560,7 +8238,7 @@ export const CustomerService = {
                 },
                 company: 'Mcrae, James L',
                 date: '2018-03-20',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 45,
                 representative: {
@@ -8578,7 +8256,7 @@ export const CustomerService = {
                 },
                 company: 'Mcgraths Seafood',
                 date: '2017-05-13',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 34,
                 representative: {
@@ -8596,7 +8274,7 @@ export const CustomerService = {
                 },
                 company: 'Kummerer, J Michael Esq',
                 date: '2017-02-21',
-                status: 'proposal',
+                status: 'rejected',
                 verified: true,
                 activity: 12,
                 representative: {
@@ -8614,7 +8292,7 @@ export const CustomerService = {
                 },
                 company: 'Stoffer, James M Jr',
                 date: '2017-07-21',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 4,
                 representative: {
@@ -8650,7 +8328,7 @@ export const CustomerService = {
                 },
                 company: 'Fiorucci Foods Usa Inc',
                 date: '2018-05-09',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 11,
                 representative: {
@@ -8668,7 +8346,7 @@ export const CustomerService = {
                 },
                 company: 'Sign All',
                 date: '2017-10-06',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 61,
                 representative: {
@@ -8686,7 +8364,7 @@ export const CustomerService = {
                 },
                 company: 'Sammys Steak Den',
                 date: '2018-10-06',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 34,
                 representative: {
@@ -8704,7 +8382,7 @@ export const CustomerService = {
                 },
                 company: 'Dobscha, Stephen F Esq',
                 date: '2019-05-22',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 38,
                 representative: {
@@ -8722,7 +8400,7 @@ export const CustomerService = {
                 },
                 company: 'Morgan Custom Homes',
                 date: '2018-06-11',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 69,
                 representative: {
@@ -8740,7 +8418,7 @@ export const CustomerService = {
                 },
                 company: 'Olsen Payne & Company',
                 date: '2017-12-11',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 16,
                 representative: {
@@ -8758,7 +8436,7 @@ export const CustomerService = {
                 },
                 company: 'Cowan & Kelly',
                 date: '2015-08-11',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 31,
                 representative: {
@@ -8776,7 +8454,7 @@ export const CustomerService = {
                 },
                 company: 'Johnson, Wes Esq',
                 date: '2016-08-10',
-                status: 'qualified',
+                status: 'approved',
                 verified: true,
                 activity: 63,
                 representative: {
@@ -8830,7 +8508,7 @@ export const CustomerService = {
                 },
                 company: 'Tippett, Troy M Ii',
                 date: '2016-09-22',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 71,
                 representative: {
@@ -8848,7 +8526,7 @@ export const CustomerService = {
                 },
                 company: 'Atc Contracting',
                 date: '2015-03-08',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 78,
                 representative: {
@@ -8920,7 +8598,7 @@ export const CustomerService = {
                 },
                 company: 'Inner Label',
                 date: '2019-11-23',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 14,
                 representative: {
@@ -8938,7 +8616,7 @@ export const CustomerService = {
                 },
                 company: 'Hermar Inc',
                 date: '2020-04-22',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 65,
                 representative: {
@@ -8956,7 +8634,7 @@ export const CustomerService = {
                 },
                 company: 'Simonton Howe & Schneider Pc',
                 date: '2020-08-10',
-                status: 'unqualified',
+                status: 'rejected',
                 verified: true,
                 activity: 30,
                 representative: {
@@ -8992,7 +8670,7 @@ export const CustomerService = {
                 },
                 company: 'Affiliated With Travelodge',
                 date: '2019-04-23',
-                status: 'renewal',
+                status: 'approved',
                 verified: true,
                 activity: 42,
                 representative: {

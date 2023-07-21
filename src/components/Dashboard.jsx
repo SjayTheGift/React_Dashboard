@@ -6,6 +6,8 @@ import Designation from '../pages/Designation'
 import Employees from '../pages/Employees'
 import AddEmployee from '../pages/AddEmployee'
 import LeaveApplication from '../pages/LeaveApplication'
+import ManageStuffLeave from '../pages/ManageStuffLeave'
+import ViewUserLeave from '../pages/ViewUserLeave'
 import LeaveType from '../pages/LeaveType'
 import EarnedLeave from '../pages/EarnedLeave'
 import Home from '../pages/Home'
@@ -54,9 +56,9 @@ const Dashboard = () => {
                         <Route path='/departments'  element={<Departments/>}/>
                         <Route path='/designation'  element={<Designation/>}/>
                         <Route path='/apply-leave'  element={<LeaveApplication/>}/>
-                        <Route path='/manage-stuff-leave'  element={<LeaveApplication/>}/>
+                        <Route path='/manage-stuff-leave'  element={<ManageStuffLeave/>}/>
                         {/* <Route path='/stuff-leave-history'  element={<LeaveApplication/>}/> */}
-                        {/* <Route path='/view-my-leave'  element={<LeaveApplication/>}/> */}
+                        <Route path='/view-my-leave'  element={<ViewUserLeave/>}/>
                         <Route path='/leave-type'  element={<LeaveType/>}/>
                         <Route path='/earned-leave'  element={<EarnedLeave/>}/>
                     </Routes>

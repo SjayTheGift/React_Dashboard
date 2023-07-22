@@ -1,25 +1,29 @@
-import { useState, useEffect, useRef } from 'react'
+import React,{ useState, useEffect, useRef } from 'react'
 
 import { BiEdit } from 'react-icons/bi'
 import { MdOutlineDelete } from 'react-icons/md'
 import { Toast } from 'primereact/toast';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
+import { Dialog } from 'primereact/dialog';
 
 import DesignationService from '../service/DesignationService'
+import DeleteDialog from '../components/DeleteDialog'
 
 const Designations = () => {
 
   const [name, setName] = useState('')
 
-  const [designationList, setAddDesignationList] = useState([])
+  const [designationList, setDesignationList] = useState([])
+  const [deleteDialog, setDeleteDialog] = useState(false)
+  const [dataToDelete, setDataToDelete] = useState('')
   const toast = useRef(null);
   const [error, setError] = useState(false)
   const [hideButton, setHideButton] = useState(false)
   const [id, setId] = useState()
 
   useEffect(()=>{
-    setAddDesignationList(DesignationService())
+    setDesignationList(DesignationService())
   }, [])
 
   const onChange = (e) =>{
@@ -35,7 +39,7 @@ const Designations = () => {
       setError(true)
     }else{
       designationList.push({"id": newId, "name": name})
-      setAddDesignationList([...designationList])
+      setDesignationList([...designationList])
       setName('')
       setError(false)
     }
@@ -43,8 +47,6 @@ const Designations = () => {
 
   const onUpdate = () => {
     setHideButton(false)
-
-    console.log(name)
 
     if(name.trim().length === 0){
       toast.current.show({ severity: 'error', summary: 'Error', detail: 'Designation Name Required', life: 3000 });
@@ -60,7 +62,7 @@ const Designations = () => {
             return obj;
           })
 
-          setAddDesignationList(newState)
+          setDesignationList(newState)
           setName('')
     
     }
@@ -77,6 +79,14 @@ const Designations = () => {
     setError(false)
     setHideButton(false)
   }
+
+
+
+  const onDeleteName = (val) => {
+    setDeleteDialog(true)
+    setDataToDelete(val)
+  }
+
 
 
   return (
@@ -143,28 +153,26 @@ const Designations = () => {
                 </div>
 
 
-              {designationList.map((Designation) =>
-                  <div key={Designation.id} className="flex flex-row gap-3 mt-2 font-semibold items-center justify-between px-6 py-2 bg-gray-100 text-slate-800">  
-                      <p>{Designation.name}</p>
+              {designationList.map((obj) =>
+                  <div key={obj.id} className="flex flex-row gap-3 mt-2 font-semibold items-center justify-between px-6 py-2 bg-gray-100 text-slate-800">  
+                      <p>{obj.name}</p>
                       <div className='flex gap-2 items-center'>
-                        <p className='cursor-pointer bg-white' onClick={() => onUpdateName(Designation)}><BiEdit  className='text-green-600' size={20}/></p>
-                        <p className='cursor-pointer bg-white'><MdOutlineDelete className='text-red-700' size={20}/></p>
+                        <p className='cursor-pointer bg-white' onClick={() => onUpdateName(obj)}><BiEdit  className='text-green-600' size={20}/></p>
+                        <p className='cursor-pointer bg-white' onClick={() => onDeleteName(obj)}><MdOutlineDelete className='text-red-700' size={20}/></p>
                       </div>
                   </div>
                 )}
 
-              
+              <DeleteDialog 
+              dataToDelete={dataToDelete}
+              setDataToDelete={setDataToDelete}
+              deleteDialog={deleteDialog} 
+              setDeleteDialog={setDeleteDialog}
+              dataList={designationList}
+              setDataList={setDesignationList}
+              toast={toast}
+              />
 
-
-                
-
-                {/* <div className="flex flex-row gap-3 mt-2 font-semibold items-center justify-between px-6 py-2 bg-gray-100 text-slate-800">  
-                      <p>ICT</p>
-                      <div className='flex gap-2 items-center'>
-                        <p className='cursor-pointer bg-white'><BiEdit  className='text-green-600' size={20}/></p>
-                        <p className='cursor-pointer bg-white'><MdOutlineDelete className='text-red-700' size={20}/></p>
-                      </div>
-                </div> */}
             </div>
       </div>
       

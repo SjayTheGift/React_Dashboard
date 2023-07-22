@@ -1,25 +1,29 @@
-import { useState, useEffect, useRef } from 'react'
+import React,{ useState, useEffect, useRef } from 'react'
 
 import { BiEdit } from 'react-icons/bi'
 import { MdOutlineDelete } from 'react-icons/md'
 import { Toast } from 'primereact/toast';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
+import { Dialog } from 'primereact/dialog';
 
 import DepartmentService from '../service/DepartmentService'
+import DeleteDialog from '../components/DeleteDialog'
 
 const Departments = () => {
 
   const [name, setName] = useState('')
 
-  const [departmentList, setAddDepartmentList] = useState([])
+  const [departmentList, setDepartmentList] = useState([])
+  const [deleteDialog, setDeleteDialog] = useState(false)
   const toast = useRef(null);
   const [error, setError] = useState(false)
   const [hideButton, setHideButton] = useState(false)
   const [id, setId] = useState()
+  const [dataToDelete, setDataToDelete] = useState('')
 
   useEffect(()=>{
-    setAddDepartmentList(DepartmentService())
+    setDepartmentList(DepartmentService())
   }, [])
 
   const onChange = (e) =>{
@@ -34,7 +38,7 @@ const Departments = () => {
       setError(true)
     }else{
       departmentList.push({"id": newId, "name": name})
-      setAddDepartmentList([...departmentList])
+      setDepartmentList([...departmentList])
       setName('')
       setError(false)
     }
@@ -59,7 +63,7 @@ const Departments = () => {
             return obj;
           })
 
-          setAddDepartmentList(newState)
+          setDepartmentList(newState)
           setName('')
     
     }
@@ -75,6 +79,11 @@ const Departments = () => {
     setName('')
     setError(false)
     setHideButton(false)
+  }
+
+  const onDeleteName = (val) => {
+    setDeleteDialog(true)
+    setDataToDelete(val)
   }
 
 
@@ -147,23 +156,25 @@ const Departments = () => {
                       <p>{department.name}</p>
                       <div className='flex gap-2 items-center'>
                         <p className='cursor-pointer bg-white' onClick={() => onUpdateName(department)}><BiEdit  className='text-green-600' size={20}/></p>
-                        <p className='cursor-pointer bg-white'><MdOutlineDelete className='text-red-700' size={20}/></p>
+                        <p className='cursor-pointer bg-white' onClick={() => onDeleteName(department)}><MdOutlineDelete className='text-red-700' size={20}/></p>
                       </div>
                   </div>
                 )}
 
               
+              <DeleteDialog 
+                dataToDelete={dataToDelete}
+                setDataToDelete={setDataToDelete}
+                deleteDialog={deleteDialog} 
+                setDeleteDialog={setDeleteDialog}
+                dataList={departmentList}
+                setDataList={setDepartmentList}
+                toast={toast}
+              />
 
 
                 
 
-                {/* <div className="flex flex-row gap-3 mt-2 font-semibold items-center justify-between px-6 py-2 bg-gray-100 text-slate-800">  
-                      <p>ICT</p>
-                      <div className='flex gap-2 items-center'>
-                        <p className='cursor-pointer bg-white'><BiEdit  className='text-green-600' size={20}/></p>
-                        <p className='cursor-pointer bg-white'><MdOutlineDelete className='text-red-700' size={20}/></p>
-                      </div>
-                </div> */}
             </div>
       </div>
       

@@ -25,8 +25,8 @@ const Employees = () => {
         gender: '',
         email: '',
         phone: '',
-        birthDate: new Date('2018-06-09T00:00:00.000Z'),
-        image: null,
+        birthDate: new Date(),
+        image: '',
         title: ""
     };
     // let date = new Date('2018-06-09T00:00:00.000Z');
@@ -65,7 +65,7 @@ const Employees = () => {
         setDeleteEmployeesDialog(false);
     };
 
-    const saveProduct = () => {
+    const saveEmployee = () => {
         setSubmitted(true);
 
         if (employee.firstName.trim()) {
@@ -75,11 +75,19 @@ const Employees = () => {
             if (employee.id) {
                 const index = findIndexById(employee.id);
 
-                _employees[index] = _employee;
+                let newDate = new Date(_employee.birthDate).toISOString().split('T')[0]
+                let newData = {...employee, id: _employee.id, birthDate: newDate}
+                _employees[index]  = newData
+
                 toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Employee Updated', life: 3000 });
             } else {
                 _employee.id = createId();
-                _employees.push(_employee);
+
+                let newDate = new Date(_employee.birthDate).toISOString().split('T')[0]
+
+                let newData = {...employee, id: _employee.id, birthDate: newDate}
+
+                _employees.push(newData);
                 toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Employee Created', life: 3000 });
             }
 
@@ -89,8 +97,11 @@ const Employees = () => {
         }
     };
 
-    const editProduct = (employee) => {
-        setEmployee({ ...employee });
+    const editEmployee = (employee) => {
+        let newDate = new Date(employee.birthDate)
+        let newData = {...employee, birthDate: newDate}
+
+        setEmployee({ ...newData });
         setEmployeeDialog(true);
     };
 
@@ -149,30 +160,23 @@ const Employees = () => {
         toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Employees Deleted', life: 3000 });
     };
 
-    const formatDate = (value) => {
-        return value;
+
+    const onInputChange = (e) => {
+
+        setEmployee((prevState) => ({
+            ...prevState,
+            [e.target.name]: e.target.value,
+          }))
     };
 
+    const onInputDate = (e) => {
+        let newDate = new Date(e.target.value).toISOString().split('T')[0]
 
-    const onInputChange = (e, name) => {
-        const val = (e.target && e.target.name) || '';
-        let _employee = { ...employee };
-
-        _employee[`${name}`] = val;
-
-        setEmployee(_employee);
-    };
-
-    const onInputChangeDate = (e, name) => {
-        const val = (e.target && e.target.value) || '';
-        let _employee = { ...employee };
-
-        _employee[`${name}`] = val;
-
-        console.log(e.target)
-
-        setEmployee(_employee);
-    };
+        setEmployee((prevState) => ({
+            ...prevState,
+            [e.target.name]: newDate,
+        }))
+    }
 
     const onInputNumberChange = (e, name) => {
         const val = e.value || 0;
@@ -196,9 +200,6 @@ const Employees = () => {
         return <Button label="Export" icon="pi pi-upload" className="p-button-help" onClick={exportCSV} />;
     };
 
-    const dateBodyTemplate = (rowData) => {
-        return formatDate(rowData.date);
-    };
 
     const imageBodyTemplate = (rowData) => {
         return <img src={`${rowData.image}`} alt={rowData.image} className="shadow-md rounded-lg" style={{ width: '100px' }} />;
@@ -207,7 +208,7 @@ const Employees = () => {
     const actionBodyTemplate = (rowData) => {
         return (
             <React.Fragment>
-                <Button icon="pi pi-pencil" rounded outlined className="mr-2" onClick={() => editProduct(rowData)} />
+                <Button icon="pi pi-pencil" rounded outlined className="mr-2" onClick={() => editEmployee(rowData)} />
                 <Button icon="pi pi-trash" rounded outlined severity="danger" onClick={() => confirmDeleteEmployee(rowData)} />
             </React.Fragment>
         );
@@ -225,7 +226,7 @@ const Employees = () => {
     const employeeDialogFooter = (
         <React.Fragment>
             <Button label="Cancel" icon="pi pi-times" outlined onClick={hideDialog} />
-            <Button label="Save" icon="pi pi-check" onClick={saveProduct} />
+            <Button label="Save" icon="pi pi-check" onClick={saveEmployee} />
         </React.Fragment>
     );
     const deleteEmployeeDialogFooter = (
@@ -279,49 +280,49 @@ const Employees = () => {
                     <label htmlFor="firstName" className="font-bold">
                         First Name
                     </label>
-                    <InputText id="firstName" value={employee.firstName} onChange={(e) => onInputChange(e, 'firstName')} required autoFocus className={classNames({ 'p-invalid': submitted && !employee.firstName })} />
+                    <InputText id="firstName" value={employee.firstName} name='firstName' onChange={(e) => onInputChange(e)} required autoFocus className={classNames({ 'p-invalid': submitted && !employee.firstName })} />
                     {submitted && !employee.firstName && <small className="p-error">FirstName is required.</small>}
                 </div>
                 <div className="field">
-                    <label htmlFor="description" className="font-bold">
+                    <label htmlFor="lastName" className="font-bold">
                         Last Name
                     </label>
-                    <InputText id="description" value={employee.lastName} onChange={(e) => onInputChange(e, 'lastName')} required className={classNames({ 'p-invalid': submitted && !employee.lastName })} />
+                    <InputText id="lastName" value={employee.lastName} name='lastName'  onChange={(e) => onInputChange(e)} required className={classNames({ 'p-invalid': submitted && !employee.lastName })} />
                     {submitted && !employee.lastName && <small className="p-error">LastName is required.</small>}
                 </div>
                 <div className="field">
                     <label htmlFor="gender" className="font-bold">
                         Gender
                     </label>
-                    <InputText id="gender" value={employee.gender} onChange={(e) => onInputChange(e, 'gender')} required className={classNames({ 'p-invalid': submitted && !employee.gender })}/>
+                    <InputText id="gender" value={employee.gender} name='gender'  onChange={(e) => onInputChange(e)} required className={classNames({ 'p-invalid': submitted && !employee.gender })}/>
                     {submitted && !employee.gender && <small className="p-error">Gender is required.</small>}
                 </div>
                 <div className="field">
                     <label htmlFor="email" className="font-bold">
                         Email
                     </label>
-                    <InputText id="email" value={employee.email} onChange={(e) => onInputChange(e, 'email')} required className={classNames({ 'p-invalid': submitted && !employee.email })}/>
+                    <InputText id="email" type='email' value={employee.email} name='email'  onChange={(e) => onInputChange(e)} required className={classNames({ 'p-invalid': submitted && !employee.email })}/>
                     {submitted && !employee.email && <small className="p-error">Email is required.</small>}
                 </div>
                 <div className="field">
                     <label htmlFor="phone" className="font-bold">
                         Phone
                     </label>
-                    <InputText id="phone" value={employee.phone} onChange={(e) => onInputChange(e, 'phone')} required className={classNames({ 'p-invalid': submitted && !employee.phone })}/>
+                    <InputText id="phone" value={employee.phone} name='phone' onChange={(e) => onInputChange(e)} required className={classNames({ 'p-invalid': submitted && !employee.phone })}/>
                     {submitted && !employee.phone && <small className="p-error">Phone is required.</small>}
                 </div>
                 <div className="field">
                     <label htmlFor="birthDate" className="font-bold">
                         Birth Date
                     </label>
-                    <Calendar id="birthDate"  value={employee.birthDate} name={employee.birthDate} onChange={(e) => onInputChangeDate(e, 'birthDate')}  dateFormat="yy-mm-dd"  required className={classNames({ 'p-invalid': submitted && !employee.birthDate })} ></Calendar>
+                    <Calendar id="birthDate"  value={employee.birthDate} name='birthDate' onChange={(e) => onInputChange(e)}  dateFormat="yy-mm-dd"  required className={classNames({ 'p-invalid': submitted && !employee.birthDate })} ></Calendar>
                     {submitted && !employee.birthDate && <small className="p-error">Birth Date is required.</small>}
                 </div>
                 <div className="field">
                     <label htmlFor="title" className="font-bold">
                         Title
                     </label>
-                    <InputText id="title" value={employee.title} onChange={(e) => onInputChange(e, 'title')} required className={classNames({ 'p-invalid': submitted && !employee.title })}/>
+                    <InputText id="title" value={employee.title} name='title' onChange={(e) => onInputChange(e)} required className={classNames({ 'p-invalid': submitted && !employee.title })}/>
                     {submitted && !employee.title && <small className="p-error">Title is required.</small>}
                 </div>
 

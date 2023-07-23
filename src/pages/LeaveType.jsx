@@ -51,7 +51,6 @@ const hideDialog = () => {
 
 
   const onChange = (e) => {
-    console.log(e.target.value)
     setFormData((prevState) => ({
       ...prevState,
       [e.target.name]: e.target.value,

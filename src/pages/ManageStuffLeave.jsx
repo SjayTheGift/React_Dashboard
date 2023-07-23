@@ -4,90 +4,15 @@ import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 
-const ManageStuffLeave = () => {
-
-  const userLeaveApi = [
-    {
-      "id": '1',
-      "name": "John Doe",
-      "department": "IT",
-      "reason": "Sick Leave",
-      "fromDate": "01-09-2022",
-      "toDate": "02-01-2023",
-      "status": "new",
-      "description": "what ever sdsdwpopdfsd is it",
-      "dateApplied": "09-11-2022"
-    },
-    {
-      "id": '2',
-      "name": "Chris Hani",
-      "department": "HR",
-      "reason": "Maternity Leave",
-      "fromDate": "01-09-2022",
-      "toDate": "02-01-2023",
-      "status": "approved",
-      "description": "what ever rtty fgsd ",
-      "dateApplied": "09-11-2022"
-    },
-    {
-      "id": '3',
-      "name": "Sinazo Jacobs",
-      "department": "Data Science",
-      "reason": "Parental Leave",
-      "fromDate": "01-09-2022",
-      "toDate": "02-01-2023",
-      "status": "new",
-      "description": "what ever popopopo",
-      "dateApplied": "09-11-2022"
-    },
-    {
-      "id": '14',
-      "name": "Thabiso Monyane",
-      "department": "IT",
-      "reason": "Sick Leave",
-      "fromDate": "01-09-2022",
-      "toDate": "02-01-2023",
-      "status": "rejected",
-      "description": "what ever yydsds",
-      "dateApplied": "09-11-2022"
-    },
-    {
-      "id": '5',
-      "name": "Bernado Silva",
-      "department": "Software Engineering",
-      "reason": "Sick Leave",
-      "fromDate": "01-09-2022",
-      "toDate": "02-01-2023",
-      "status": "approved",
-      "description": "what ever asa as as as",
-      "dateApplied": "09-11-2022"
-    },
-    {
-      "id": '6',
-      "name": "LoLo Mandla",
-      "department": "IT",
-      "reason": "Maternity Leave",
-      "fromDate": "01-09-2022",
-      "toDate": "02-01-2023",
-      "status": "approved",
-      "description": "what ever",
-      "dateApplied": "09-11-2022"
-    }
-  ]
-
-  const [leaves, setLeaves] = useState([])
+const ManageStuffLeave = ({userLeaveApi, setUserLeaveApi}) => {
   const [globalFilter, setGlobalFilter] = useState(null);
 
-  useEffect(() => {
-    setLeaves(userLeaveApi)
-  }, []);
 
-
-  let filteredLeaves = leaves.filter((leave) => {
+  let filteredLeaves = userLeaveApi.filter((leave) => {
     return leave.status === 'new';
   });
 
-  // console.log(filteredLeaves)
+
 
   const header = (
     <div className="flex flex-wrap gap-2 items-center justify-between">
@@ -100,7 +25,7 @@ const ManageStuffLeave = () => {
   );
 
   const handleLeave = (leave, status) => {
-    const newState = leaves.map(obj => {
+    const newState = userLeaveApi.map(obj => {
       // 👇️ if id equals to leave id passes, update status to approved
       if(obj.id == leave.id){
         return {...obj, status: status};
@@ -108,7 +33,11 @@ const ManageStuffLeave = () => {
       // 👇️ otherwise return the object as is
       return obj;
     })
-    setLeaves(newState)
+    setUserLeaveApi(newState)
+
+    console.log(newState)
+
+    // console.log(userLeaveApi)
   }
 
   // const rejectLeave = (leave) => {
@@ -134,8 +63,6 @@ const ManageStuffLeave = () => {
         </React.Fragment>
     );
   };
-
-  console.log(leaves)
 
   return (
     <>

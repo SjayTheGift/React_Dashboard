@@ -16,7 +16,7 @@ import Header from './Header'
 import NotFound from '../pages/NotFound'
 import Login from '../pages/Login'
 
-const Dashboard = () => {
+const Dashboard = ({userLeaveApi, setUserLeaveApi}) => {
 
     const [nav, setNav] = useState(false)
     const location = useLocation()
@@ -55,10 +55,10 @@ const Dashboard = () => {
                         <Route path='/add-employee'  element={<AddEmployee/>}/>
                         <Route path='/departments'  element={<Departments/>}/>
                         <Route path='/designation'  element={<Designation/>}/>
-                        <Route path='/apply-leave'  element={<LeaveApplication/>}/>
-                        <Route path='/manage-stuff-leave'  element={<ManageStuffLeave/>}/>
+                        <Route path='/apply-leave'  element={<LeaveApplication userLeaveApi={userLeaveApi} setUserLeaveApi={setUserLeaveApi} />}/>
+                        <Route path='/manage-stuff-leave'  element={<ManageStuffLeave userLeaveApi={userLeaveApi} setUserLeaveApi={setUserLeaveApi}/>}/>
                         {/* <Route path='/stuff-leave-history'  element={<LeaveApplication/>}/> */}
-                        <Route path='/view-my-leave'  element={<ViewUserLeave/>}/>
+                        <Route path='/view-my-leave'  element={<ViewUserLeave userLeaveApi={userLeaveApi}/>}/>
                         <Route path='/leave-type'  element={<LeaveType/>}/>
                         <Route path='/earned-leave'  element={<EarnedLeave/>}/>
                     </Routes>

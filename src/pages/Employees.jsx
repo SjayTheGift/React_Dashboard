@@ -75,7 +75,7 @@ const Employees = () => {
             if (employee.id) {
                 const index = findIndexById(employee.id);
 
-                let newDate = new Date(_employee.birthDate).toISOString().split('T')[0]
+                let newDate = new Date(_employee.birthDate).toLocaleString().split(',')[0]
                 let newData = {...employee, id: _employee.id, birthDate: newDate}
                 _employees[index]  = newData
 
@@ -83,7 +83,7 @@ const Employees = () => {
             } else {
                 _employee.id = createId();
 
-                let newDate = new Date(_employee.birthDate).toISOString().split('T')[0]
+                let newDate = new Date(_employee.birthDate).toLocaleString().split(',')[0]
 
                 let newData = {...employee, id: _employee.id, birthDate: newDate}
 

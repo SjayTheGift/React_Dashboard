@@ -42,8 +42,6 @@ const LeaveApplication = ({userLeaveApi, setUserLeaveApi}) => {
       let leaveFromDate = new Date(formData.leaveFrom).toLocaleString().split(',')[0]
       let leaveToDate = new Date(formData.leaveTo).toLocaleString().split(',')[0]
 
-      console.log(formData.leaveReason.name.trim())
-
       if(leaveFromDate.trim() !== 'Invalid Date' && leaveToDate.trim() !== 'Invalid Date' && formData.description.trim().length !== 0 && formData.leaveReason.name.trim() !== 0){
         let id = userLeaveApi.length + 1
 
@@ -126,7 +124,7 @@ const LeaveApplication = ({userLeaveApi, setUserLeaveApi}) => {
 
               <div>
                 <span>
-                    <textarea id="description" 
+                    <InputTextarea id="description" 
                     name='description' 
                     value={description} 
                     onChange={(e) => onChange(e)} 

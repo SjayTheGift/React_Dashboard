@@ -5,7 +5,7 @@ import { Column } from 'primereact/column';
 import { Toast } from 'primereact/toast';
 import { Button } from 'primereact/button';
 import { FileUpload } from 'primereact/fileupload';
-import { Rating } from 'primereact/rating';
+import { Dropdown } from 'primereact/dropdown';
 import { Toolbar } from 'primereact/toolbar';
 import { InputTextarea } from 'primereact/inputtextarea';
 import { Calendar } from 'primereact/calendar';
@@ -42,6 +42,11 @@ const Employees = () => {
     const toast = useRef(null);
     const dt = useRef(null);
 
+    const genderType = [
+        {name:'Male'}, 
+        {name:'Female'},
+    ]
+
     useEffect(() => {
         EmployeesService.getEmployees().then((data) => setEmployees(data));
     }, []);
@@ -76,7 +81,8 @@ const Employees = () => {
                 const index = findIndexById(employee.id);
 
                 let newDate = new Date(_employee.birthDate).toLocaleString().split(',')[0]
-                let newData = {...employee, id: _employee.id, birthDate: newDate}
+                let gender = _employee.gender.name
+                let newData = {...employee, id: _employee.id, birthDate: newDate, gender:gender}
                 _employees[index]  = newData
 
                 toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Employee Updated', life: 3000 });
@@ -84,8 +90,9 @@ const Employees = () => {
                 _employee.id = createId();
 
                 let newDate = new Date(_employee.birthDate).toLocaleString().split(',')[0]
+                let gender = _employee.gender.name
 
-                let newData = {...employee, id: _employee.id, birthDate: newDate}
+                let newData = {...employee, id: _employee.id, birthDate: newDate, gender: gender}
 
                 _employees.push(newData);
                 toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Employee Created', life: 3000 });
@@ -178,19 +185,10 @@ const Employees = () => {
         }))
     }
 
-    const onInputNumberChange = (e, name) => {
-        const val = e.value || 0;
-        let _employee = { ...employee };
-
-        _employee[`${name}`] = val;
-
-        setEmployee(_employee);
-    };
-
     const leftToolbarTemplate = () => {
         return (
             <div className="flex flex-wrap gap-2">
-                <Button label="Add Employee" icon="pi pi-plus" severity="success" onClick={openNew} />
+                <Button label="Add Employee" icon="pi pi-plus" onClick={openNew} />
                 <Button label="Delete" icon="pi pi-trash" severity="danger" onClick={confirmDeleteSelected} disabled={!selectedEmployees || !selectedEmployees.length} />
             </div>
         );
@@ -274,50 +272,70 @@ const Employees = () => {
         </div>
 
         {/* Edit Dialog modal  */}
-        <Dialog visible={employeeDialog} style={{ width: '32rem' }} breakpoints={{ '960px': '75vw', '641px': '90vw' }} header="Employee Details" modal className="p-fluid" footer={employeeDialogFooter} onHide={hideDialog}>
+        <Dialog visible={employeeDialog} style={{ width: '50em' }} breakpoints={{ '960px': '75vw', '641px': '90vw' }} header="Employee Details" modal className="p-fluid" footer={employeeDialogFooter} onHide={hideDialog}>
                 {employee.image && <img src={`${employee.image}`} alt={employee.image} className="block m-auto pb-3" />}
-                <div className="field">
-                    <label htmlFor="firstName" className="font-bold">
-                        First Name
-                    </label>
-                    <InputText id="firstName" value={employee.firstName} name='firstName' onChange={(e) => onInputChange(e)} required autoFocus className={classNames({ 'p-invalid': submitted && !employee.firstName })} />
-                    {submitted && !employee.firstName && <small className="p-error">FirstName is required.</small>}
+                
+                <div className='flex flex-col md:flex-row justify-between'>
+                    <div className="field">
+                        <label htmlFor="firstName" className="font-bold">
+                            First Name
+                        </label>
+                        <InputText id="firstName" value={employee.firstName} name='firstName' onChange={(e) => onInputChange(e)} required autoFocus className={classNames({ 'p-invalid': submitted && !employee.firstName })} />
+                        {submitted && !employee.firstName && <small className="p-error">FirstName is required.</small>}
+                    </div>
+                    <div className="field md:mx-4">
+                        <label htmlFor="lastName" className="font-bold">
+                            Last Name
+                        </label>
+                        <InputText id="lastName" value={employee.lastName} name='lastName'  onChange={(e) => onInputChange(e)} required className={classNames({ 'p-invalid': submitted && !employee.lastName })} />
+                        {submitted && !employee.lastName && <small className="p-error">LastName is required.</small>}
+                    </div>
+
+                    <div className="field">
+                        <label htmlFor="gender" className="font-bold">
+                            Gender
+                        </label>
+                        {/* <InputText id="gender" value={employee.gender} name='gender'  onChange={(e) => onInputChange(e)} required className={classNames({ 'p-invalid': submitted && !employee.gender })}/> */}
+                        <Dropdown inputId="gender" name='gender'
+                            value={employee.gender} onChange={(e) => onInputChange(e)} 
+                            options={genderType} optionLabel="name" 
+                            className='full' 
+                            placeholder='Choose Gender'
+                            />
+
+                        
+                        {submitted && !employee.gender && <small className="p-error">Gender is required.</small>}
+                    </div>
+                
                 </div>
-                <div className="field">
-                    <label htmlFor="lastName" className="font-bold">
-                        Last Name
-                    </label>
-                    <InputText id="lastName" value={employee.lastName} name='lastName'  onChange={(e) => onInputChange(e)} required className={classNames({ 'p-invalid': submitted && !employee.lastName })} />
-                    {submitted && !employee.lastName && <small className="p-error">LastName is required.</small>}
+                
+                <div className='flex flex-col md:flex-row justify-between'>
+                    <div className="field">
+                        <label htmlFor="email" className="font-bold">
+                            Email
+                        </label>
+                        <InputText id="email" type='email' value={employee.email} name='email'  onChange={(e) => onInputChange(e)} required className={classNames({ 'p-invalid': submitted && !employee.email })}/>
+                        {submitted && !employee.email && <small className="p-error">Email is required.</small>}
+                    </div>
+
+                    <div className="field md:mx-4">
+                        <label htmlFor="phone" className="font-bold">
+                            Phone
+                        </label>
+                        <InputText id="phone" value={employee.phone} name='phone' onChange={(e) => onInputChange(e)} required className={classNames({ 'p-invalid': submitted && !employee.phone })}/>
+                        {submitted && !employee.phone && <small className="p-error">Phone is required.</small>}
+                    </div>
+
+                    <div className="field">
+                        <label htmlFor="birthDate" className="font-bold">
+                            Birth Date
+                        </label>
+                        <Calendar id="birthDate"  value={employee.birthDate} name='birthDate' onChange={(e) => onInputChange(e)}  dateFormat="yy-mm-dd"  required className={classNames({ 'p-invalid': submitted && !employee.birthDate })} ></Calendar>
+                        {submitted && !employee.birthDate && <small className="p-error">Birth Date is required.</small>}
+                    </div>
                 </div>
-                <div className="field">
-                    <label htmlFor="gender" className="font-bold">
-                        Gender
-                    </label>
-                    <InputText id="gender" value={employee.gender} name='gender'  onChange={(e) => onInputChange(e)} required className={classNames({ 'p-invalid': submitted && !employee.gender })}/>
-                    {submitted && !employee.gender && <small className="p-error">Gender is required.</small>}
-                </div>
-                <div className="field">
-                    <label htmlFor="email" className="font-bold">
-                        Email
-                    </label>
-                    <InputText id="email" type='email' value={employee.email} name='email'  onChange={(e) => onInputChange(e)} required className={classNames({ 'p-invalid': submitted && !employee.email })}/>
-                    {submitted && !employee.email && <small className="p-error">Email is required.</small>}
-                </div>
-                <div className="field">
-                    <label htmlFor="phone" className="font-bold">
-                        Phone
-                    </label>
-                    <InputText id="phone" value={employee.phone} name='phone' onChange={(e) => onInputChange(e)} required className={classNames({ 'p-invalid': submitted && !employee.phone })}/>
-                    {submitted && !employee.phone && <small className="p-error">Phone is required.</small>}
-                </div>
-                <div className="field">
-                    <label htmlFor="birthDate" className="font-bold">
-                        Birth Date
-                    </label>
-                    <Calendar id="birthDate"  value={employee.birthDate} name='birthDate' onChange={(e) => onInputChange(e)}  dateFormat="yy-mm-dd"  required className={classNames({ 'p-invalid': submitted && !employee.birthDate })} ></Calendar>
-                    {submitted && !employee.birthDate && <small className="p-error">Birth Date is required.</small>}
-                </div>
+                
+                
                 <div className="field">
                     <label htmlFor="title" className="font-bold">
                         Title

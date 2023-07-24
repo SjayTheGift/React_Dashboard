@@ -10,17 +10,18 @@ import { LeaveTypeService } from '../service/LeaveTypeService';
 
 const LeaveApplication = ({userLeaveApi, setUserLeaveApi}) => {
 
-  let leaveEmpty = {
-    leaveFrom: '',
-    leaveTo: '',
-    leaveReason: '',
-    description: '',
-};
+    let leaveEmpty = {
+      leaveFrom: '',
+      leaveTo: '',
+      leaveReason: '',
+      description: "",
+    };
 
-  const [formData, setFormData] = useState(leaveEmpty)
-  const { leaveFrom, leaveTo, leaveReason, description } = formData
-  const [leaveTypes, setLeaveTypes] = useState([]);
-  const toast = useRef(null);
+    const [submitted, setSubmitted] = useState(false);
+    const [formData, setFormData] = useState(leaveEmpty)
+    const { leaveFrom, leaveTo, leaveReason, description } = formData
+    const [leaveTypes, setLeaveTypes] = useState([]);
+    const toast = useRef(null);
 
     const leaves = [
         { name: 'Sick Leave', days: '12' },
@@ -37,34 +38,33 @@ const LeaveApplication = ({userLeaveApi, setUserLeaveApi}) => {
     }
 
     const onSave = () =>{
+      setSubmitted(true);
       let leaveFromDate = new Date(formData.leaveFrom).toLocaleString().split(',')[0]
       let leaveToDate = new Date(formData.leaveTo).toLocaleString().split(',')[0]
-      // let newData = {...employee, id: _employee.id, birthDate: newDate}
-      // _employees.push(newData);
-      console.log(leaveFromDate)
-      console.log(leaveToDate)
-      console.log(formData.leaveReason.name)
-      console.log(formData.description)
 
+      console.log(formData.leaveReason.name.trim())
 
-      let id = userLeaveApi.length + 1
+      if(leaveFromDate.trim() !== 'Invalid Date' && leaveToDate.trim() !== 'Invalid Date' && formData.description.trim().length !== 0 && formData.leaveReason.name.trim() !== 0){
+        let id = userLeaveApi.length + 1
 
-      userLeaveApi.push({...userLeaveApi, 
-        "id": id,
-        "name":'james Bond', 
-        "department": "IT", 
-        "reason": formData.leaveReason.name, 
-        "fromDate": leaveFromDate, 
-        "toDate": leaveToDate,
-        "status": "new",
-        "description": formData.description,
-        "dateApplied": "24-07-2023"
-      })
-
-      console.log(userLeaveApi)
-
-
-      toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Applied for Leave', life: 3000 });
+        userLeaveApi.push({...userLeaveApi, 
+          "id": id,
+          "name":'james Bond', 
+          "department": "IT", 
+          "reason": formData.leaveReason.name, 
+          "fromDate": leaveFromDate, 
+          "toDate": leaveToDate,
+          "status": "new",
+          "description": formData.description,
+          "dateApplied": "24-07-2023"
+        })
+  
+        console.log(userLeaveApi)
+  
+        setSubmitted(false);
+        toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Applied for Leave', life: 3000 });
+      }
+      setFormData('')
     }
 
 
@@ -95,25 +95,49 @@ const LeaveApplication = ({userLeaveApi, setUserLeaveApi}) => {
             <div className='grid sm:grid-cols-2 gap-4'>
 
               <span>
-                <Calendar name='leaveFrom' value={leaveFrom} onChange={(e) => onChange(e)}  className='w-full' placeholder='Leave From'/>
+                <Calendar name='leaveFrom' 
+                value={leaveFrom} 
+                onChange={(e) => onChange(e)}  
+                className={`w-full  ${submitted && !leaveFrom ? 'p-invalid' : ''}`} 
+                placeholder='Leave From'/>
+                {submitted && !leaveFrom && <small className="p-error">Field is required.</small>}
               </span>
               
               <span>
-                    <Calendar name='leaveTo' value={leaveTo} onChange={(e) => onChange(e)} className='w-full' placeholder='Leave To'/>
+                <Calendar name='leaveTo' 
+                value={leaveTo} 
+                onChange={(e) => onChange(e)} 
+                className={`w-full  ${submitted && !leaveTo ? 'p-invalid' : ''}`} 
+                placeholder='Leave To'/>
+                {submitted && !leaveTo && <small className="p-error">Field is required.</small>}
+               
               </span>
             
               <div>
                 <span className="p-float-label">
-                    <Dropdown inputId="leaveReason" name='leaveReason' value={leaveReason} onChange={(e) => onChange(e)} options={leaves} optionLabel="name" className="w-full md:w-14rem" />
+                    <Dropdown inputId="leaveReason" name='leaveReason' 
+                    value={leaveReason} onChange={(e) => onChange(e)} 
+                    options={leaves} optionLabel="name" 
+                    className={`w-full  ${submitted && !leaveReason ? 'p-invalid' : ''}`} />
                     <label htmlFor="leaveReason">Leave Reason</label>
                 </span>
+                {submitted && !leaveReason && <small className="p-error">Field is required.</small>}
               </div>
 
               <div>
-                <span className="p-float-label">
-                    <InputTextarea id="description" name='description' value={description} onChange={(e) => onChange(e)} rows={3} cols={30} className="w-full"/>
-                    <label htmlFor="description">Description</label>
+                <span>
+                    <textarea id="description" 
+                    name='description' 
+                    value={description} 
+                    onChange={(e) => onChange(e)} 
+                    rows={3} cols={30} 
+                    className={`w-full  ${submitted && !description ? 'p-invalid' : ''}`}
+                    required
+                    placeholder='Description'
+                    />
+
                 </span>
+                {submitted && !description && <small className="p-error">Field is required.</small>}
               </div>
             </div>
 

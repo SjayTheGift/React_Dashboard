@@ -9,59 +9,6 @@ import { Tag } from 'primereact/tag';
 
 
 const ViewUserLeave = ({userLeaveApi}) => {
-
-  // const userLeaveApi = [
-  //   {
-  //     "reason": "Sick Leave",
-  //     "fromDate": "01-09-2022",
-  //     "toDate": "02-01-2023",
-  //     "status": "new",
-  //     "description": "what ever sdsdwpopdfsd is it",
-  //     "dateApplied": "09-11-2022"
-  //   },
-  //   {
-  //     "reason": "Maternity Leave",
-  //     "fromDate": "01-09-2022",
-  //     "toDate": "02-01-2023",
-  //     "status": "approved",
-  //     "description": "what ever rtty fgsd ",
-  //     "dateApplied": "09-11-2022"
-  //   },
-  //   {
-  //     "reason": "Parental Leave",
-  //     "fromDate": "01-09-2022",
-  //     "toDate": "02-01-2023",
-  //     "status": "new",
-  //     "description": "what ever popopopo",
-  //     "dateApplied": "09-11-2022"
-  //   },
-  //   {
-  //     "reason": "Sick Leave",
-  //     "fromDate": "01-09-2022",
-  //     "toDate": "02-01-2023",
-  //     "status": "rejected",
-  //     "description": "what ever yydsds",
-  //     "dateApplied": "09-11-2022"
-  //   },
-  //   {
-  //     "reason": "Sick Leave",
-  //     "fromDate": "01-09-2022",
-  //     "toDate": "02-01-2023",
-  //     "status": "approved",
-  //     "description": "what ever asa as as as",
-  //     "dateApplied": "09-11-2022"
-  //   },
-  //   {
-  //     "reason": "Maternity Leave",
-  //     "fromDate": "01-09-2022",
-  //     "toDate": "02-01-2023",
-  //     "status": "approved",
-  //     "description": "what ever",
-  //     "dateApplied": "09-11-2022"
-  //   }
-  // ]
-
-
     const [leaves, setLeaves] = useState([])
     const [globalFilter, setGlobalFilter] = useState(null);
 

@@ -34,23 +34,8 @@ const ManageStuffLeave = ({userLeaveApi, setUserLeaveApi}) => {
       return obj;
     })
     setUserLeaveApi(newState)
-
-    console.log(newState)
-
-    // console.log(userLeaveApi)
   }
 
-  // const rejectLeave = (leave) => {
-  //   const newState = leaves.map(obj => {
-  //     // 👇️ if id equals to leave id passes, update status to approved
-  //     if(obj.id == leave.id){
-  //       return {...obj, status: 'reject'};
-  //     }
-  //     // 👇️ otherwise return the object as is
-  //     return obj;
-  //   })
-  //   setLeaves(newState)
-  // }
 
   const actionBodyTemplate = (rowData) => {
     return (

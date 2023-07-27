@@ -1,16 +1,12 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { Routes, Route } from 'react-router-dom'
-
 import Dashboard from './components/Dashboard'
-
-
-//theme
+import { useDispatch, useSelector } from 'react-redux'
 import "primereact/resources/themes/lara-light-indigo/theme.css";     
     
 //core
 import "primereact/resources/primereact.min.css";     
 import 'primeicons/primeicons.css';                                  
-        
 
 
 function App() {
@@ -88,9 +84,8 @@ function App() {
 
   return (
     <>
-    <Dashboard userLeaveApi={userLeaveApi} setUserLeaveApi={setUserLeaveApi}/>
-      
-
+    <Dashboard 
+    userLeaveApi={userLeaveApi} setUserLeaveApi={setUserLeaveApi}/>
     </>
   )
 }

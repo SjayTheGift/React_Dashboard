@@ -6,15 +6,26 @@ import { Toast } from 'primereact/toast';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
+import { useDispatch, useSelector } from 'react-redux'
 
-import DepartmentService from '../service/DepartmentService'
+// import DepartmentService from '../service/DepartmentService'
 import DeleteDialog from '../components/DeleteDialog'
+
+
+import { fetchDepartment, addDepartment, updateDepartment, deleteDepartment } from '../features/organization/orgActions'
+import { reset } from '../features/organization/orgSlice';
 
 const Departments = () => {
 
+  const [departmentList, setDepartmentList] = useState([])
+
+  const dispatch = useDispatch()
+  // Get data from state
+  const {departmentData, isLoading, isError,  isSuccess, AddSuccess, message}  = useSelector(
+  (state) => state.organization)
+
   const [name, setName] = useState('')
 
-  const [departmentList, setDepartmentList] = useState([])
   const [deleteDialog, setDeleteDialog] = useState(false)
   const toast = useRef(null);
   const [error, setError] = useState(false)
@@ -22,29 +33,41 @@ const Departments = () => {
   const [id, setId] = useState()
   const [dataToDelete, setDataToDelete] = useState('')
 
-  useEffect(()=>{
-    setDepartmentList(DepartmentService())
-  }, [])
+
+
+  useEffect(() =>{
+    // get method to fetch department data
+    dispatch(fetchDepartment())
+
+    if(isSuccess){
+      setDepartmentList(JSON.parse(departmentData))
+    }
+
+  },[isSuccess, isError, message, departmentData])
+
+
 
   const onChange = (e) =>{
       setName(e.target.value)
   }
 
-  const onSave = () => {
-    const newId = departmentList.length + 1
+  const onSave = (e) => {
+    e.preventDefault()
 
     if(name.trim().length === 0){
-      toast.current.show({ severity: 'error', summary: 'Error', detail: 'Department Name Required', life: 3000 });
+      toast.current.show({ severity: 'error', summary: 'Error', detail: 'Department Name Required', life: 5000 });
       setError(true)
     }else{
-      departmentList.push({"id": newId, "name": name})
-      setDepartmentList([...departmentList])
+      // departmentList.push({"id": newId, "name": name})
+      dispatch(addDepartment({name: name}))
       setName('')
       setError(false)
+      dispatch(reset())
     }
   }
 
-  const onUpdate = () => {
+  const onUpdate = (e) => {
+    e.preventDefault()
     setHideButton(false)
 
     console.log(name)
@@ -54,18 +77,18 @@ const Departments = () => {
       setError(true)
     }else{
 
-          const newState = departmentList.map(obj => {
-            // 👇️ if id equals to leave id passes, update status to approved
-            if(obj.id == id){
-              return {...obj, name: name};
-            }
-            // 👇️ otherwise return the object as is
-            return obj;
-          })
-
-          setDepartmentList(newState)
+          // const newState = departmentList.map(obj => {
+          //   // 👇️ if id equals to leave id passes, update status to approved
+          //   if(obj.id == id){
+          //     return {...obj, name: name};
+          //   }
+          //   // 👇️ otherwise return the object as is
+          //   return obj;
+          // })
+          // setDepartmentList(newState)
+          dispatch(updateDepartment({id: id, name:name}))
+          dispatch(reset())
           setName('')
-    
     }
   }
 
@@ -84,6 +107,8 @@ const Departments = () => {
   const onDeleteName = (val) => {
     setDeleteDialog(true)
     setDataToDelete(val)
+    dispatch(deleteDepartment(val))
+    dispatch(reset())
   }
 
 
@@ -107,7 +132,7 @@ const Departments = () => {
                             <InputText id="name" value={name}  
                             onChange={e => onChange(e)}  
                             className={`w-full ${error ? 'p-invalid': ''}`} 
-                            required/>
+                            />
                             
                         </span>
 
@@ -116,13 +141,13 @@ const Departments = () => {
                      
                      {hideButton ? 
                         <Button className="w-full" 
-                        onClick={onUpdate}
+                        onClick={(e)=> onUpdate(e)}
                         >
                           Update
                         </Button>
                     :
                         <Button className="w-full" 
-                        onClick={onSave}
+                        onClick={(e)=> onSave(e)}
                         >
                           Save
                         </Button>

@@ -6,9 +6,19 @@ import { Toast } from 'primereact/toast';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
+import { useDispatch, useSelector } from 'react-redux'
 
 import DesignationService from '../service/DesignationService'
 import DeleteDialog from '../components/DeleteDialog'
+
+import { 
+  fetchDesignation,
+  addDesignation,
+  updateDesignation,
+  deleteDesignation,
+} from '../features/organization/orgActions'
+
+import { reset } from '../features/organization/orgSlice';
 
 const Designations = () => {
 
@@ -22,15 +32,26 @@ const Designations = () => {
   const [hideButton, setHideButton] = useState(false)
   const [id, setId] = useState()
 
+  const dispatch = useDispatch()
+  // Get data from state
+  const {designationData, isLoading, isError,  isSuccess, AddSuccess, message}  = useSelector(
+  (state) => state.organization)
+
   useEffect(()=>{
-    setDesignationList(DesignationService())
-  }, [])
+    // get method to fetch department data
+    dispatch(fetchDesignation())
+
+    if(isSuccess){
+      setDesignationList(JSON.parse(designationData))
+    }
+  }, [isSuccess, isError, message, designationData])
 
   const onChange = (e) =>{
       setName(e.target.value)
   }
 
-  const onSave = () => {
+  const onSave = (e) => {
+    e.preventDefault()
     const newId = designationList.length + 1
 
     if(name.trim().length === 0){
@@ -38,14 +59,18 @@ const Designations = () => {
       console.log('error')
       setError(true)
     }else{
-      designationList.push({"id": newId, "name": name})
-      setDesignationList([...designationList])
+      // designationList.push({"id": newId, "name": name})
+      // setDesignationList([...designationList])
+      dispatch(addDesignation({name: name}))
       setName('')
       setError(false)
+      dispatch(reset())
     }
   }
 
-  const onUpdate = () => {
+  const onUpdate = (e) => {
+    e.preventDefault()
+
     setHideButton(false)
 
     if(name.trim().length === 0){
@@ -53,16 +78,18 @@ const Designations = () => {
       setError(true)
     }else{
 
-          const newState = designationList.map(obj => {
-            // 👇️ if id equals to leave id passes, update status to approved
-            if(obj.id == id){
-              return {...obj, name: name};
-            }
-            // 👇️ otherwise return the object as is
-            return obj;
-          })
+          // const newState = designationList.map(obj => {
+          //   // 👇️ if id equals to leave id passes, update status to approved
+          //   if(obj.id == id){
+          //     return {...obj, name: name};
+          //   }
+          //   // 👇️ otherwise return the object as is
+          //   return obj;
+          // })
 
-          setDesignationList(newState)
+          // setDesignationList(newState)
+          dispatch(updateDesignation({id: id, name:name}))
+          dispatch(reset())
           setName('')
     
     }
@@ -80,11 +107,11 @@ const Designations = () => {
     setHideButton(false)
   }
 
-
-
   const onDeleteName = (val) => {
     setDeleteDialog(true)
     setDataToDelete(val)
+    dispatch(deleteDesignation(val))
+    dispatch(reset())
   }
 
 
@@ -118,19 +145,17 @@ const Designations = () => {
                      
                      {hideButton ? 
                         <Button className="w-full" 
-                        onClick={onUpdate}
+                        onClick={(e) => onUpdate(e)}
                         >
                           Update
                         </Button>
                     :
                         <Button className="w-full" 
-                        onClick={onSave}
+                        onClick={(e) => onSave(e)}
                         >
                           Save
                         </Button>
                     }
-                      
-                      
                       <Button className='w-full' 
                       type="button"
                       onClick={onCancel}

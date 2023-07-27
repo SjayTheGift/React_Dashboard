@@ -18,7 +18,7 @@ export const EmployeesService = {
             "postalCode": "20020",
             "state": "DC"
                 },
-            "title": "Senior Cost Accountant"
+            "designation": "Senior Cost Accountant"
             },
             {
             "id": 2,
@@ -39,7 +39,7 @@ export const EmployeesService = {
             "postalCode": "40219",
             "state": "KY"
                 },
-            "title": "Mechanical Systems Engineer"
+            "designation": "Mechanical Systems Engineer"
             },
             {
             "id": 3,
@@ -58,7 +58,7 @@ export const EmployeesService = {
             "postalCode": "95945",
             "state": "CA"
                 },
-            "title": "Paralegal"
+            "designation": "Paralegal"
             },
             {
             "id": 4,
@@ -77,7 +77,7 @@ export const EmployeesService = {
             "postalCode": "06040",
             "state": "CT"
                 }, 
-            "title": "Web Developer I" 
+            "designation": "Web Developer I" 
             },
             {
             "id": 5,
@@ -96,7 +96,7 @@ export const EmployeesService = {
             "postalCode": "40206",
             "state": "KY"
                 },
-            "title": "Help Desk Operator"
+            "designation": "Help Desk Operator"
             },
             {
             "id": 6,
@@ -117,7 +117,7 @@ export const EmployeesService = {
             "postalCode": "05452",
             "state": "VT"
                 },
-            "title": "Civil Engineer"
+            "designation": "Civil Engineer"
             },
             {
             "id": 7,
@@ -136,7 +136,7 @@ export const EmployeesService = {
             "postalCode": "94591",
             "state": "CA"
                 },
-            "title": "Sales Associate"
+            "designation": "Sales Associate"
             },
 
             {
@@ -156,7 +156,7 @@ export const EmployeesService = {
             "postalCode": "85306",
             "state": "AZ"
             },
-            "title": "Clinical Specialist"
+            "designation": "Clinical Specialist"
             },
 
             {
@@ -176,7 +176,7 @@ export const EmployeesService = {
             "postalCode": "37209",
             "state": "TN"
                 },
-            "title": "Community Outreach Specialist"
+            "designation": "Community Outreach Specialist"
             },
 
             {
@@ -196,7 +196,7 @@ export const EmployeesService = {
             "postalCode": "85305",
             "state": "AZ"
                 },
-            "title": "Senior Sales Associate"
+            "designation": "Senior Sales Associate"
             },
 
             {
@@ -216,7 +216,7 @@ export const EmployeesService = {
             "postalCode": "40208",
             "state": "KY"
                 },
-            "title": "Account Executive"
+            "designation": "Account Executive"
             },
 
             {
@@ -236,7 +236,7 @@ export const EmployeesService = {
             "postalCode": "80003",
             "state": "CO"
                 },
-            "title": "Developer II"
+            "designation": "Developer II"
             },
 
             {
@@ -256,7 +256,7 @@ export const EmployeesService = {
             "postalCode": "05037",
             "state": "VT"
                 },
-            "title": "Sales Associate"
+            "designation": "Sales Associate"
             },
 
             {
@@ -276,7 +276,7 @@ export const EmployeesService = {
             "postalCode": "06040",
             "state": "CT"
             },
-            "title": "Professor"
+            "designation": "Professor"
             },
 
             {
@@ -296,7 +296,7 @@ export const EmployeesService = {
             "postalCode": "02664",
             "state": "MA"
             },
-            "title": "Software Test Engineer IV"
+            "designation": "Software Test Engineer IV"
             },
 
             {
@@ -317,7 +317,7 @@ export const EmployeesService = {
             "postalCode": "37206",
             "state": "TN"
             },
-            "title": "Geological Engineer"
+            "designation": "Geological Engineer"
             },
 
             {
@@ -337,7 +337,7 @@ export const EmployeesService = {
             "postalCode": "72704",
             "state": "AR"
             },
-            "title": "Operator"
+            "designation": "Operator"
             },
 
             {
@@ -357,7 +357,7 @@ export const EmployeesService = {
             "postalCode": "36108",
             "state": "AL"
             },
-            "title": "VP Accounting"
+            "designation": "VP Accounting"
             },
 
             {
@@ -377,7 +377,7 @@ export const EmployeesService = {
             "postalCode": "37076",
             "state": "TN"
             },
-            "title": "Financial Analyst"
+            "designation": "Financial Analyst"
             },
 
             {
@@ -397,7 +397,7 @@ export const EmployeesService = {
             "postalCode": "93908",
             "state": "CA"
             },
-            "title": "Geologist III"
+            "designation": "Geologist III"
             },
            
         ];

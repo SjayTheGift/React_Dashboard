@@ -1,8 +1,25 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react';
 import { RiMenuUnfoldFill } from 'react-icons/ri'
+import { Link, useNavigate } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { logout } from '../features/auth/authActions';
+import { reset } from '../features/auth/authSlice';
 
 const Header = ({nav, setNav, display}) => {
     const [dropDown, setDropDown] = useState(false)
+    const navigate = useNavigate()
+    const dispatch = useDispatch()
+
+    const {   userToken  } = useSelector((state) => state.auth)
+
+    useEffect(() => {
+        dispatch(reset());
+      }, [userToken]);
+
+    const onLogout = () => {
+        navigate('/')
+        dispatch(logout());
+    }
 
   return (
     <>
@@ -17,7 +34,7 @@ const Header = ({nav, setNav, display}) => {
                     <div className='relative inline-flex' onClick={() => setDropDown(!dropDown)}>
                         <button className='inline-flex justify-center items-center group' aria-haspopup="true" aria-expanded="true">
                             <div className='flex items-center truncate'>
-                                <span className="truncate ml-2 text-sm font-medium dark:text-slate-300 group-hover:text-slate-800 dark:group-hover:text-slate-200">Acme Inc.</span>
+                                <span className="truncate ml-2 text-sm font-medium dark:text-slate-300 group-hover:text-slate-800 dark:group-hover:text-slate-200">HR Lab.</span>
                                 <svg className="w-3 h-3 shrink-0 ml-1 fill-current text-slate-400" viewBox="0 0 12 12"><path d="M5.9 11.4L.5 6l1.4-1.4 4 4 4-4L11.3 6z"></path></svg>
                             </div>
                         </button>
@@ -25,7 +42,6 @@ const Header = ({nav, setNav, display}) => {
                             <div className="origin-top-right z-10 absolute top-full min-w-44 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 py-1.5 rounded shadow-lg overflow-hidden mt-1 right-0 enter-done">
                                 <div>
                                     <div className="pt-0.5 pb-2 px-3 mb-1 border-b border-slate-200 dark:border-slate-700">
-                                        <div className="font-medium text-slate-800 dark:text-slate-100">Acme Inc.</div>
                                         <div className="text-xs text-slate-500 dark:text-slate-400 italic">Administrator</div>
                                     </div>
                                     <ul>
@@ -35,9 +51,10 @@ const Header = ({nav, setNav, display}) => {
                                             </a>
                                         </li>
                                         <li>
-                                            <a className="font-medium text-sm text-slate-400 hover:text-slate-200 flex items-center py-1 px-3" href="#">
-                                                Sign Out
-                                            </a>
+                                            <p className="font-medium text-sm text-slate-400 hover:text-slate-200 flex items-center py-1 px-3 cursor-pointer" 
+                                                onClick={()=>onLogout()}>
+                                                    Sign Out
+                                            </p>
                                         </li>
                                     </ul>
                                 </div>

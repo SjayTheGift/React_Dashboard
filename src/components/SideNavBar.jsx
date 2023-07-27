@@ -1,20 +1,48 @@
-import { useState } from 'react'
-
+import { useState, useEffect } from 'react'
+import { useSelector } from 'react-redux';
 import { FaUsers } from 'react-icons/fa'
 import { MdSpaceDashboard } from 'react-icons/md'
 import { CgCloseR } from 'react-icons/cg'
 import { GoOrganization } from 'react-icons/go'
 import { FcLeave } from 'react-icons/fc'
 import { Link } from 'react-router-dom'
+import { decodeToken  } from "react-jwt";
 
 const SideNavBar = ({nav, setNav, display}) => {
   // const [nav, setNav] = useState(false)
-  const [organization, setOrganization] = useState(false)
-  const [employee, setEmployee] = useState(false)
-  const [leave, setLeave] = useState(false)
+    const [organization, setOrganization] = useState(false)
+    const [employee, setEmployee] = useState(false)
+    const [leave, setLeave] = useState(false)
   // const [dropDown, setDropDown] = useState(false)
 
+    const [is_hr, setIsHr] = useState(false)
+    const { userToken, isLoading } = useSelector((state) => state.auth)
+
+    const convertTextToBoolean = (val) =>{
+        if(val.toLowerCase()  === 'true'){
+            return true
+        }
+        return false
+    }
+
+   
+
+
+
+    // const is_hr = 
+    
+    useEffect(() =>{
+        if(userToken) {
+            const user = JSON.parse(userToken)
+            setIsHr(convertTextToBoolean(decodeToken(user.access)['is_hr']))
+        }
+    },[userToken, isLoading])
+
+
   return (
+    <>
+    {!isLoading &&
+
     <div className={`${display}`}>
             { nav &&  <div className={`fixed inset-0 bg-slate-900 bg-opacity-30 z-40 lg:hidden lg:z-auto transition-opacity duration-200 opacity-100`} aria-hidden="true"></div>}
            
@@ -37,6 +65,7 @@ const SideNavBar = ({nav, setNav, display}) => {
                                 </Link>
                             </li>
 
+                            {is_hr &&
                             <li className="px-3 py-2 rounded-sm mb-0.5 last:mb-0 false" onClick={() => {
 
                                 setOrganization(!organization)
@@ -61,6 +90,7 @@ const SideNavBar = ({nav, setNav, display}) => {
                                         </div>
                                     </div>
                                 </div>
+
                                 <div className={`${ organization ? "max-h-40 visible ease-in" : "max-h-0 invisible ease-out"} transition-all duration-500 overflow-hidden`}>
                                     <ul className="pl-9 mt-1 false">
                                         <li className="mb-1 last:mb-0">
@@ -76,7 +106,9 @@ const SideNavBar = ({nav, setNav, display}) => {
                                     </ul>
                                 </div>
                             </li>
+                            }
 
+                            {is_hr &&
                             <li className="px-3 py-2 rounded-sm mb-0.5 last:mb-0 false"  onClick={() => {
                                 setEmployee(!employee)
 
@@ -114,6 +146,7 @@ const SideNavBar = ({nav, setNav, display}) => {
                                     </ul>
                                 </div>
                             </li>
+                            }
 
                             <li className="px-3 py-2 rounded-sm mb-0.5 last:mb-0 false"  onClick={() => {
                                 setLeave(!leave)
@@ -139,21 +172,25 @@ const SideNavBar = ({nav, setNav, display}) => {
                                 </div>
                                 <div className={`${ leave ? "max-h-40 visible ease-in" : "max-h-0 invisible ease-out"} transition-all duration-500 overflow-hidden`}>
                                     <ul className="pl-9 mt-1 false">
-                                        <li className="mb-1 last:mb-0">
-                                            <Link to="/leave-type" className="block transition duration-150 truncate text-slate-400 hover:text-slate-200">
-                                                <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Leave Types</span>
-                                            </Link>
-                                        </li>
+                                        {is_hr &&
+                                            <li className="mb-1 last:mb-0">
+                                                <Link to="/leave-type" className="block transition duration-150 truncate text-slate-400 hover:text-slate-200">
+                                                    <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Leave Types</span>
+                                                </Link>
+                                            </li>
+                                        }
                                         <li className="mb-1 last:mb-0">
                                             <Link to="/apply-leave" className="block transition duration-150 truncate text-slate-400 hover:text-slate-200">
                                                 <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Apply Leave</span>
                                             </Link>
                                         </li>
-                                        <li className="mb-1 last:mb-0">
-                                            <Link to="/manage-stuff-leave" className="block transition duration-150 truncate text-slate-400 hover:text-slate-200">
-                                                <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Manage Stuff Leave</span>
-                                            </Link>
-                                        </li>
+                                        {is_hr && 
+                                            <li className="mb-1 last:mb-0">
+                                                <Link to="/manage-stuff-leave" className="block transition duration-150 truncate text-slate-400 hover:text-slate-200">
+                                                    <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">Manage Stuff Leave</span>
+                                                </Link>
+                                            </li>
+                                        }
                                         <li className="mb-1 last:mb-0">
                                             <Link to="/view-my-leave" className="block transition duration-150 truncate text-slate-400 hover:text-slate-200">
                                                 <span className="text-sm font-medium lg:opacity-0 lg:sidebar-expanded:opacity-100 2xl:opacity-100 duration-200">My Leaves</span>
@@ -172,6 +209,8 @@ const SideNavBar = ({nav, setNav, display}) => {
                 </div>
             </div>
         </div>
+    }
+    </>
   )
 }
 

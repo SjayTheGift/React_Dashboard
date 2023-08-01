@@ -67,9 +67,10 @@ const Employees = () => {
         dispatch(fetchEmployee())
         if(isEmployeeSuccess){
             setEmployees(employeeData)
+            // dispatch(reset())
         }
-        // dispatch(reset())
-    }, [employeeData, isEmployeeError, isEmployeeSuccess, message]);
+        // )
+    }, [isEmployeeError, isEmployeeSuccess, message]);
 
     const openNew = () => {
         setSubmitted(false);
@@ -119,7 +120,8 @@ const Employees = () => {
 
             // setEmployees(_employees);
             setEmployeeDialog(false);
-            setEmployee(emptyEmployee);
+            setFormData(formData);
+            
         }
     };
 
@@ -141,7 +143,7 @@ const Employees = () => {
             }
             
             dispatch(updateEmployeeAction(newState))
-            dispatch(reset())
+            // dispatch(reset())
             setEmployeeDialog(false);
         // }
       }
@@ -159,6 +161,7 @@ const Employees = () => {
         setEmployee(data);
         setId(data.id)
         setDeleteEmployeeDialog(true);
+        dispatch(reset())
     };
 
     const deleteEmployee = () => {
@@ -166,6 +169,7 @@ const Employees = () => {
         dispatch(deleteEmployeeAction(data))
         setDeleteEmployeeDialog(false);
         setEmployee(emptyEmployee);
+        dispatch(reset())
     };
 
 

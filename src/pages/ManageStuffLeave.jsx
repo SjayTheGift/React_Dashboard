@@ -4,13 +4,23 @@ import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
 
+
+import useFetch  from '../service/FetchNewLeaveService';
+
 const ManageStuffLeave = ({userLeaveApi, setUserLeaveApi}) => {
   const [globalFilter, setGlobalFilter] = useState(null);
 
+  // const [leaves, setLeaves] = useState([])
 
   let filteredLeaves = userLeaveApi.filter((leave) => {
     return leave.status === 'new';
   });
+
+
+  const {data : leaves, setData : setLeaves, isPending, error} = useFetch('http://127.0.0.1:8000/api/leave/leave-new/')
+
+  console.log(leaves)
+  
 
 
 

@@ -5,8 +5,10 @@ import { InputTextarea  } from 'primereact/inputtextarea';
 import { Button  } from 'primereact/button';
 import { Card } from 'primereact/card';
 import { Toast } from 'primereact/toast';
+import { useDispatch, useSelector } from 'react-redux'
 
 import { LeaveTypeService } from '../service/LeaveTypeService';
+import { fetchLeaveType } from '../features/leaves/leaveActions'
 
 const LeaveApplication = ({userLeaveApi, setUserLeaveApi}) => {
 
@@ -23,12 +25,14 @@ const LeaveApplication = ({userLeaveApi, setUserLeaveApi}) => {
     const [leaveTypes, setLeaveTypes] = useState([]);
     const toast = useRef(null);
 
-    const leaves = [
-        { name: 'Sick Leave', days: '12' },
-        { name: 'Casual Leave', days: '21' },
-        { name: 'Maternity Leave', days: '90' },
-        { name: 'Parental Leave', days: '7' },
-    ];
+
+    const leaves = []
+
+    leaveTypes.map((leave) => {
+      leaves.push(leave.title)
+    })
+
+  
 
     const onChange = (e) => {
       setFormData((prevState) => ({
@@ -36,6 +40,11 @@ const LeaveApplication = ({userLeaveApi, setUserLeaveApi}) => {
         [e.target.name]: e.target.value,
       }))
     }
+
+    const dispatch = useDispatch()
+    // Get data from state
+    const {leaveTypeData, isLeaveLoading, isLeaveSuccess,  isLeaveError, message}  = useSelector(
+    (state) => state.leave)
 
     const onSave = () =>{
       setSubmitted(true);
@@ -67,8 +76,13 @@ const LeaveApplication = ({userLeaveApi, setUserLeaveApi}) => {
 
 
     useEffect(() => {
-      LeaveTypeService.getLeaveTypes().then((data) => setLeaveTypes(data));
-    }, []);
+      dispatch(fetchLeaveType())
+      if(isLeaveSuccess){
+        setLeaveTypes(leaveTypeData)
+      }
+      
+      // LeaveTypeService.getLeaveTypes().then((data) => setLeaveTypes(data));
+    }, [isLeaveError, isLeaveSuccess]);
 
   return (
     <>
@@ -82,9 +96,9 @@ const LeaveApplication = ({userLeaveApi, setUserLeaveApi}) => {
           <Toast ref={toast} />
             <div className="card flex flex-col sm:flex-row justify-between gap-3 text-white mb-8">
                 {leaveTypes.map((leaveType) =>
-                  <Card key={leaveType.id} title={leaveType.name} className="gap-3 mr-3 bg-slate-800 text-gray-400 md:w-[20%]">
+                  <Card key={leaveType.id} title={leaveType.title} className="gap-3 mr-3 bg-slate-800 text-gray-400 md:w-[20%]">
                     <p className="m-0">
-                        {leaveType.numberOfDays}
+                        {leaveType.days}
                     </p>
                   </Card>
                 )}
@@ -115,7 +129,7 @@ const LeaveApplication = ({userLeaveApi, setUserLeaveApi}) => {
                 <span className="p-float-label">
                     <Dropdown inputId="leaveReason" name='leaveReason' 
                     value={leaveReason} onChange={(e) => onChange(e)} 
-                    options={leaves} optionLabel="name" 
+                    options={leaves}
                     className={`w-full  ${submitted && !leaveReason ? 'p-invalid' : ''}`} />
                     <label htmlFor="leaveReason">Leave Reason</label>
                 </span>

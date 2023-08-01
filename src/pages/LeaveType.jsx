@@ -4,8 +4,12 @@ import { Button } from 'primereact/button';
 import {InputText} from 'primereact/inputtext';
 import { Dialog } from 'primereact/dialog';
 import { Toast } from 'primereact/toast';
+import { useDispatch, useSelector } from 'react-redux'
 
 import { LeaveTypeService } from '../service/LeaveTypeService';
+import { fetchLeaveType, addLeaveType, updateLeaveType } from '../features/leaves/leaveActions'
+import { reset } from '../features/leaves/leaveSlice';
+
 
 const LeaveType = () => {
 
@@ -18,14 +22,28 @@ const LeaveType = () => {
 
   const toast = useRef(null);
   const [formData, setFormData] = useState({
-    name: '',
-    numberOfDays: '',
+    title: '',
+    days: '',
   })
 
-  const { name, numberOfDays } = formData
-
-
+  const { title, days } = formData
   
+  const dispatch = useDispatch()
+  // Get data from state
+  const {leaveTypeData, isLeaveLoading, isLeaveSuccess,  isLeaveError, message}  = useSelector(
+  (state) => state.leave)
+  
+
+  useEffect(() => {
+    dispatch(fetchLeaveType())
+
+    if(isLeaveSuccess){
+      setLeaveTypes(leaveTypeData)
+    }
+
+
+  }, [isLeaveError, isLeaveSuccess, leaveTypeData]);
+
 
   const openNew = () => {
     setSubmitted(false);
@@ -35,10 +53,12 @@ const LeaveType = () => {
     // setEmployeeDialog(true);
 };
 
-const hideDialog = () => {
-    setSubmitted(false);
-    // setEmployeeDialog(false);
-};
+// const hideDialog = () => {
+//     setSubmitted(false);
+//     // setEmployeeDialog(false);
+// };
+
+console.log(leaveTypeData)
 
 
  const onEdit = (obj) =>{
@@ -60,38 +80,25 @@ const hideDialog = () => {
   const saveLeave = () => {
     setSubmitted(true);
 
-    if (name.trim() && numberOfDays.trim()) {
-
-      let _leaveTypes = [...leaveTypes];
-      let _formData = { ...formData };
-
-      _formData.id = leaveTypes.length + 1;
-
-      let newData = {'id': _formData.id, 'name': _formData.name, 'numberOfDays': formData.numberOfDays}
-      _leaveTypes.push(newData);
-      toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Employee Created', life: 3000 });
-        
-      setLeaveTypes(_leaveTypes);
+    if (title.trim() && days.trim()) {
+      dispatch(addLeaveType({...formData}))
+     
       setVisible(false);
       setFormData(formData);
     }
+
+     dispatch(reset())
   };
 
   const updateLeave = () => {
-    if(name.trim()){
+    if(title.trim()){
 
-      console.log(id)
-      // console.log(formData)
-      const newState = leaveTypes.map(obj => {
-        // 👇️ if id equals to leave id passes, update status to approved
-        if(obj.id == id){
-          return {...formData};
-        }
-        // 👇️ otherwise return the object as is
-        return obj;
-      })
+      const newState = {
+        ...formData,
+        "id": id,
+      }
 
-      setLeaveTypes(newState);
+      dispatch(updateLeaveType(newState))
       setVisible(false); 
     }
     else{
@@ -100,9 +107,7 @@ const hideDialog = () => {
   }
 
 
-  useEffect(() => {
-    LeaveTypeService.getLeaveTypes().then((data) => setLeaveTypes(data));
-  }, []);
+
 
   // console.log(leaveTypes)
   return (
@@ -121,13 +126,13 @@ const hideDialog = () => {
               </div>
               <div className="card flex flex-col sm:flex-row justify-between gap-3 text-white mr-5">
                 {leaveTypes.map((leaveType) =>
-                  <Card key={leaveType.id} title={leaveType.name} className="gap-3 mr-3 bg-slate-800 text-gray-400 md:w-[20%]">
+                  <Card key={leaveType.id} title={leaveType.title} className="gap-3 mr-3 bg-slate-800 text-gray-400 md:w-[20%]">
                     <p className="m-0">
-                        {leaveType.numberOfDays}
+                        {leaveType.days}
                     </p>
                     <div className='flex flex-row mt-6'>
                       <p className='mr-3 cursor-pointer' onClick={()=> onEdit(leaveType)}>Edit</p>
-                      <p>Delete</p>
+                      <p className='cursor-pointer'>Delete</p>
                     </div>
                   </Card>
                 )}
@@ -138,23 +143,23 @@ const hideDialog = () => {
             <Dialog header="Add Leave Type" visible={visible} className='md:w-[35%] max-h-full' onHide={() => setVisible(false)}>
 
                 <div className="field">
-                    <InputText id="name" name='name' 
+                    <InputText id="name" name='title' 
                       onChange={e => onChange(e)} 
-                      value={name} 
+                      value={title} 
                       placeholder='Name' type='text' 
-                      className={`w-full  ${submitted && !name ? 'p-invalid' : ''}`}/>
-                    {submitted && !name && <small className="p-error">name is required.</small>}
+                      className={`w-full  ${submitted && !title ? 'p-invalid' : ''}`}/>
+                    {submitted && !title && <small className="p-error">Field is required.</small>}
                 </div>
 
                 <div className="field mt-2">
-                    <InputText id="numberOfDays" name='numberOfDays' onChange={e => onChange(e)} 
-                    value={numberOfDays}  
+                    <InputText id="days" name='days' onChange={e => onChange(e)} 
+                    value={days}  
                     placeholder='Number of days' 
                     type='number' min={0} 
-                    className={`w-full  ${submitted && !numberOfDays ? 'p-invalid' : ''}`}
+                    className={`w-full  ${submitted && !days ? 'p-invalid' : ''}`}
                     required
                     />
-                    {submitted && !numberOfDays && <small className="p-error">Number of is required.</small>}
+                    {submitted && !days && <small className="p-error">Field is required.</small>}
                 </div>
 
                 <div className="field mt-2">

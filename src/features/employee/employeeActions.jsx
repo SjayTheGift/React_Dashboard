@@ -45,19 +45,7 @@ export const fetchEmployee = createAsyncThunk('employee/fetchEmployee', async ()
 
 
 export const registerEmployee = createAsyncThunk('employee/registerEmployee', async (user, thunkAPI) => {
-  console.log(`test - ${user} `)
 
-    let data = {
-      "email": "aZuma0@sohu.com",
-      "first_name": "Zuma",
-      "last_name": "Medhurst",
-      "department": 2,
-      "designation": 3,
-      "phone": "06758914",
-      "gender": "Male",
-      "birth_date": "2000-12-25"
-  }
-   
     await axios.post(`${backendURL}/api/user/employee/create/`, user, config)
     .then(res => {
         // localStorage.setItem('userInfo', JSON.stringify(res.data))

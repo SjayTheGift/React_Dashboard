@@ -15,20 +15,35 @@ const config = {
 
 export const fetchNewLeaves = createAsyncThunk('employee/fetchNewLeaves', async () => {
    
-  await axios.get(`${backendURL}/api/leave/leave-new/`, config)
+  return await axios.get(`${backendURL}/api/leave/leave-new/`, config)
   .then(res => {
-      localStorage.setItem('newLeavesData', JSON.stringify(res.data))
+      // localStorage.setItem('newLeavesData', JSON.stringify(res.data))
+      console.log( res.data)
+      return res.data
   })
   .catch(error => {
       toast.error(error.message)
-      // return thunkAPI.rejectWithValue(error.message)
+  })
+})
+
+export const updateNewLeaves = createAsyncThunk('employee/updateNewLeaves', async (data) => {
+  
+  return await axios.put(`${backendURL}/api/leave/leave-new/${data.id}/`, data, config)
+  .then(res => {
+      // localStorage.setItem('newLeavesData', JSON.stringify(res.data))
+      toast.success(`${data.status} Successfully!!!`)
+      return res.data
+  })
+  .catch(error => {
+      toast.error(error.message)
   })
 })
 
 
+
 export const fetchLeaveType = createAsyncThunk('employee/fetchLeaveType', async () => {
    
-  await axios.get(`${backendURL}/api/leave/leave-type/`, config)
+  return await axios.get(`${backendURL}/api/leave/leave-type/`, config)
   .then(res => {
       localStorage.setItem('leaveTypeData', JSON.stringify(res.data))
       return res.data
@@ -40,10 +55,10 @@ export const fetchLeaveType = createAsyncThunk('employee/fetchLeaveType', async 
 })
 
 export const addLeaveType = createAsyncThunk('employee/addLeaveType', async (data) => {
-   console.log(data)
-  await axios.post(`${backendURL}/api/leave/leave-type/`, data, config)
+  return await axios.post(`${backendURL}/api/leave/leave-type/`, data, config)
   .then(res => {
       toast.success("Leave Type Added!!!")
+      return res.data
   })
   .catch(error => {
       toast.error(error.message)
@@ -52,14 +67,41 @@ export const addLeaveType = createAsyncThunk('employee/addLeaveType', async (dat
 })
 
 export const updateLeaveType = createAsyncThunk('employee/updateLeaveType', async (data) => {
-   console.log(data)
-  await axios.put(`${backendURL}/api/leave/leave-type/${data.id}/`, data, config)
+  return await axios.put(`${backendURL}/api/leave/leave-type/${data.id}/`, data, config)
   .then(res => {
       toast.success("Leave Type Updated!!!")
+      return res.data
   })
   .catch(error => {
       toast.error(error.message)
       // return thunkAPI.rejectWithValue(error.message)
+  })
+})
+
+export const deleteLeaveType = createAsyncThunk('employee/deleteLeaveType', async (data) => {
+  return await axios.delete(`${backendURL}/api/leave/leave-type/${data.id}/`, data, config)
+  .then(res => {
+      toast.success("Delete Successfully!!!")
+      return res.data
+  })
+  .catch(error => {
+      toast.error(error.message)
+      // return thunkAPI.rejectWithValue(error.message)
+  })
+})
+
+
+export const fetchUserLeaves = createAsyncThunk('employee/fetchUserLeaves', async (user_id) => {
+  console.log(user_id)
+  return await axios.get(`${backendURL}/api/leave/user-leave/`, config)
+  .then(res => {
+      // localStorage.setItem('newLeavesData', JSON.stringify(res.data))
+      // alert('hi')
+      // console.log(res.data)
+      return res.data
+  })
+  .catch(error => {
+      toast.error(error.message)
   })
 })
 

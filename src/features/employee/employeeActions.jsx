@@ -15,9 +15,10 @@ const config = {
 
 export const fetchEmployee = createAsyncThunk('employee/fetchEmployee', async () => {
    
-  await axios.get(`${backendURL}/api/user/employee/`, config)
+  return await axios.get(`${backendURL}/api/user/employee/`, config)
   .then(res => {
       localStorage.setItem('employeeData', JSON.stringify(res.data))
+      return res.data
   })
   .catch(error => {
       if (error.response) {
@@ -46,10 +47,11 @@ export const fetchEmployee = createAsyncThunk('employee/fetchEmployee', async ()
 
 export const registerEmployee = createAsyncThunk('employee/registerEmployee', async (user, thunkAPI) => {
 
-    await axios.post(`${backendURL}/api/user/employee/create/`, user, config)
+    return await axios.post(`${backendURL}/api/user/employee/create/`, user, config)
     .then(res => {
         // localStorage.setItem('userInfo', JSON.stringify(res.data))
         toast.success("Employee Registered successfully")
+        return res.data
     })
     .catch(error => {
         if (error.response) {
@@ -79,10 +81,11 @@ export const registerEmployee = createAsyncThunk('employee/registerEmployee', as
 
 export const updateEmployeeAction = createAsyncThunk('employee/updateEmployeeAction', async (user, thunkAPI) => {
   
-    await axios.put(`${backendURL}/api/user/employee/${user.id}/`, user, config)
+    return await axios.put(`${backendURL}/api/user/employee/${user.id}/`, user, config)
     .then(res => {
         // localStorage.setItem('userInfo', JSON.stringify(res.data))
         toast.success("Employee updated")
+        return res.data
     })
     .catch(error => {
         if (error.response) {
@@ -110,10 +113,11 @@ export const updateEmployeeAction = createAsyncThunk('employee/updateEmployeeAct
 
 export const deleteEmployeeAction = createAsyncThunk('employee/deleteEmployeeAction', async (user, thunkAPI) => {
   
-    await axios.delete(`${backendURL}/api/user/employee/${user.id}/`, user, config)
+    return await axios.delete(`${backendURL}/api/user/employee/${user.id}/`, user, config)
     .then(res => {
         // localStorage.setItem('userInfo', JSON.stringify(res.data))
         toast.success("Employee Deleted")
+        return res.data
     })
     .catch(error => {
         if (error.response) {

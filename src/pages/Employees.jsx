@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useCallback } from 'react';
 import { classNames } from 'primereact/utils';
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
@@ -53,6 +53,7 @@ const Employees = () => {
     const { first_name, last_name, gender, email, phone, birth_date, designation, department } = formData
 
     const {designationData, departmentData}  = useSelector( (state) => state.organization)
+    
     let designationList = JSON.parse(designationData)
     let departmentList = JSON.parse(departmentData)
 
@@ -62,15 +63,21 @@ const Employees = () => {
     (state) => state.employee)
 
 
+    const initFetch = useCallback(() => {
+        dispatch(fetchEmployee())
+      }, [dispatch])
+
     useEffect(() => {
         // get method to fetch department data
-        dispatch(fetchEmployee())
+        initFetch()
+        
         if(isEmployeeSuccess){
             setEmployees(employeeData)
             // dispatch(reset())
         }
         // )
     }, [isEmployeeError, isEmployeeSuccess, message]);
+
 
     const openNew = () => {
         setSubmitted(false);
@@ -104,19 +111,8 @@ const Employees = () => {
                 "department": department.id
             }
 
-            // let newData = {
-            //     "email": email,
-            //     "first_name": first_name,
-            //     "last_name": last_name,
-            //     "department": department.id,
-            //     "designation": designation.id,
-            //     "phone": phone,
-            //     "gender": gender.name,
-            //     "birth_date": newDate,
-            // }
-
             dispatch(registerEmployee(newData))
-            // dispatch(reset())
+            dispatch(reset())
 
             // setEmployees(_employees);
             setEmployeeDialog(false);
@@ -126,10 +122,8 @@ const Employees = () => {
     };
 
     const updateEmployee = () => {
-        setSubmitted(true);
-
-        // if (first_name.trim() && last_name.trim() && email.trim() && phone.trim() && gender.name.trim() && designation.name.trim(), department.name.trim()) {
-
+        if(first_name && last_name && email && phone && gender.name && designation.name, department.name){
+            setSubmitted(true);
             let newDate = new Date(birth_date).toLocaleString('en-CA').split(',')[0]
 
             id
@@ -143,9 +137,10 @@ const Employees = () => {
             }
             
             dispatch(updateEmployeeAction(newState))
-            // dispatch(reset())
+            dispatch(reset())
             setEmployeeDialog(false);
-        // }
+        }
+        
       }
 
     const editEmployee = (data) => {
@@ -274,7 +269,7 @@ const Employees = () => {
         <div className="card">
         <Toolbar className="mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
 
-            <DataTable ref={dt} value={employees} selection={selectedEmployees} onSelectionChange={(e) => setSelectedEmployees(e.value)}
+            <DataTable ref={dt} value={employeeData} selection={selectedEmployees} onSelectionChange={(e) => setSelectedEmployees(e.value)}
                     dataKey="id"  paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
                     paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" globalFilter={globalFilter} header={header}>

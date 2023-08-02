@@ -1,12 +1,12 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
 import { fetchEmployee, registerEmployee, updateEmployeeAction, deleteEmployeeAction } from './employeeActions'
 
-const employeeData = localStorage.getItem('employeeData')
-? localStorage.getItem('employeeData')
-: null
+// const employeeData = localStorage.getItem('employeeData')
+// ? localStorage.getItem('employeeData')
+// : null
 
 const initialState = {
-  employeeData,
+  employeeData: [],
   isEmployeeError: false,
   isEmployeeSuccess: false,
   isEmployeeLoading: false,
@@ -18,6 +18,7 @@ export const employeeSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
+      state.employeeData = state.employeeData
       state.isEmployeeLoading = false
       state.isEmployeeSuccess = false
       state.isEmployeeError = false
@@ -32,7 +33,7 @@ export const employeeSlice = createSlice({
       .addCase(fetchEmployee.fulfilled, (state, action) => {
         state.isEmployeeLoading = false;
         state.isEmployeeSuccess = true;
-        state.employeeData = JSON.parse(localStorage.getItem('employeeData'))
+        state.employeeData = action.payload
       })
       .addCase(fetchEmployee.rejected, (state, action) => {
         state.isEmployeeLoading = false;

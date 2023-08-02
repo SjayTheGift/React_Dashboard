@@ -16,9 +16,10 @@ const config = {
 
 export const fetchDepartment = createAsyncThunk('organization/fetchDepartment', async (thunkAPI) => {
 
-    await axios.get(`${backendURL}/api/user/department/`, config)
+    return await axios.get(`${backendURL}/api/user/department/`, config)
     .then(res => {
         localStorage.setItem('departmentData', JSON.stringify(res.data))
+        return res.data
     })
     .catch(error => {
       console.log(error)
@@ -28,11 +29,11 @@ export const fetchDepartment = createAsyncThunk('organization/fetchDepartment', 
 )
 
 export const addDepartment = createAsyncThunk('organization/addDepartment', async (data, thunkAPI) => {
-    await axios.post(`${backendURL}/api/user/department/`, data, config)
+    return await axios.post(`${backendURL}/api/user/department/`, data, config)
     .then(res => {
         // localStorage.setItem('departmentData', JSON.stringify(res.data)
-        console.log(res)
         toast.success(res.data.name + ' Added successfully')
+        return res.data
     })
     .catch(error => {
       console.log(error.response.data.name)
@@ -42,10 +43,10 @@ export const addDepartment = createAsyncThunk('organization/addDepartment', asyn
 )
 
 export const updateDepartment = createAsyncThunk('organization/updateDepartment', async (data, thunkAPI) => {
-    await axios.put(`${backendURL}/api/user/department/${data.id}/`,  data , config)
+    return await axios.put(`${backendURL}/api/user/department/${data.id}/`,  data , config)
     .then(res => {
-        console.log(res)
         toast.success(res.data.name + ' Updated')
+        return res.data
     })
     .catch(error => {
       console.log(error.response.data.name)
@@ -54,9 +55,10 @@ export const updateDepartment = createAsyncThunk('organization/updateDepartment'
 })
 
 export const deleteDepartment = createAsyncThunk('organization/deleteDepartment', async (data, thunkAPI) => {
-    await axios.delete(`${backendURL}/api/user/department/${data.id}/`,  data , config)
+    return await axios.delete(`${backendURL}/api/user/department/${data.id}/`,  data , config)
     .then(res => {
         console.log(res)
+        return res.data
     })
     .catch(error => {
       console.log(error.response.data.name)
@@ -69,9 +71,10 @@ export const deleteDepartment = createAsyncThunk('organization/deleteDepartment'
 
 export const fetchDesignation = createAsyncThunk('organization/fetchDesignation', async (thunkAPI) => {
 
-  await axios.get(`${backendURL}/api/user/designation/`, config)
+  return await axios.get(`${backendURL}/api/user/designation/`, config)
   .then(res => {
       localStorage.setItem('designationData', JSON.stringify(res.data))
+      return res.data
   })
   .catch(error => {
     console.log(error)
@@ -81,10 +84,11 @@ export const fetchDesignation = createAsyncThunk('organization/fetchDesignation'
 )
 
 export const addDesignation = createAsyncThunk('organization/addDesignation', async (data, thunkAPI) => {
-  await axios.post(`${backendURL}/api/user/designation/`, data, config)
+  return await axios.post(`${backendURL}/api/user/designation/`, data, config)
   .then(res => {
       console.log(res)
       toast.success(res.data.name + ' Added successfully')
+      return res.data
   })
   .catch(error => {
     console.log(error.response.data.name)
@@ -94,10 +98,11 @@ export const addDesignation = createAsyncThunk('organization/addDesignation', as
 )
 
 export const updateDesignation = createAsyncThunk('organization/updateDesignation', async (data, thunkAPI) => {
-  await axios.put(`${backendURL}/api/user/designation/${data.id}/`,  data , config)
+  return await axios.put(`${backendURL}/api/user/designation/${data.id}/`,  data , config)
   .then(res => {
       console.log(res)
       toast.success(res.data.name + ' Updated')
+      return res.data
   })
   .catch(error => {
     console.log(error.response.data.name)
@@ -106,10 +111,11 @@ export const updateDesignation = createAsyncThunk('organization/updateDesignatio
 })
 
 export const deleteDesignation = createAsyncThunk('organization/deleteDesignation', async (data, thunkAPI) => {
-  await axios.delete(`${backendURL}/api/user/designation/${data.id}/`,  data , config)
+  return await axios.delete(`${backendURL}/api/user/designation/${data.id}/`,  data , config)
   .then(res => {
       // localStorage.setItem('departmentData', JSON.stringify(res.data)
       console.log(res)
+      return res.data
   })
   .catch(error => {
     console.log(error.response.data.name)

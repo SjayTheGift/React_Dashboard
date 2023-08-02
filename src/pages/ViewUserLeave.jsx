@@ -6,11 +6,28 @@ import { InputText } from 'primereact/inputtext';
 import { MultiSelect } from 'primereact/multiselect';
 import { Dropdown } from 'primereact/dropdown';
 import { Tag } from 'primereact/tag';
+import { useDispatch, useSelector } from 'react-redux'
+import { decodeToken  } from "react-jwt";
 
+import { fetchUserLeaves } from '../features/leaves/leaveActions'
 
 const ViewUserLeave = ({userLeaveApi}) => {
     const [leaves, setLeaves] = useState([])
     const [globalFilter, setGlobalFilter] = useState(null);
+
+    // const [user, setUser] = useState()
+
+
+     // Get data from state
+    const { userToken } = useSelector((state) => state.auth)
+
+    const user = JSON.parse(userToken)
+    const user_id = decodeToken(user.access)['user_id']
+
+
+    const dispatch = useDispatch()
+
+    
 
     const getSeverity = (status) => {
         switch (status) {
@@ -26,6 +43,7 @@ const ViewUserLeave = ({userLeaveApi}) => {
     };
 
     useEffect(() => {
+      dispatch(fetchUserLeaves(user_id))
       setLeaves(userLeaveApi)
   }, []);
 

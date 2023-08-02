@@ -1,17 +1,17 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { fetchNewLeaves, fetchLeaveType, addLeaveType, updateLeaveType } from './leaveActions'
+import { fetchNewLeaves, updateNewLeaves, fetchLeaveType, addLeaveType, updateLeaveType, deleteLeaveType, fetchUserLeaves } from './leaveActions'
 
-const newLeavesData = localStorage.getItem('newLeavesData')
-? localStorage.getItem('newLeavesData')
-: null
+// const leavesData = localStorage.getItem('newLeavesData')
+// ? localStorage.getItem('newLeavesData')
+// : null
 
-const leaveTypeData = localStorage.getItem('leaveTypeData')
-? localStorage.getItem('leaveTypeData')
-: null
+// const leaveTypeData = localStorage.getItem('leaveTypeData')
+// ? localStorage.getItem('leaveTypeData')
+// : null
 
 const initialState = {
-  newLeavesData,
-  leaveTypeData,
+  leavesData: [],
+  leaveTypeData: [],
   isLeaveError: false,
   isLeaveSuccess: false,
   isLeaveLoading: false,
@@ -23,6 +23,8 @@ export const leaveSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
+      state.leavesData = state.leavesData
+      state.leaveTypeData = state.leaveTypeData
       state.isLeaveLoading = false
       state.isLeaveSuccess = false
       state.isLeaveError = false
@@ -37,20 +39,34 @@ export const leaveSlice = createSlice({
       .addCase(fetchNewLeaves.fulfilled, (state, action) => {
         state.isLeaveLoading = false;
         state.isLeaveSuccess = true;
-        state.newLeavesData = JSON.parse(localStorage.getItem('newLeavesData'))
+        state.leavesData =  action.payload
       })
       .addCase(fetchNewLeaves.rejected, (state, action) => {
         state.isLeaveLoading = false;
         state.isLeaveError = true;
         state.message = action.payload;
       })
+      .addCase(updateNewLeaves.pending, (state) => {
+        state.isLeaveLoading = true;
+      })
+      .addCase(updateNewLeaves.fulfilled, (state, action) => {
+        state.isLeaveLoading = false;
+        state.isLeaveSuccess = true;
+       
+      })
+      .addCase(updateNewLeaves.rejected, (state, action) => {
+        state.isLeaveLoading = false;
+        state.isLeaveError = true;
+        state.message = action.payload;
+      })
+      // Leave Type Cases
       .addCase(fetchLeaveType.pending, (state) => {
         state.isLeaveLoading = true;
       })
       .addCase(fetchLeaveType.fulfilled, (state, action) => {
         state.isLeaveLoading = false;
         state.isLeaveSuccess = true;
-        state.leaveTypeData = JSON.parse(localStorage.getItem('leaveTypeData'))
+        state.leaveTypeData = action.payload
       })
       .addCase(fetchLeaveType.rejected, (state, action) => {
         state.isLeaveLoading = false;
@@ -81,8 +97,35 @@ export const leaveSlice = createSlice({
         state.isLeaveError = true;
         state.message = action.payload;
       })
+      .addCase(deleteLeaveType.pending, (state) => {
+        state.isLeaveLoading = true;
+      })
+      .addCase(deleteLeaveType.fulfilled, (state, action) => {
+        state.isLeaveLoading = false;
+        state.isLeaveSuccess = true;
+      })
+      .addCase(deleteLeaveType.rejected, (state, action) => {
+        state.isLeaveLoading = false;
+        state.isLeaveError = true;
+        state.message = action.payload;
+      })
+      // Fetch Leave
+      .addCase(fetchUserLeaves.pending, (state) => {
+        state.isLeaveLoading = true;
+      })
+      .addCase(fetchUserLeaves.fulfilled, (state, action) => {
+        state.isLeaveLoading = false;
+        state.isLeaveSuccess = true;
+      })
+      .addCase(fetchUserLeaves.rejected, (state, action) => {
+        state.isLeaveLoading = false;
+        state.isLeaveError = true;
+        state.message = action.payload;
+      })
   },
 })
 
-export const { reset } = leaveSlice.actions
+export const selectAllLeaves = (state) => state.leave.leave
+
+export const { reset  } = leaveSlice.actions
 export default leaveSlice.reducer

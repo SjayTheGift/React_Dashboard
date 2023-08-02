@@ -43,8 +43,7 @@ const Departments = () => {
       setDepartmentList(JSON.parse(departmentData))
     }
 
-  },[isSuccess, isError, message, departmentData])
-
+  },[isSuccess, isError, message])
 
 
   const onChange = (e) =>{

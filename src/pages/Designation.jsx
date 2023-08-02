@@ -34,7 +34,7 @@ const Designations = () => {
 
   const dispatch = useDispatch()
   // Get data from state
-  const {designationData, isLoading, isError,  isSuccess, AddSuccess, message}  = useSelector(
+  const {designationData, isLoading, isError,  isSuccess, message}  = useSelector(
   (state) => state.organization)
 
   useEffect(()=>{
@@ -44,7 +44,7 @@ const Designations = () => {
     if(isSuccess){
       setDesignationList(JSON.parse(designationData))
     }
-  }, [isSuccess, isError, message, designationData])
+  }, [isSuccess, isError, message])
 
   const onChange = (e) =>{
       setName(e.target.value)
@@ -59,8 +59,6 @@ const Designations = () => {
       console.log('error')
       setError(true)
     }else{
-      // designationList.push({"id": newId, "name": name})
-      // setDesignationList([...designationList])
       dispatch(addDesignation({name: name}))
       setName('')
       setError(false)
@@ -77,17 +75,6 @@ const Designations = () => {
       toast.current.show({ severity: 'error', summary: 'Error', detail: 'Designation Name Required', life: 3000 });
       setError(true)
     }else{
-
-          // const newState = designationList.map(obj => {
-          //   // 👇️ if id equals to leave id passes, update status to approved
-          //   if(obj.id == id){
-          //     return {...obj, name: name};
-          //   }
-          //   // 👇️ otherwise return the object as is
-          //   return obj;
-          // })
-
-          // setDesignationList(newState)
           dispatch(updateDesignation({id: id, name:name}))
           dispatch(reset())
           setName('')

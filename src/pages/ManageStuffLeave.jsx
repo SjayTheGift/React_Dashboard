@@ -1,11 +1,12 @@
-import React,{useState, useEffect} from 'react'
+import React,{useState, useEffect, useCallback } from 'react'
 import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
+import { useDispatch, useSelector } from 'react-redux'
 
-
-import useFetch  from '../service/FetchNewLeaveService';
+import { fetchNewLeaves, updateNewLeaves } from '../features/leaves/leaveActions'
+import { reset } from '../features/leaves/leaveSlice';
 
 const ManageStuffLeave = ({userLeaveApi, setUserLeaveApi}) => {
   const [globalFilter, setGlobalFilter] = useState(null);
@@ -16,11 +17,24 @@ const ManageStuffLeave = ({userLeaveApi, setUserLeaveApi}) => {
     return leave.status === 'new';
   });
 
+  // const leaves = useSelector()
 
-  const {data : leaves, setData : setLeaves, isPending, error} = useFetch('http://127.0.0.1:8000/api/leave/leave-new/')
-
-  console.log(leaves)
+  const dispatch = useDispatch()
+  // Get data from state
+  const {leavesData, isIdle, isLeaveLoading, isLeaveSuccess,  isLeaveError, message}  = useSelector(
+  (state) => state.leave)
   
+
+  const initFetch = useCallback(() => {
+    dispatch(fetchNewLeaves());
+  }, [dispatch])
+
+  useEffect(() => {
+    
+    initFetch()
+    // setLeaves(leavesData)
+    
+  },[isLeaveSuccess, isLeaveError, initFetch])
 
 
 
@@ -35,15 +49,10 @@ const ManageStuffLeave = ({userLeaveApi, setUserLeaveApi}) => {
   );
 
   const handleLeave = (leave, status) => {
-    const newState = userLeaveApi.map(obj => {
-      // 👇️ if id equals to leave id passes, update status to approved
-      if(obj.id == leave.id){
-        return {...obj, status: status};
-      }
-      // 👇️ otherwise return the object as is
-      return obj;
-    })
-    setUserLeaveApi(newState)
+    const newState = {...leave, status: status}
+    dispatch(updateNewLeaves(newState))
+    dispatch(reset())
+    
   }
 
 
@@ -69,17 +78,17 @@ const ManageStuffLeave = ({userLeaveApi, setUserLeaveApi}) => {
 
       <div className='col-span-full mr-8 md:mr-0'>
           <div className="card">
-              <DataTable value={filteredLeaves}
+              <DataTable value={leavesData}
                         dataKey="id"  paginator rows={5} rowsPerPageOptions={[5, 10, 25]}
                         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} leaves" globalFilter={globalFilter} header={header}>
-                    <Column field="name" header="Stuff Name" sortable style={{ minWidth: '12rem' }}></Column>
-                    <Column field="department" header="Department" sortable style={{ minWidth: '12rem' }}></Column>
-                    <Column field="reason" header="Reason" sortable style={{ minWidth: '12rem' }}></Column>
-                    <Column field="fromDate" header="From" sortable style={{ minWidth: '16rem' }}></Column>
-                    <Column field="toDate" header="To" sortable style={{ minWidth: '16rem' }}></Column>
+                    <Column field="employee.full_name" header="Stuff Name" sortable style={{ minWidth: '12rem' }}></Column>
+                    {/* <Column field="department" header="Department" sortable style={{ minWidth: '12rem' }}></Column> */}
+                    <Column field="leave.title" header="Reason" sortable style={{ minWidth: '12rem' }}></Column>
+                    <Column field="from_date" header="From" sortable style={{ minWidth: '16rem' }}></Column>
+                    <Column field="to_date" header="To" sortable style={{ minWidth: '16rem' }}></Column>
                     <Column field="description" header="Description" sortable style={{ minWidth: '16rem' }}></Column>
-                    <Column field="dateApplied" header="Date Applied" sortable style={{ minWidth: '10rem' }}></Column>
+                    <Column field="date_applied" header="Date Applied" sortable style={{ minWidth: '10rem' }}></Column>
                     <Column field="status" header="Status" sortable style={{ minWidth: '12rem' }}></Column>
                     <Column header="Approve or Reject" body={actionBodyTemplate} style={{ minWidth: '12rem' }}></Column>
               </DataTable>

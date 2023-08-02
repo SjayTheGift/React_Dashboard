@@ -54,6 +54,7 @@ export const organizationSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.departmentData = localStorage.getItem('departmentData');
+        // state.departmentData = action.payload
       })
       .addCase(fetchDepartment.rejected, (state, action) => {
         state.isLoading = false;
@@ -108,6 +109,7 @@ export const organizationSlice = createSlice({
         state.isLoading = false;
         state.isSuccess = true;
         state.designationData = localStorage.getItem('designationData');
+        // state.designationData = action.payload
       })
       .addCase(fetchDesignation.rejected, (state, action) => {
         state.isLoading = false;

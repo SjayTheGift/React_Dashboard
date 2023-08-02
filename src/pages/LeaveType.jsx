@@ -7,12 +7,14 @@ import { Toast } from 'primereact/toast';
 import { useDispatch, useSelector } from 'react-redux'
 
 import { LeaveTypeService } from '../service/LeaveTypeService';
-import { fetchLeaveType, addLeaveType, updateLeaveType } from '../features/leaves/leaveActions'
+import { fetchLeaveType, addLeaveType, updateLeaveType, deleteLeaveType } from '../features/leaves/leaveActions'
 import { reset } from '../features/leaves/leaveSlice';
+import DeleteDialog from '../components/DeleteDialog'
 
 
 const LeaveType = () => {
 
+  const [deleteDialog, setDeleteDialog] = useState(false)
   const [leaveTypes, setLeaveTypes] = useState([]);
   const [visible, setVisible] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -41,8 +43,7 @@ const LeaveType = () => {
       setLeaveTypes(leaveTypeData)
     }
 
-
-  }, [isLeaveError, isLeaveSuccess, leaveTypeData]);
+  }, [isLeaveError, isLeaveSuccess]);
 
 
   const openNew = () => {
@@ -57,8 +58,6 @@ const LeaveType = () => {
 //     setSubmitted(false);
 //     // setEmployeeDialog(false);
 // };
-
-console.log(leaveTypeData)
 
 
  const onEdit = (obj) =>{
@@ -82,23 +81,22 @@ console.log(leaveTypeData)
 
     if (title.trim() && days.trim()) {
       dispatch(addLeaveType({...formData}))
-     
+      dispatch(reset())
+
       setVisible(false);
       setFormData(formData);
     }
-
-     dispatch(reset())
   };
 
   const updateLeave = () => {
     if(title.trim()){
-
       const newState = {
         ...formData,
         "id": id,
       }
 
       dispatch(updateLeaveType(newState))
+      dispatch(reset())
       setVisible(false); 
     }
     else{
@@ -106,10 +104,40 @@ console.log(leaveTypeData)
     }
   }
 
+  const [deleteLeaveDialog, setDeleteLeaveDialog] = useState(false);
+  const [name, setName] = useState('');
+  
+
+  const hideDeleteLeaveDialog = () => {
+    setDeleteLeaveDialog(false);
+};
+
+const confirmDeleteEmployee = (data) => {
+  setLeaveTypes(data);
+  setName(data.title)
+  setId(data.id)
+  setDeleteLeaveDialog(true);
+  dispatch(reset())
+};
+
+const deleteLeave = () => {
+  let data = {...formData, "id": id}
+  dispatch(deleteLeaveType(data))
+  setDeleteLeaveDialog(false);
+  setLeaveTypes(formData);
+  dispatch(reset())
+}
+
+  const deleteLeaveDialogFooter = (
+    <React.Fragment>
+        <Button label="No" icon="pi pi-times" outlined onClick={hideDeleteLeaveDialog} />
+        <Button label="Yes" icon="pi pi-check" severity="danger" onClick={deleteLeave} />
+    </React.Fragment>
+  );
+
+  
 
 
-
-  // console.log(leaveTypes)
   return (
       <>
             <div className="col-span-full mr-8 md:mr-0 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
@@ -125,17 +153,20 @@ console.log(leaveTypeData)
                 
               </div>
               <div className="card flex flex-col sm:flex-row justify-between gap-3 text-white mr-5">
-                {leaveTypes.map((leaveType) =>
+                {leaveTypeData.map((leaveType) =>
                   <Card key={leaveType.id} title={leaveType.title} className="gap-3 mr-3 bg-slate-800 text-gray-400 md:w-[20%]">
                     <p className="m-0">
                         {leaveType.days}
                     </p>
                     <div className='flex flex-row mt-6'>
                       <p className='mr-3 cursor-pointer' onClick={()=> onEdit(leaveType)}>Edit</p>
-                      <p className='cursor-pointer'>Delete</p>
+                      <p className='cursor-pointer' onClick={() => confirmDeleteEmployee(leaveType)}>Delete</p>
                     </div>
                   </Card>
                 )}
+
+
+
               </div>
 
 
@@ -172,6 +203,18 @@ console.log(leaveTypeData)
                    
                 </div>
 
+            </Dialog>
+
+
+            <Dialog visible={deleteLeaveDialog} style={{ width: '32rem' }} breakpoints={{ '960px': '75vw', '641px': '90vw' }} header="Confirm" modal footer={deleteLeaveDialogFooter} onHide={hideDeleteLeaveDialog}>
+                <div className="confirmation-content">
+                    <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
+                    {LeaveType && (
+                        <span>
+                            Are you sure you want to delete <b>{name}</b>?
+                        </span>
+                    )}
+                </div>
             </Dialog>
 
             </div>

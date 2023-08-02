@@ -20,9 +20,10 @@ const ViewUserLeave = ({userLeaveApi}) => {
 
      // Get data from state
     const { userToken } = useSelector((state) => state.auth)
+    const { userLeaveData } = useSelector((state) => state.leave)
 
-    const user = JSON.parse(userToken)
-    const user_id = decodeToken(user.access)['user_id']
+    const token = JSON.parse(userToken)
+    // const user_id = decodeToken(token.access)['user_id']
 
 
     const dispatch = useDispatch()
@@ -43,8 +44,9 @@ const ViewUserLeave = ({userLeaveApi}) => {
     };
 
     useEffect(() => {
-      dispatch(fetchUserLeaves(user_id))
+      dispatch(fetchUserLeaves(token))
       setLeaves(userLeaveApi)
+    //   setLeaves()
   }, []);
 
 
@@ -73,16 +75,16 @@ const ViewUserLeave = ({userLeaveApi}) => {
 
         <div className='col-span-full mr-8 md:mr-0'>
           <div className="card">
-              <DataTable value={leaves}
+              <DataTable value={userLeaveData}
                         dataKey="id"  paginator rows={5} rowsPerPageOptions={[5, 10, 25]}
                         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} leaves" globalFilter={globalFilter} header={header}>
-                    <Column field="reason" header="Reason" sortable style={{ minWidth: '12rem' }}></Column>
-                    <Column field="fromDate" header="From" sortable style={{ minWidth: '16rem' }}></Column>
-                    <Column field="toDate" header="To" sortable style={{ minWidth: '16rem' }}></Column>
+                    <Column field="leave.title" header="Reason" sortable style={{ minWidth: '12rem' }}></Column>
+                    <Column field="from_date" header="From" sortable style={{ minWidth: '16rem' }}></Column>
+                    <Column field="to_date" header="To" sortable style={{ minWidth: '16rem' }}></Column>
                     <Column field="status" header="Status" body={statusBodyTemplate} sortable style={{ minWidth: '12rem' }}></Column>
                     <Column field="description" header="Description" sortable style={{ minWidth: '16rem' }}></Column>
-                    <Column field="dateApplied" header="Date Applied" sortable style={{ minWidth: '10rem' }}></Column>
+                    <Column field="date_applied" header="Date Applied" sortable style={{ minWidth: '10rem' }}></Column>
                 </DataTable>
           </div>
         </div>

@@ -3,7 +3,7 @@ import React,{useRef} from 'react';
 import axios from 'axios'
 import { createAsyncThunk } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify';
-import { Navigate } from 'react-router-dom';
+import { decodeToken  } from "react-jwt";
 
 const backendURL = 'http://127.0.0.1:8000'
 
@@ -91,13 +91,20 @@ export const deleteLeaveType = createAsyncThunk('employee/deleteLeaveType', asyn
 })
 
 
-export const fetchUserLeaves = createAsyncThunk('employee/fetchUserLeaves', async (user_id) => {
-  console.log(user_id)
-  return await axios.get(`${backendURL}/api/leave/user-leave/`, config)
+export const fetchUserLeaves = createAsyncThunk('employee/fetchUserLeaves', async (token) => {
+  console.log(token)
+  const user_id = decodeToken(token.access)['user_id']
+ 
+  return await axios.get(`${backendURL}/api/leave/user-leave/`,  {
+    headers: {
+      "Authorization": `${JSON.stringify(user_id)}`,
+      'Content-Type': 'application/json',
+    },
+  })
   .then(res => {
       // localStorage.setItem('newLeavesData', JSON.stringify(res.data))
       // alert('hi')
-      // console.log(res.data)
+      console.log(res.data)
       return res.data
   })
   .catch(error => {

@@ -10,6 +10,7 @@ import { fetchNewLeaves, updateNewLeaves, fetchLeaveType, addLeaveType, updateLe
 // : null
 
 const initialState = {
+  userLeaveData: [],
   leavesData: [],
   leaveTypeData: [],
   isLeaveError: false,
@@ -23,6 +24,7 @@ export const leaveSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
+      state.userLeaveData = state.userLeaveData
       state.leavesData = state.leavesData
       state.leaveTypeData = state.leaveTypeData
       state.isLeaveLoading = false
@@ -116,6 +118,7 @@ export const leaveSlice = createSlice({
       .addCase(fetchUserLeaves.fulfilled, (state, action) => {
         state.isLeaveLoading = false;
         state.isLeaveSuccess = true;
+        state.userLeaveData = action.payload
       })
       .addCase(fetchUserLeaves.rejected, (state, action) => {
         state.isLeaveLoading = false;

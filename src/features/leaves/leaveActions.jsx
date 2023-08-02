@@ -92,12 +92,30 @@ export const deleteLeaveType = createAsyncThunk('employee/deleteLeaveType', asyn
 
 
 export const fetchUserLeaves = createAsyncThunk('employee/fetchUserLeaves', async (token) => {
-  console.log(token)
   const user_id = decodeToken(token.access)['user_id']
  
   return await axios.get(`${backendURL}/api/leave/user-leave/`,  {
     headers: {
       "Authorization": `${JSON.stringify(user_id)}`,
+      'Content-Type': 'application/json',
+    },
+  })
+  .then(res => {
+      // localStorage.setItem('newLeavesData', JSON.stringify(res.data))
+      // alert('hi')
+      console.log(res.data)
+      return res.data
+  })
+  .catch(error => {
+      toast.error(error.message)
+  })
+})
+
+export const addUserLeaves = createAsyncThunk('employee/addUserLeaves', async (data) => {
+  console.log(data)
+ 
+  return await axios.post(`${backendURL}/api/leave/user-leave/application/`, data,  {
+    headers: {
       'Content-Type': 'application/json',
     },
   })

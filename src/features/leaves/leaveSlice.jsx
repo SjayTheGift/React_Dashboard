@@ -1,5 +1,13 @@
 import { createSlice, createAsyncThunk } from '@reduxjs/toolkit'
-import { fetchNewLeaves, updateNewLeaves, fetchLeaveType, addLeaveType, updateLeaveType, deleteLeaveType, fetchUserLeaves } from './leaveActions'
+import { 
+  fetchNewLeaves, 
+  updateNewLeaves, 
+  fetchLeaveType, 
+  addLeaveType, 
+  updateLeaveType, 
+  deleteLeaveType, 
+  fetchUserLeaves,
+  addUserLeaves } from './leaveActions'
 
 // const leavesData = localStorage.getItem('newLeavesData')
 // ? localStorage.getItem('newLeavesData')
@@ -121,6 +129,19 @@ export const leaveSlice = createSlice({
         state.userLeaveData = action.payload
       })
       .addCase(fetchUserLeaves.rejected, (state, action) => {
+        state.isLeaveLoading = false;
+        state.isLeaveError = true;
+        state.message = action.payload;
+      })
+      .addCase(addUserLeaves.pending, (state) => {
+        state.isLeaveLoading = true;
+      })
+      .addCase(addUserLeaves.fulfilled, (state, action) => {
+        state.isLeaveLoading = false;
+        state.isLeaveSuccess = true;
+        state.userLeaveData = action.payload
+      })
+      .addCase(addUserLeaves.rejected, (state, action) => {
         state.isLeaveLoading = false;
         state.isLeaveError = true;
         state.message = action.payload;

@@ -6,9 +6,10 @@ import { Button  } from 'primereact/button';
 import { Card } from 'primereact/card';
 import { Toast } from 'primereact/toast';
 import { useDispatch, useSelector } from 'react-redux'
+import { decodeToken  } from "react-jwt";
 
 import { LeaveTypeService } from '../service/LeaveTypeService';
-import { fetchLeaveType } from '../features/leaves/leaveActions'
+import { fetchLeaveType, addUserLeaves } from '../features/leaves/leaveActions'
 
 const LeaveApplication = ({userLeaveApi, setUserLeaveApi}) => {
 
@@ -46,35 +47,61 @@ const LeaveApplication = ({userLeaveApi, setUserLeaveApi}) => {
     const {leaveTypeData, isLeaveLoading, isLeaveSuccess,  isLeaveError, message}  = useSelector(
     (state) => state.leave)
 
+    const { userToken }  = useSelector((state) => state.auth)
+
+    const token = JSON.parse(userToken)
+    const user_id = decodeToken(token.access)['user_id']
+
+    
+    const leave = leaveTypeData.filter((data) =>{
+      if (leaveReason === data.title){
+        return data.title
+      }
+    })
+
+    console.log()
+
     const onSave = () =>{
       setSubmitted(true);
-      let leaveFromDate = new Date(formData.leaveFrom).toLocaleString().split(',')[0]
-      let leaveToDate = new Date(formData.leaveTo).toLocaleString().split(',')[0]
+      let leaveFromDate = new Date(formData.leaveFrom).toLocaleString('en-CA').split(',')[0]
+      let leaveToDate = new Date(formData.leaveTo).toLocaleString('en-CA').split(',')[0]
 
-      if(leaveFromDate.trim() !== 'Invalid Date' && leaveToDate.trim() !== 'Invalid Date' && formData.description.trim().length !== 0 && formData.leaveReason.name.trim() !== 0){
-        let id = userLeaveApi.length + 1
+      // if(leaveFromDate !== 'Invalid Date' && leaveToDate !== 'Invalid Date' && formData.description && formData.leaveReason.name){
+        // let id = userLeaveApi.length + 1
 
-        userLeaveApi.push({...userLeaveApi, 
-          "id": id,
-          "name":'james Bond', 
-          "department": "IT", 
-          "reason": formData.leaveReason.name, 
-          "fromDate": leaveFromDate, 
-          "toDate": leaveToDate,
-          "status": "new",
-          "description": formData.description,
-          "dateApplied": "24-07-2023"
-        })
+        // userLeaveApi.push({...userLeaveApi, 
+        //   "id": id,
+        //   "name":'james Bond', 
+        //   "department": "IT", 
+        //   "reason": formData.leaveReason.name, 
+        //   "fromDate": leaveFromDate, 
+        //   "toDate": leaveToDate,
+        //   "status": "new",
+        //   "description": formData.description,
+        //   "dateApplied": "24-07-2023"
+        // })
+
+        
+
+      const data = {
+        "from_date": leaveFromDate,
+        "to_date": leaveToDate,
+        "description": description,
+        "employee": user_id,
+        "leave": leave[0]['id']
+      }
+
+        dispatch(addUserLeaves(data))
   
-        console.log(userLeaveApi)
+        // console.log(userLeaveApi)
   
         setSubmitted(false);
         toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Applied for Leave', life: 3000 });
-      }
+      // }
       setFormData('')
     }
 
-
+  
     useEffect(() => {
       dispatch(fetchLeaveType())
       if(isLeaveSuccess){

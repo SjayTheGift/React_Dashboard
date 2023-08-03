@@ -10,7 +10,7 @@ const Home = () => {
     const token = JSON.parse(userToken)
     const data = decodeToken(token.access)
     const [userTotalData, setUserTotalData] = useState([])
-    const backendURL = 'http://127.0.0.1:8000'
+    const backendURL = 'https://hrapi-production.up.railway.app'
 
     const [isLoading, setIsLoading] = useState(true)
 

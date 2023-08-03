@@ -5,7 +5,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify';
 import { decodeToken  } from "react-jwt";
 
-const backendURL = 'http://127.0.0.1:8000'
+const backendURL = 'https://hrapi-production.up.railway.app'
 
 const config = {
   headers: {

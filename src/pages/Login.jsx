@@ -97,9 +97,6 @@ const Login = () => {
                 <Button className="w-full flex justify-center">
                   Sign In
                 </Button>
-              <a href="#" className="mt-2 hover:text-blue-700">
-                Forgot Password
-              </a>
             </div>
           </form>
         </div>

@@ -89,10 +89,9 @@ export const login = createAsyncThunk('auth/login',async (user) => {
           Navigate('/')
         }
   })
-}
-)
+})
 
 export const logout = createAsyncThunk('auth/logout',async () => {
     localStorage.removeItem('userToken')
     
-  })
+})

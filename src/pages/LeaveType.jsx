@@ -23,10 +23,10 @@ const LeaveType = () => {
   const toast = useRef(null);
   const [formData, setFormData] = useState({
     title: '',
-    days: '',
+    number_of_leaves_per_year: '',
   })
 
-  const { title, days } = formData
+  const { title, number_of_leaves_per_year } = formData
   
   const dispatch = useDispatch()
   // Get data from state
@@ -70,7 +70,7 @@ const LeaveType = () => {
   const saveLeave = () => {
     setSubmitted(true);
 
-    if (title.trim() && days.trim()) {
+    if (title.trim() && number_of_leaves_per_year.trim()) {
       dispatch(addLeaveType({...formData}))
       dispatch(reset())
 
@@ -147,7 +147,7 @@ const LeaveType = () => {
                 {leaveTypeData.map((leaveType) =>
                   <Card key={leaveType.id} title={leaveType.title} className="gap-3 mr-3 bg-slate-800 text-gray-400 md:w-[20%]">
                     <p className="m-0">
-                        {leaveType.days}
+                        {leaveType.number_of_leaves_per_year}
                     </p>
                     <div className='flex flex-row mt-6'>
                       <p className='mr-3 cursor-pointer' onClick={()=> onEdit(leaveType)}>Edit</p>
@@ -174,14 +174,14 @@ const LeaveType = () => {
                 </div>
 
                 <div className="field mt-2">
-                    <InputText id="days" name='days' onChange={e => onChange(e)} 
-                    value={days}  
+                    <InputText id="number_of_leaves_per_year" name='number_of_leaves_per_year' onChange={e => onChange(e)} 
+                    value={number_of_leaves_per_year}  
                     placeholder='Number of days' 
                     type='number' min={0} 
-                    className={`w-full  ${submitted && !days ? 'p-invalid' : ''}`}
+                    className={`w-full  ${submitted && !number_of_leaves_per_year ? 'p-invalid' : ''}`}
                     required
                     />
-                    {submitted && !days && <small className="p-error">Field is required.</small>}
+                    {submitted && !number_of_leaves_per_year && <small className="p-error">Field is required.</small>}
                 </div>
 
                 <div className="field mt-2">

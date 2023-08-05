@@ -63,6 +63,7 @@ export const fetchLeaveType = createAsyncThunk('employee/fetchLeaveType', async 
 
 // Add leave type
 export const addLeaveType = createAsyncThunk('employee/addLeaveType', async (data) => {
+  console.log(data)
   return await axios.post(`${backendURL}/api/leave/leave-type/`, data, config)
   .then(res => {
       toast.success("Leave Type Added!!!")

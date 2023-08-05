@@ -54,6 +54,7 @@ export const employeeSlice = createSlice({
       })
       .addCase(updateEmployeeAction.pending, (state) => {
         state.isEmployeeLoading = true;
+        
       })
       .addCase(updateEmployeeAction.fulfilled, (state, action) => {
         state.isEmployeeLoading = false;

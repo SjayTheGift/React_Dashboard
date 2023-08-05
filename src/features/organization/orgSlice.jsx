@@ -21,8 +21,8 @@ const designationData = localStorage.getItem('designationData')
 : null
 
 const initialState = {
-  departmentData,
-  designationData,
+  departmentData: [],
+  designationData: [],
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -35,6 +35,8 @@ export const organizationSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
+      state.departmentData = state.departmentData
+      state.designationData = state.designationData
       state.isLoading = false
       state.isSuccess = false
       state.addSuccess = false
@@ -53,8 +55,8 @@ export const organizationSlice = createSlice({
       .addCase(fetchDepartment.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.departmentData = localStorage.getItem('departmentData');
-        // state.departmentData = action.payload
+        // state.departmentData = localStorage.getItem('departmentData');
+        state.departmentData = action.payload
       })
       .addCase(fetchDepartment.rejected, (state, action) => {
         state.isLoading = false;
@@ -108,7 +110,7 @@ export const organizationSlice = createSlice({
       .addCase(fetchDesignation.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        state.designationData = localStorage.getItem('designationData');
+        state.designationData = action.payload
         // state.designationData = action.payload
       })
       .addCase(fetchDesignation.rejected, (state, action) => {

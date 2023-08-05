@@ -5,46 +5,16 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify';
 import { Navigate } from 'react-router-dom';
 
-const backendURL = 'https://hrapi-production.up.railway.app'
+let backendURL = ''
 
-// export const register = createAsyncThunk('auth/register', async (user, thunkAPI) => {
-   
-//       const config = {
-//         headers: {
-//           'Content-Type': 'application/json',
-//         },
-//       }
-//     await axios.post(`${backendURL}/api/user/register/`, user, config)
-//     .then(res => {
-//         // localStorage.setItem('userInfo', JSON.stringify(res.data))
-//         toast.success("Registered successfully")
-//     })
-//     .catch(error => {
-//         // const message = (error.response && error.response.data && error.response.data.message) || error.message || error.toString()
-//         if (error.response) {
-//             if(error.response.data.password) {
-//                for (let x in error.response.data.password) {
-//                     toast.error(error.response.data.password[x])
-//                 } 
-//             }
-//             if(error.response.data.email){
-//                 for (let x in error.response.data.email) {
-//                     toast.error(error.response.data.email[x])
-//                 } 
-//             }
-//           } else if (error.request) {
-//             toast.error(error.request.data)
-//           } else {
-//             toast.error(error.message)
-//             console.log('Error', error.message);
-//           }
+const host_name = window.location.hostname
 
-//         toast.error(message)
-//         // return thunkAPI.rejectWithValue(error.message)
-//     })
-//   }
-// )
-
+if(host_name === 'localhost'){
+  backendURL = import.meta.env.VITE_LOCAL_BACKEND_URL
+}
+else{
+  backendURL = import.meta.env.VITE_PRODUCTION_URL
+}
 
 export const login = createAsyncThunk('auth/login',async (user) => {
    

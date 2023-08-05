@@ -6,15 +6,13 @@ import { Dialog } from 'primereact/dialog';
 import { Toast } from 'primereact/toast';
 import { useDispatch, useSelector } from 'react-redux'
 
-import { LeaveTypeService } from '../service/LeaveTypeService';
 import { fetchLeaveType, addLeaveType, updateLeaveType, deleteLeaveType } from '../features/leaves/leaveActions'
 import { reset } from '../features/leaves/leaveSlice';
-import DeleteDialog from '../components/DeleteDialog'
+
 
 
 const LeaveType = () => {
-
-  const [deleteDialog, setDeleteDialog] = useState(false)
+ 
   const [leaveTypes, setLeaveTypes] = useState([]);
   const [visible, setVisible] = useState(false);
   const [submitted, setSubmitted] = useState(false);
@@ -51,14 +49,7 @@ const LeaveType = () => {
     setVisible(true);
     setFormData('');
     setHideButton(true)
-    // setEmployeeDialog(true);
 };
-
-// const hideDialog = () => {
-//     setSubmitted(false);
-//     // setEmployeeDialog(false);
-// };
-
 
  const onEdit = (obj) =>{
     setSubmitted(false);
@@ -104,36 +95,36 @@ const LeaveType = () => {
     }
   }
 
-  const [deleteLeaveDialog, setDeleteLeaveDialog] = useState(false);
-  const [name, setName] = useState('');
+  // const [deleteLeaveDialog, setDeleteLeaveDialog] = useState(false);
+  // const [name, setName] = useState('');
   
 
-  const hideDeleteLeaveDialog = () => {
-    setDeleteLeaveDialog(false);
-};
+  // const hideDeleteLeaveDialog = () => {
+  //   setDeleteLeaveDialog(false);
+  // };
 
-const confirmDeleteEmployee = (data) => {
-  setLeaveTypes(data);
-  setName(data.title)
-  setId(data.id)
-  setDeleteLeaveDialog(true);
-  dispatch(reset())
-};
+  // const confirmDeleteEmployee = (data) => {
+  //   setLeaveTypes(data);
+  //   setName(data.title)
+  //   setId(data.id)
+  //   setDeleteLeaveDialog(true);
+  //   dispatch(reset())
+  // };
 
-const deleteLeave = () => {
-  let data = {...formData, "id": id}
-  dispatch(deleteLeaveType(data))
-  setDeleteLeaveDialog(false);
-  setLeaveTypes(formData);
-  dispatch(reset())
-}
+  // const deleteLeave = () => {
+  //   let data = {...formData, "id": id}
+  //   dispatch(deleteLeaveType(data))
+  //   setDeleteLeaveDialog(false);
+  //   setLeaveTypes(formData);
+  //   dispatch(reset())
+  // }
 
-  const deleteLeaveDialogFooter = (
-    <React.Fragment>
-        <Button label="No" icon="pi pi-times" outlined onClick={hideDeleteLeaveDialog} />
-        <Button label="Yes" icon="pi pi-check" severity="danger" onClick={deleteLeave} />
-    </React.Fragment>
-  );
+  // const deleteLeaveDialogFooter = (
+  //   <React.Fragment>
+  //       <Button label="No" icon="pi pi-times" outlined onClick={hideDeleteLeaveDialog} />
+  //       <Button label="Yes" icon="pi pi-check" severity="danger" onClick={deleteLeave} />
+  //   </React.Fragment>
+  // );
 
   
 
@@ -160,7 +151,7 @@ const deleteLeave = () => {
                     </p>
                     <div className='flex flex-row mt-6'>
                       <p className='mr-3 cursor-pointer' onClick={()=> onEdit(leaveType)}>Edit</p>
-                      <p className='cursor-pointer' onClick={() => confirmDeleteEmployee(leaveType)}>Delete</p>
+                      {/* <p className='cursor-pointer' onClick={() => confirmDeleteEmployee(leaveType)}>Delete</p> */}
                     </div>
                   </Card>
                 )}
@@ -206,7 +197,7 @@ const deleteLeave = () => {
             </Dialog>
 
 
-            <Dialog visible={deleteLeaveDialog} style={{ width: '32rem' }} breakpoints={{ '960px': '75vw', '641px': '90vw' }} header="Confirm" modal footer={deleteLeaveDialogFooter} onHide={hideDeleteLeaveDialog}>
+            {/* <Dialog visible={deleteLeaveDialog} style={{ width: '32rem' }} breakpoints={{ '960px': '75vw', '641px': '90vw' }} header="Confirm" modal footer={deleteLeaveDialogFooter} onHide={hideDeleteLeaveDialog}>
                 <div className="confirmation-content">
                     <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
                     {LeaveType && (
@@ -215,7 +206,7 @@ const deleteLeave = () => {
                         </span>
                     )}
                 </div>
-            </Dialog>
+            </Dialog> */}
 
             </div>
       </>

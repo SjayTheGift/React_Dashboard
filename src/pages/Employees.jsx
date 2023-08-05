@@ -4,31 +4,35 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { Toast } from 'primereact/toast';
 import { Button } from 'primereact/button';
-import { FileUpload } from 'primereact/fileupload';
 import { Dropdown } from 'primereact/dropdown';
 import { Toolbar } from 'primereact/toolbar';
 import { Calendar } from 'primereact/calendar';
 import { Dialog } from 'primereact/dialog';
 import { InputText } from 'primereact/inputtext';
-
+import { Checkbox } from 'primereact/checkbox';
 import { useDispatch, useSelector } from 'react-redux'
 
-import { EmployeesService } from '../service/EmployeesService';
 import { registerEmployee, fetchEmployee, updateEmployeeAction, deleteEmployeeAction } from '../features/employee/employeeActions';
 import { reset } from '../features/employee/employeeSlice';
+
+import { fetchDepartment, fetchDesignation } from '../features/organization/orgActions'
 
 const Employees = () => {
     let emptyEmployee = {
         first_name: '',
         last_name: '',
+        middle_name: null,
+        is_hr: false,
+        is_employee: false,
+        start_date: null,
         gender: '',
         email: '',
         phone: '',
-        birth_date: new Date(),
+        date_of_birth: new Date(),
         designation: '',
         department: '',
-        // password: '',
-        // password2: ''
+        password: '',
+        password2: ''
     };
 
     const [id, setId] = useState(null)
@@ -36,7 +40,6 @@ const Employees = () => {
     const [employeeDialog, setEmployeeDialog] = useState(false);
     const [deleteEmployeeDialog, setDeleteEmployeeDialog] = useState(false);
     const [deleteEmployeesDialog, setDeleteEmployeesDialog] = useState(false);
-    const [employee, setEmployee] = useState(emptyEmployee);
     const [formData, setFormData] = useState(emptyEmployee);
     const [selectedEmployees, setSelectedEmployees] = useState(null);
     const [submitted, setSubmitted] = useState(false);
@@ -50,38 +53,37 @@ const Employees = () => {
         {name:'Female'},
     ]
 
-    const { first_name, last_name, gender, email, phone, birth_date, designation, department } = formData
+   
 
-    const {designationData, departmentData}  = useSelector( (state) => state.organization)
+    const { first_name, last_name, gender, email, phone, date_of_birth, designation, department, start_date, is_hr, is_employee, password, password2 } = formData
+
+    const {departmentData, designationData}  = useSelector((state) => state.organization)
     
-    let designationList = JSON.parse(designationData)
-    let departmentList = JSON.parse(departmentData)
+    let designationList = designationData
+    let departmentList = departmentData
 
     const dispatch = useDispatch()
     // Get data from state
-    const {employeeData, isLoading, isEmployeeError,  isEmployeeSuccess, message}  = useSelector(
-    (state) => state.employee)
+    const {employeeData, isEmployeeError, isLoading, isEmployeeSuccess, message}  = useSelector((state) => state.employee)
 
 
-    const initFetch = useCallback(() => {
-        dispatch(fetchEmployee())
-      }, [dispatch])
+    // const initFetch = useCallback(() => {
+       
+    //   }, [dispatch])
 
     useEffect(() => {
         // get method to fetch department data
-        initFetch()
-        
-        if(isEmployeeSuccess){
-            setEmployees(employeeData)
-            // dispatch(reset())
-        }
-        // )
+  
+        dispatch(fetchEmployee())
+        dispatch(fetchDepartment())
+        dispatch(fetchDesignation())
+
     }, [isEmployeeError, isEmployeeSuccess, message]);
 
 
     const openNew = () => {
         setSubmitted(false);
-        setEmployee(emptyEmployee);
+        setFormData(emptyEmployee);
         setEmployeeDialog(true);
     };
 
@@ -89,6 +91,7 @@ const Employees = () => {
         setSubmitted(false);
         setEmployeeDialog(false);
         setHideButton(true)
+        setFormData('')
     };
 
     const hideDeleteEmployeeDialog = () => {
@@ -103,9 +106,11 @@ const Employees = () => {
         setSubmitted(true);
 
         if (first_name.trim() && last_name.trim() && email.trim() && phone.trim() && gender.name.trim() && designation.name.trim(), department.name.trim()) {
-            let newDate = new Date(birth_date).toLocaleString('en-CA').split(',')[0]
+            let newDate = new Date(date_of_birth).toLocaleString('en-CA').split(',')[0]
+            let startDate = new Date(start_date).toLocaleString('en-CA').split(',')[0]
             let newData = {...formData, 
-                "birth_date": newDate, 
+                "date_of_birth": newDate, 
+                "start_date": startDate, 
                 "gender": gender.name, 
                 "designation": designation.id, 
                 "department": department.id
@@ -114,7 +119,6 @@ const Employees = () => {
             dispatch(registerEmployee(newData))
             dispatch(reset())
 
-            // setEmployees(_employees);
             setEmployeeDialog(false);
             setFormData(formData);
             
@@ -124,13 +128,15 @@ const Employees = () => {
     const updateEmployee = () => {
         if(first_name && last_name && email && phone && gender.name && designation.name, department.name){
             setSubmitted(true);
-            let newDate = new Date(birth_date).toLocaleString('en-CA').split(',')[0]
+            let newDate = new Date(date_of_birth).toLocaleString('en-CA').split(',')[0]
+            let startDate = new Date(start_date).toLocaleString('en-CA').split(',')[0]
 
             id
             const newState ={
                 ...formData,
                 "id": id,
-                "birth_date": newDate, 
+                "date_of_birth": newDate, 
+                "start_date": startDate, 
                 "gender": gender.name, 
                 "designation": designation.id, 
                 "department": department.id
@@ -138,22 +144,26 @@ const Employees = () => {
             
             dispatch(updateEmployeeAction(newState))
             dispatch(reset())
+
             setEmployeeDialog(false);
+            setFormData(newState);
+
         }
-        
+       
       }
 
     const editEmployee = (data) => {
-        let newDate = new Date(data.birth_date)
-        let newData = {...data, birth_date: newDate}
+        let newDate = new Date(data.date_of_birth)
+        let newData = {...data, date_of_birth: newDate}
         setId(data.id)
         setFormData(newData)
         setEmployeeDialog(true);
         setHideButton(false)
+        dispatch(reset())
     };
 
     const confirmDeleteEmployee = (data) => {
-        setEmployee(data);
+        setFormData(data);
         setId(data.id)
         setDeleteEmployeeDialog(true);
         dispatch(reset())
@@ -163,7 +173,7 @@ const Employees = () => {
         let data = {...formData, "id": id}
         dispatch(deleteEmployeeAction(data))
         setDeleteEmployeeDialog(false);
-        setEmployee(emptyEmployee);
+        setFormData(emptyEmployee);
         dispatch(reset())
     };
 
@@ -193,7 +203,25 @@ const Employees = () => {
             ...prevState,
             [e.target.name]: e.target.value,
           }))
+
+          if(e.target.name === 'is_hr'){
+            setFormData((prevState) => ({
+                ...prevState,
+                [e.target.name]: !e.target.value,
+              }))
+          }
+
+          if(e.target.name === 'is_employee'){
+            setFormData((prevState) => ({
+                ...prevState,
+                [e.target.name]: !e.target.value,
+              }))
+          }
     };
+
+   
+
+
 
     const leftToolbarTemplate = () => {
         return (
@@ -274,14 +302,17 @@ const Employees = () => {
                     paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                     currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" globalFilter={globalFilter} header={header}>
                 <Column selectionMode="multiple" exportable={false}></Column>
-                <Column field="id" header="Code" sortable style={{ minWidth: '12rem' }}></Column>
+                {/* <Column field="id" header="Code" sortable style={{ minWidth: '12rem' }}></Column> */}
                 <Column field="first_name" header="FirstName" sortable style={{ minWidth: '16rem' }}></Column>
                 <Column field="last_name" header="LastName" sortable style={{ minWidth: '16rem' }}></Column>
                 <Column field="gender" header="Gender" ></Column>
                 <Column field="email" header="Email" sortable style={{ minWidth: '16rem' }}></Column>
                 <Column field="phone" header="Phone" sortable style={{ minWidth: '16rem' }}></Column>
-                <Column field="birth_date" header="Date Of Birth" dataType="date" style={{ minWidth: '10rem' }}></Column>
+                <Column field="date_of_birth" header="Date Of Birth" dataType="date" style={{ minWidth: '10rem' }}></Column>
                 <Column field="designation" header="Title" sortable style={{ minWidth: '16rem' }}></Column>
+                <Column field="start_date" header="Start Date" sortable style={{ minWidth: '16rem' }}></Column>
+                <Column field="is_hr" header="Is HR" sortable style={{ minWidth: '16rem' }}></Column>
+                <Column field="is_employee" header="Is Employee" sortable style={{ minWidth: '16rem' }}></Column>
                 {/* <Column field="image" header="Image" body={imageBodyTemplate}></Column> */}
                 <Column body={actionBodyTemplate} exportable={false} style={{ minWidth: '12rem' }}></Column>
             </DataTable>
@@ -289,21 +320,30 @@ const Employees = () => {
 
         {/* Edit Dialog modal  */}
         <Dialog visible={employeeDialog} style={{ width: '50em' }} breakpoints={{ '960px': '75vw', '641px': '90vw' }} header="Employee Details" modal className="p-fluid" footer={employeeDialogFooter} onHide={hideDialog}>
-                {employee.image && <img src={`${employee.image}`} alt={employee.image} className="block m-auto pb-3" />}
                 
                 <div className='flex flex-col md:flex-row justify-between'>
                     <div className="field">
                         <label htmlFor="first_name" className="font-bold">
                             First Name
                         </label>
-                        <InputText id="first_name" value={first_name} name='first_name' onChange={(e) => onInputChange(e)} required autoFocus className={classNames({ 'p-invalid': submitted && !first_name })} />
+                        <InputText 
+                            id="first_name" 
+                            value={first_name} 
+                            name='first_name' 
+                            onChange={(e) => onInputChange(e)} required autoFocus className={classNames({ 'p-invalid': submitted && !first_name })} 
+                        />
                         {submitted && !first_name && <small className="p-error">Field is required.</small>}
                     </div>
                     <div className="field md:mx-4">
                         <label htmlFor="last_name" className="font-bold">
                             Last Name
                         </label>
-                        <InputText id="last_name" value={last_name} name='last_name'  onChange={(e) => onInputChange(e)} required className={classNames({ 'p-invalid': submitted && !last_name })} />
+                        <InputText 
+                            id="last_name" 
+                            value={last_name} 
+                            name='last_name'  
+                            onChange={(e) => onInputChange(e)} required className={classNames({ 'p-invalid': submitted && !last_name })} 
+                        />
                         {submitted && !last_name && <small className="p-error">Field is required.</small>}
                     </div>
 
@@ -311,7 +351,6 @@ const Employees = () => {
                         <label htmlFor="gender" className="font-bold">
                             Gender
                         </label>
-                        {/* <InputText id="gender" value={employee.gender} name='gender'  onChange={(e) => onInputChange(e)} required className={classNames({ 'p-invalid': submitted && !employee.gender })}/> */}
                         <Dropdown inputId="gender" name='gender'
                             value={gender} onChange={(e) => onInputChange(e)} 
                             options={genderType} optionLabel="name" 
@@ -358,19 +397,19 @@ const Employees = () => {
                     </div>
 
                     <div className="field">
-                        <label htmlFor="birth_date" className="font-bold">
+                        <label htmlFor="date_of_birth" className="font-bold">
                             Birth Date
                         </label>
                         <Calendar 
-                            id="birth_date"  
-                            value={birth_date} 
-                            name='birth_date' 
+                            id="date_of_birth"  
+                            value={date_of_birth} 
+                            name='date_of_birth' 
                             onChange={(e) => onInputChange(e)}  
                             dateFormat="yy-mm-dd"  
                             required 
-                            className={classNames({ 'p-invalid': submitted && !birth_date })}
+                            className={classNames({ 'p-invalid': submitted && !date_of_birth })}
                         />
-                        {submitted && !birth_date && <small className="p-error">Field is required.</small>}
+                        {submitted && !date_of_birth && <small className="p-error">Field is required.</small>}
                     </div>
                 </div>
                 
@@ -379,20 +418,12 @@ const Employees = () => {
                         <label htmlFor="designation" className="font-bold">
                             Title
                         </label>
-                        {/* <InputText 
-                            id="title" 
-                            value={employee.designation} 
-                            name='designation' 
-                            onChange={(e) => onInputChange(e)} 
-                            required 
-                            className={'w-full' + classNames({ 'p-invalid': submitted && !employee.designation })}
-                        /> */}
 
                         <Dropdown inputId="designation" name='designation'
                             value={designation} onChange={(e) => onInputChange(e)} 
                             options={designationList} optionLabel="name" 
                             className='w-full' 
-                            placeholder='Designation'
+                            placeholder='Choose Role'
                             />
                         {submitted && !designation && <small className="p-error">Field is required.</small>}
                     </div>
@@ -400,12 +431,6 @@ const Employees = () => {
                         <label htmlFor="department" className="font-bold">
                             Department
                         </label>
-                        {/* <InputText id="department" 
-                            value={employee.department} 
-                            name='department' onChange={(e) => onInputChange(e)} 
-                            required 
-                            className={'w-full' + classNames({ 'p-invalid': submitted && !employee.department })}
-                        /> */}
                         <Dropdown inputId="department" name='department'
                             value={department} onChange={(e) => onInputChange(e)} 
                             options={departmentList} optionLabel="name" 
@@ -415,47 +440,71 @@ const Employees = () => {
                         
                         {submitted && !department && <small className="p-error">Field is required.</small>}
                     </div>
+                    <div className="field w-full">
+                        <label htmlFor="start_date" className="font-bold">
+                            Start Date
+                        </label>
+                        <Calendar 
+                            id="start_date"  
+                            value={start_date} 
+                            name='start_date' 
+                            onChange={(e) => onInputChange(e)}  
+                            dateFormat="yy-mm-dd"  
+                            className=''
+                        />
+                    </div>
                 </div>
 
-                {/* <div className='flex flex-col md:flex-row justify-between gap-5'>
+                <div className="flex flex-wrap justify-content-center gap-3 my-4">
+                    <div className="flex align-items-center">
+                        <Checkbox inputId="is_hr" name="is_hr" value={is_hr}  onChange={(e) => onInputChange(e)}  checked={is_hr}/>
+                        <label htmlFor="is_hr" className="ml-2">Is HR</label>
+                    </div>
+                    <div className="flex align-items-center">
+                        <Checkbox inputId="is_employee" name="is_employee" value={is_employee}  onChange={(e) => onInputChange(e)} checked={is_employee}/>
+                        <label htmlFor="is_employee" className="ml-2">Is Employee</label>
+                    </div>
+                </div>
+
+                <div className='flex flex-col md:flex-row justify-between gap-5'>
                     <div className="field w-full">
                         <label htmlFor="password" className="font-bold">
                             Password
                         </label>
                         <InputText id="password" 
-                            value={employee.password} 
+                            value={password} 
                             name='password' 
                             onChange={(e) => onInputChange(e)}
                             required 
-                            className={'w-full' + classNames({ 'p-invalid': submitted && !employee.password })}
+                            className={'w-full' + classNames({ 'p-invalid': submitted && !password })}
                             type='password'
                         />
-                        {submitted && !employee.password && <small className="p-error">Field is required.</small>}
+                        {submitted && !password && <small className="p-error">Field is required.</small>}
                     </div>
                     <div className="field w-full">
                         <label htmlFor="title" className="font-bold">
                             Password Again
                         </label>
                         <InputText id="password2" 
-                            value={employee.password2} 
+                            value={password2} 
                             name='password2' 
                             onChange={(e) => onInputChange(e)} 
                             required 
-                            className={'w-full' + classNames({ 'p-invalid': submitted && !employee.password2 })}
+                            className={'w-full' + classNames({ 'p-invalid': submitted && !password2 })}
                             type='password'
                         />
-                        {submitted && !employee.password2 && <small className="p-error">Field is required.</small>}
+                        {submitted && !password2 && <small className="p-error">Field is required.</small>}
                     </div>
-                </div> */}
+                </div>
 
             </Dialog>
 
             <Dialog visible={deleteEmployeeDialog} style={{ width: '32rem' }} breakpoints={{ '960px': '75vw', '641px': '90vw' }} header="Confirm" modal footer={deleteEmployeeDialogFooter} onHide={hideDeleteEmployeeDialog}>
                 <div className="confirmation-content">
                     <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
-                    {employee && (
+                    {formData && (
                         <span>
-                            Are you sure you want to delete <b>{employee.first_name}</b>?
+                            Are you sure you want to delete <b>{first_name}</b>?
                         </span>
                     )}
                 </div>
@@ -464,7 +513,7 @@ const Employees = () => {
             <Dialog visible={deleteEmployeesDialog} style={{ width: '32rem' }} breakpoints={{ '960px': '75vw', '641px': '90vw' }} header="Confirm" modal footer={deleteEmployeesDialogFooter} onHide={hideDeleteEmployeesDialog}>
                 <div className="confirmation-content">
                     <i className="pi pi-exclamation-triangle mr-3" style={{ fontSize: '2rem' }} />
-                    {employee && <span>Are you sure you want to delete the selected products?</span>}
+                    {formData && <span>Are you sure you want to delete the selected employees?</span>}
                 </div>
             </Dialog>
       </div>

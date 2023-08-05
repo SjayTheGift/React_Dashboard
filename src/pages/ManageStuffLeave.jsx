@@ -3,6 +3,7 @@ import { DataTable } from 'primereact/datatable';
 import { Column } from 'primereact/column';
 import { InputText } from 'primereact/inputtext';
 import { Button } from 'primereact/button';
+import { Tag } from 'primereact/tag';
 import { useDispatch, useSelector } from 'react-redux'
 
 import { fetchNewLeaves, updateNewLeaves } from '../features/leaves/leaveActions'
@@ -11,13 +12,11 @@ import { reset } from '../features/leaves/leaveSlice';
 const ManageStuffLeave = ({userLeaveApi, setUserLeaveApi}) => {
   const [globalFilter, setGlobalFilter] = useState(null);
 
-  // const [leaves, setLeaves] = useState([])
 
   let filteredLeaves = userLeaveApi.filter((leave) => {
     return leave.status === 'new';
   });
 
-  // const leaves = useSelector()
 
   const dispatch = useDispatch()
   // Get data from state
@@ -30,11 +29,26 @@ const ManageStuffLeave = ({userLeaveApi, setUserLeaveApi}) => {
   }, [dispatch])
 
   useEffect(() => {
-    
     initFetch()
-    // setLeaves(leavesData)
     
   },[isLeaveSuccess, isLeaveError, initFetch])
+
+    const getSeverity = (status) => {
+      switch (status) {
+          case 'rejected':
+              return 'danger';
+
+          case 'approved':
+              return 'success';
+
+          case 'pending':
+              return 'info';
+      }
+    };
+
+  const statusBodyTemplate = (rowData) => {
+    return <Tag value={rowData.status} severity={getSeverity(rowData.status)} />;
+  };
 
 
 
@@ -82,14 +96,15 @@ const ManageStuffLeave = ({userLeaveApi, setUserLeaveApi}) => {
                         dataKey="id"  paginator rows={5} rowsPerPageOptions={[5, 10, 25]}
                         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} leaves" globalFilter={globalFilter} header={header}>
-                    <Column field="employee.full_name" header="Stuff Name" sortable style={{ minWidth: '12rem' }}></Column>
+                    <Column field="full_name" header="Stuff Name" sortable style={{ minWidth: '12rem' }}></Column>
                     {/* <Column field="department" header="Department" sortable style={{ minWidth: '12rem' }}></Column> */}
-                    <Column field="leave.title" header="Reason" sortable style={{ minWidth: '12rem' }}></Column>
+                    <Column field="title" header="Reason" sortable style={{ minWidth: '12rem' }}></Column>
                     <Column field="from_date" header="From" sortable style={{ minWidth: '16rem' }}></Column>
                     <Column field="to_date" header="To" sortable style={{ minWidth: '16rem' }}></Column>
-                    <Column field="description" header="Description" sortable style={{ minWidth: '16rem' }}></Column>
+                    <Column field="leave_days" header="Number Of Days" sortable style={{ minWidth: '16rem' }}></Column>
+                    <Column field="reason" header="Description" sortable style={{ minWidth: '16rem' }}></Column>
                     <Column field="date_applied" header="Date Applied" sortable style={{ minWidth: '10rem' }}></Column>
-                    <Column field="status" header="Status" sortable style={{ minWidth: '12rem' }}></Column>
+                    <Column field="status" header="Status" body={statusBodyTemplate} sortable style={{ minWidth: '12rem' }}></Column>
                     <Column header="Approve or Reject" body={actionBodyTemplate} style={{ minWidth: '12rem' }}></Column>
               </DataTable>
           </div>

@@ -10,7 +10,7 @@ const Home = () => {
     const token = JSON.parse(userToken)
     const data = decodeToken(token.access)
     const [userTotalData, setUserTotalData] = useState([])
-    const backendURL = 'https://hrapi-production.up.railway.app'
+    const backendURL = import.meta.env.VITE_LOCAL_BACKEND_URL
 
     const [isLoading, setIsLoading] = useState(true)
 
@@ -37,7 +37,7 @@ const Home = () => {
     <>
         <div className="col-span-full mr-8 md:mr-0 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
             <header className="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
-                <h2 className="font-semibold text-slate-800 dark:text-slate-100">Welcome {data.first_name}!</h2>
+                <h2 className="font-semibold text-slate-800 dark:text-slate-100">Welcome {data.full_name}!</h2>
                 <h2 className="font-semibold text-slate-800 dark:text-slate-100">Start managing your employees from anywhere.</h2>
             </header>
         </div>

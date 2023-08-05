@@ -1,20 +1,27 @@
 import React,{ useState, useEffect, useRef } from 'react'
 import { Dialog } from 'primereact/dialog';
 import { Button } from 'primereact/button';
+import { useDispatch, useSelector } from 'react-redux'
+
+import { reset } from '../features/organization/orgSlice';
 
 
-const DeleteDialog = ({dataToDelete, setDataToDelete, deleteDialog, setDeleteDialog, dataList, setDataList, toast }) => {
+import {  deleteDepartment, deleteDesignation } from '../features/organization/orgActions'
+
+
+
+const DeleteDialog = ({deleteFunction, dataToDelete, deleteDialog, setDeleteDialog }) => {
 
     // const [deleteDialog, setDeleteDialog] = useState(false)
     // const [dataToDelete, setDataToDelete] = useState()
 
+    const dispatch = useDispatch()
+
     const onDeleteDialog = () => {
-        let _dataList = dataList.filter((val) => val.id !== dataToDelete.id);
-    
-        setDataList(_dataList);
         setDeleteDialog(false);
-        toast.current.show({ severity: 'success', summary: 'Successful', detail: 'Deleted', life: 3000 });
-        setDataToDelete('')
+
+        dispatch(deleteFunction(dataToDelete))
+        dispatch(reset())
     };
 
 

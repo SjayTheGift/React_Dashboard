@@ -1,5 +1,5 @@
 import React,{ useState, useEffect, useRef } from 'react'
-
+import { classNames } from 'primereact/utils';
 import { BiEdit } from 'react-icons/bi'
 import { MdOutlineDelete } from 'react-icons/md'
 import { Toast } from 'primereact/toast';
@@ -23,7 +23,7 @@ import { reset } from '../features/organization/orgSlice';
 const Designations = () => {
 
   const [name, setName] = useState('')
-
+  const [submitted, setSubmitted] = useState(false);
   const [designationList, setDesignationList] = useState([])
   const [deleteDialog, setDeleteDialog] = useState(false)
   const [dataToDelete, setDataToDelete] = useState('')
@@ -42,7 +42,7 @@ const Designations = () => {
     dispatch(fetchDesignation())
 
     if(isSuccess){
-      setDesignationList(JSON.parse(designationData))
+      setDesignationList(designationData)
     }
   }, [isSuccess, isError, message])
 
@@ -52,33 +52,27 @@ const Designations = () => {
 
   const onSave = (e) => {
     e.preventDefault()
-    const newId = designationList.length + 1
+    setSubmitted(true);
 
-    if(name.trim().length === 0){
-      toast.current.show({ severity: 'error', summary: 'Error', detail: 'Designation Name Required', life: 4000 });
-      console.log('error')
-      setError(true)
-    }else{
+    if(name.trim()){
       dispatch(addDesignation({name: name}))
       setName('')
       setError(false)
+      setSubmitted(false);
       dispatch(reset())
     }
   }
 
   const onUpdate = (e) => {
     e.preventDefault()
-
+    setSubmitted(true);
     setHideButton(false)
 
-    if(name.trim().length === 0){
-      toast.current.show({ severity: 'error', summary: 'Error', detail: 'Designation Name Required', life: 3000 });
-      setError(true)
-    }else{
-          dispatch(updateDesignation({id: id, name:name}))
-          dispatch(reset())
-          setName('')
-    
+    if(name.trim()){
+        dispatch(updateDesignation({id: id, name:name}))
+        dispatch(reset())
+        setName('')
+        setSubmitted(false);
     }
   }
 
@@ -92,13 +86,12 @@ const Designations = () => {
     setName('')
     setError(false)
     setHideButton(false)
+    setSubmitted(false)
   }
 
   const onDeleteName = (val) => {
     setDeleteDialog(true)
     setDataToDelete(val)
-    dispatch(deleteDesignation(val))
-    dispatch(reset())
   }
 
 
@@ -118,14 +111,28 @@ const Designations = () => {
                 <hr className='m-2'/>
                 <form className="px-4 pt-1 mb-4 text-white">
                     <div className="mb-6">
-                        <span className="p-label">
+                        {/* <span className="p-label">
                             <label htmlFor="name" className="block  mb-2">Designation Name</label>
                             <InputText id="name" value={name}  
                             onChange={e => onChange(e)}  
                             className={`w-full ${error ? 'p-invalid': ''}`} 
                             />
                             
-                        </span>
+                        </span> */}
+
+                        <div className="field flex flex-col">
+                          <label htmlFor="name" className="block  mb-2">Designation Name</label>
+                          <InputText id="name" 
+                            value={name} name='name' 
+                            onChange={e => onChange(e)} 
+                            required 
+                            className={ 'w-full'+ classNames({ 'p-invalid border border-red-700': submitted && !name })}
+                           />
+                          <span>
+                            {submitted && !name && <small className="p-error">Field is required.</small>}
+                          </span>
+                        
+                        </div>
 
                     </div>
                     <div className="flex flex-col md:flex-row gap-3 items-center justify-between"> 
@@ -165,7 +172,7 @@ const Designations = () => {
                 </div>
 
 
-              {designationList.map((obj) =>
+              {designationData.map((obj) =>
                   <div key={obj.id} className="flex flex-row gap-3 mt-2 font-semibold items-center justify-between px-6 py-2 bg-gray-100 text-slate-800">  
                       <p>{obj.name}</p>
                       <div className='flex gap-2 items-center'>
@@ -176,13 +183,10 @@ const Designations = () => {
                 )}
 
               <DeleteDialog 
-              dataToDelete={dataToDelete}
-              setDataToDelete={setDataToDelete}
-              deleteDialog={deleteDialog} 
-              setDeleteDialog={setDeleteDialog}
-              dataList={designationList}
-              setDataList={setDesignationList}
-              toast={toast}
+                deleteFunction={deleteDesignation}
+                dataToDelete={dataToDelete}
+                deleteDialog={deleteDialog} 
+                setDeleteDialog={setDeleteDialog}
               />
 
             </div>

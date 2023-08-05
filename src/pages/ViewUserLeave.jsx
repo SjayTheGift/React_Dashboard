@@ -26,6 +26,9 @@ const ViewUserLeave = ({userLeaveApi}) => {
     // const user_id = decodeToken(token.access)['user_id']
 
 
+    console.log(userLeaveData)
+
+
     const dispatch = useDispatch()
 
     
@@ -38,7 +41,7 @@ const ViewUserLeave = ({userLeaveApi}) => {
             case 'approved':
                 return 'success';
 
-            case 'new':
+            case 'pending':
                 return 'info';
         }
     };
@@ -79,11 +82,12 @@ const ViewUserLeave = ({userLeaveApi}) => {
                         dataKey="id"  paginator rows={5} rowsPerPageOptions={[5, 10, 25]}
                         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
                         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} leaves" globalFilter={globalFilter} header={header}>
-                    <Column field="leave.title" header="Reason" sortable style={{ minWidth: '12rem' }}></Column>
+                    <Column field="title" header="Reason" sortable style={{ minWidth: '12rem' }}></Column>
                     <Column field="from_date" header="From" sortable style={{ minWidth: '16rem' }}></Column>
                     <Column field="to_date" header="To" sortable style={{ minWidth: '16rem' }}></Column>
+                    <Column field="leave_days" header="Number Of Days" sortable style={{ minWidth: '16rem' }}></Column>
                     <Column field="status" header="Status" body={statusBodyTemplate} sortable style={{ minWidth: '12rem' }}></Column>
-                    <Column field="description" header="Description" sortable style={{ minWidth: '16rem' }}></Column>
+                    <Column field="reason" header="Description" sortable style={{ minWidth: '16rem' }}></Column>
                     <Column field="date_applied" header="Date Applied" sortable style={{ minWidth: '10rem' }}></Column>
                 </DataTable>
           </div>

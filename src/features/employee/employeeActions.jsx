@@ -5,7 +5,16 @@ import { createAsyncThunk } from '@reduxjs/toolkit'
 import { toast } from 'react-toastify';
 import { Navigate } from 'react-router-dom';
 
-const backendURL = 'https://hrapi-production.up.railway.app'
+let backendURL = ''
+
+const host_name = window.location.hostname
+
+if(host_name === 'localhost'){
+  backendURL = import.meta.env.VITE_LOCAL_BACKEND_URL
+}
+else{
+  backendURL = import.meta.env.VITE_PRODUCTION_URL
+}
 
 const config = {
   headers: {
@@ -46,11 +55,12 @@ export const fetchEmployee = createAsyncThunk('employee/fetchEmployee', async ()
 
 
 export const registerEmployee = createAsyncThunk('employee/registerEmployee', async (user, thunkAPI) => {
+  console.log(user)
 
     return await axios.post(`${backendURL}/api/user/employee/create/`, user, config)
     .then(res => {
         // localStorage.setItem('userInfo', JSON.stringify(res.data))
-        toast.success("Employee Registered successfully")
+        toast.success("Employee Registered")
         return res.data
     })
     .catch(error => {
@@ -84,7 +94,7 @@ export const updateEmployeeAction = createAsyncThunk('employee/updateEmployeeAct
     return await axios.put(`${backendURL}/api/user/employee/${user.id}/`, user, config)
     .then(res => {
         // localStorage.setItem('userInfo', JSON.stringify(res.data))
-        toast.success("Employee updated")
+        toast.success("Employee Updated")
         return res.data
     })
     .catch(error => {

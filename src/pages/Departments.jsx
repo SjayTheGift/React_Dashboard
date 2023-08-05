@@ -1,5 +1,5 @@
 import React,{ useState, useEffect, useRef } from 'react'
-
+import { classNames } from 'primereact/utils';
 import { BiEdit } from 'react-icons/bi'
 import { MdOutlineDelete } from 'react-icons/md'
 import { Toast } from 'primereact/toast';
@@ -11,14 +11,13 @@ import { useDispatch, useSelector } from 'react-redux'
 // import DepartmentService from '../service/DepartmentService'
 import DeleteDialog from '../components/DeleteDialog'
 
-
 import { fetchDepartment, addDepartment, updateDepartment, deleteDepartment } from '../features/organization/orgActions'
 import { reset } from '../features/organization/orgSlice';
 
 const Departments = () => {
 
   const [departmentList, setDepartmentList] = useState([])
-
+  const [submitted, setSubmitted] = useState(false);
   const dispatch = useDispatch()
   // Get data from state
   const {departmentData, isLoading, isError,  isSuccess, AddSuccess, message}  = useSelector(
@@ -35,12 +34,13 @@ const Departments = () => {
 
 
 
+
   useEffect(() =>{
     // get method to fetch department data
     dispatch(fetchDepartment())
 
     if(isSuccess){
-      setDepartmentList(JSON.parse(departmentData))
+      setDepartmentList(departmentData)
     }
 
   },[isSuccess, isError, message])
@@ -52,15 +52,13 @@ const Departments = () => {
 
   const onSave = (e) => {
     e.preventDefault()
+    setSubmitted(true);
 
-    if(name.trim().length === 0){
-      toast.current.show({ severity: 'error', summary: 'Error', detail: 'Department Name Required', life: 5000 });
-      setError(true)
-    }else{
-      // departmentList.push({"id": newId, "name": name})
+    if(name.trim()){
       dispatch(addDepartment({name: name}))
       setName('')
       setError(false)
+      setSubmitted(false);
       dispatch(reset())
     }
   }
@@ -68,26 +66,13 @@ const Departments = () => {
   const onUpdate = (e) => {
     e.preventDefault()
     setHideButton(false)
+    setSubmitted(true);
 
-    console.log(name)
-
-    if(name.trim().length === 0){
-      toast.current.show({ severity: 'error', summary: 'Error', detail: 'Department Name Required', life: 3000 });
-      setError(true)
-    }else{
-
-          // const newState = departmentList.map(obj => {
-          //   // 👇️ if id equals to leave id passes, update status to approved
-          //   if(obj.id == id){
-          //     return {...obj, name: name};
-          //   }
-          //   // 👇️ otherwise return the object as is
-          //   return obj;
-          // })
-          // setDepartmentList(newState)
-          dispatch(updateDepartment({id: id, name:name}))
-          dispatch(reset())
-          setName('')
+    if(name.trim()){
+      dispatch(updateDepartment({id: id, name:name}))
+      dispatch(reset())
+      setName('')
+      setSubmitted(false);
     }
   }
 
@@ -101,15 +86,13 @@ const Departments = () => {
     setName('')
     setError(false)
     setHideButton(false)
+    setSubmitted(false)
   }
 
   const onDeleteName = (val) => {
     setDeleteDialog(true)
     setDataToDelete(val)
-    dispatch(deleteDepartment(val))
-    dispatch(reset())
   }
-
 
   return (
     <>
@@ -126,14 +109,28 @@ const Departments = () => {
                 <hr className='m-2'/>
                 <form className="px-4 pt-1 mb-4 text-white">
                     <div className="mb-6">
-                        <span className="p-label">
+                        {/* <span className="p-label">
                             <label htmlFor="name" className="block  mb-2">Department Name</label>
                             <InputText id="name" value={name}  
                             onChange={e => onChange(e)}  
                             className={`w-full ${error ? 'p-invalid': ''}`} 
                             />
                             
-                        </span>
+                        </span> */}
+                        <div className="field flex flex-col">
+                          <label htmlFor="name" className="block  mb-2">Department Name</label>
+                          <InputText id="name" 
+                              value={name} 
+                              name='name'  
+                              onChange={e => onChange(e)}   
+                              required 
+                              className={ 'w-full'+ classNames({ 'p-invalid border border-red-700': submitted && !name })} 
+                          />
+                          <span>
+                            {submitted && !name && <small className="p-error">Field is required.</small>}
+                          </span>
+                        
+                        </div>
 
                     </div>
                     <div className="flex flex-col md:flex-row gap-3 items-center justify-between"> 
@@ -151,8 +148,6 @@ const Departments = () => {
                           Save
                         </Button>
                     }
-                      
-                      
                       <Button className='w-full' 
                       type="button"
                       onClick={onCancel}
@@ -175,7 +170,7 @@ const Departments = () => {
                 </div>
 
 
-              {departmentList.map((department) =>
+              {departmentData.map((department) =>
                   <div key={department.id} className="flex flex-row gap-3 mt-2 font-semibold items-center justify-between px-6 py-2 bg-gray-100 text-slate-800">  
                       <p>{department.name}</p>
                       <div className='flex gap-2 items-center'>
@@ -187,17 +182,11 @@ const Departments = () => {
 
               
               <DeleteDialog 
+                deleteFunction={deleteDepartment}
                 dataToDelete={dataToDelete}
-                setDataToDelete={setDataToDelete}
                 deleteDialog={deleteDialog} 
                 setDeleteDialog={setDeleteDialog}
-                dataList={departmentList}
-                setDataList={setDepartmentList}
-                toast={toast}
               />
-
-
-                
 
             </div>
       </div>

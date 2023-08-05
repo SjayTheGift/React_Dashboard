@@ -7,7 +7,8 @@ import {
   updateLeaveType, 
   deleteLeaveType, 
   fetchUserLeaves,
-  addUserLeaves } from './leaveActions'
+  addUserLeaves,
+  fetchUserLeaveBalance } from './leaveActions'
 
 // const leavesData = localStorage.getItem('newLeavesData')
 // ? localStorage.getItem('newLeavesData')
@@ -21,6 +22,7 @@ const initialState = {
   userLeaveData: [],
   leavesData: [],
   leaveTypeData: [],
+  userLeaveBalance: [],
   isLeaveError: false,
   isLeaveSuccess: false,
   isLeaveLoading: false,
@@ -35,6 +37,7 @@ export const leaveSlice = createSlice({
       state.userLeaveData = state.userLeaveData
       state.leavesData = state.leavesData
       state.leaveTypeData = state.leaveTypeData
+      state.userLeaveBalance = state.userLeaveBalance
       state.isLeaveLoading = false
       state.isLeaveSuccess = false
       state.isLeaveError = false
@@ -142,6 +145,20 @@ export const leaveSlice = createSlice({
         state.userLeaveData = action.payload
       })
       .addCase(addUserLeaves.rejected, (state, action) => {
+        state.isLeaveLoading = false;
+        state.isLeaveError = true;
+        state.message = action.payload;
+      })
+      // Fetch Leave Balance for user
+      .addCase(fetchUserLeaveBalance.pending, (state) => {
+        state.isLeaveLoading = true;
+      })
+      .addCase(fetchUserLeaveBalance.fulfilled, (state, action) => {
+        state.isLeaveLoading = false;
+        state.isLeaveSuccess = true;
+        state.userLeaveBalance = action.payload
+      })
+      .addCase(fetchUserLeaveBalance.rejected, (state, action) => {
         state.isLeaveLoading = false;
         state.isLeaveError = true;
         state.message = action.payload;

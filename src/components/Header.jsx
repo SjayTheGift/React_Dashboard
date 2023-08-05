@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { RiMenuUnfoldFill } from 'react-icons/ri'
 import { Link, useNavigate } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
+import { decodeToken  } from "react-jwt";
 import { logout } from '../features/auth/authActions';
 import { reset } from '../features/auth/authSlice';
 
@@ -10,7 +11,12 @@ const Header = ({nav, setNav, display}) => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
 
-    const {   userToken  } = useSelector((state) => state.auth)
+    const { userToken }  = useSelector((state) => state.auth)
+    const token = JSON.parse(userToken)
+    let data  = ''
+    if(token){
+        data = decodeToken(token.access)
+    }
 
     useEffect(() => {
         dispatch(reset());
@@ -39,10 +45,10 @@ const Header = ({nav, setNav, display}) => {
                             </div>
                         </button>
                         {dropDown && 
-                            <div className="origin-top-right z-10 absolute top-full min-w-44 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 py-1.5 rounded shadow-lg overflow-hidden mt-1 right-0 enter-done">
+                            <div className="origin-top-right z-10 absolute top-full w-56 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 py-1.5 rounded shadow-lg overflow-hidden mt-1 right-0">
                                 <div>
                                     <div className="pt-0.5 pb-2 px-3 mb-1 border-b border-slate-200 dark:border-slate-700">
-                                        <div className="text-xs text-slate-500 dark:text-slate-400 italic">Administrator</div>
+                                        <p className="text-xs text-slate-500 dark:text-slate-400 italic">{data.designation}</p>
                                     </div>
                                     <ul>
                                         <li>

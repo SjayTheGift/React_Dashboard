@@ -3,8 +3,6 @@ import { useDispatch, useSelector } from 'react-redux'
 import { decodeToken  } from "react-jwt";
 import axios from 'axios'
 
-import LoadingSpinner  from '../components/LoadingSpinner'
-
 const Home = () => {
 
 
@@ -44,14 +42,9 @@ const Home = () => {
             </header>
         </div>
 
-        {/* {isLoading ? 
+        {!isLoading && 
+        
             <>
-                <LoadingSpinner/>
-            </>
-           
-            :
-
-            <> */}
                 <div className="col-span-full mr-8 md:mr-0 md:col-span-4 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
                     <header className="px-5 py-4 border-b border-slate-100 dark:border-slate-700">
                         <h2 className="font-semibold text-slate-800 dark:text-slate-100">Total Departments</h2>
@@ -72,8 +65,8 @@ const Home = () => {
                         <h2 className="font-semibold text-slate-800 dark:text-slate-100">{userTotalData[0].total_pending_leave}</h2>
                     </header>
                 </div>
-            {/* </>
-        } */}
+            </>
+        }
     </>
   )
 }

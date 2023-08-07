@@ -8,8 +8,8 @@ import { Button } from 'primereact/button';
 import { Dialog } from 'primereact/dialog';
 import { useDispatch, useSelector } from 'react-redux'
 
-import DesignationService from '../service/DesignationService'
 import DeleteDialog from '../components/DeleteDialog'
+import LoadingSpinner  from '../components/LoadingSpinner'
 
 import { 
   fetchDesignation,
@@ -141,13 +141,13 @@ const Designations = () => {
                         <Button className="w-full" 
                         onClick={(e) => onUpdate(e)}
                         >
-                          Update
+                         {isLoading ? <LoadingSpinner /> : <>Update</>} 
                         </Button>
                     :
                         <Button className="w-full" 
                         onClick={(e) => onSave(e)}
                         >
-                          Save
+                         {isLoading ? <LoadingSpinner /> : <>Save</>} 
                         </Button>
                     }
                       <Button className='w-full' 
@@ -171,16 +171,25 @@ const Designations = () => {
                       <p>Action</p>
                 </div>
 
+            {isLoading ? 
+                <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+                  <LoadingSpinner />
+                </div>
+              :
 
-              {designationData.map((obj) =>
-                  <div key={obj.id} className="flex flex-row gap-3 mt-2 font-semibold items-center justify-between px-6 py-2 bg-gray-100 text-slate-800">  
-                      <p>{obj.name}</p>
-                      <div className='flex gap-2 items-center'>
-                        <p className='cursor-pointer bg-white' onClick={() => onUpdateName(obj)}><BiEdit  className='text-green-600' size={20}/></p>
-                        <p className='cursor-pointer bg-white' onClick={() => onDeleteName(obj)}><MdOutlineDelete className='text-red-700' size={20}/></p>
-                      </div>
-                  </div>
-                )}
+              <>
+                {designationData.map((obj) =>
+                    <div key={obj.id} className="flex flex-row gap-3 mt-2 font-semibold items-center justify-between px-6 py-2 bg-gray-100 text-slate-800">  
+                        <p>{obj.name}</p>
+                        <div className='flex gap-2 items-center'>
+                          <p className='cursor-pointer bg-white' onClick={() => onUpdateName(obj)}><BiEdit  className='text-green-600' size={20}/></p>
+                          <p className='cursor-pointer bg-white' onClick={() => onDeleteName(obj)}><MdOutlineDelete className='text-red-700' size={20}/></p>
+                        </div>
+                    </div>
+                  )}
+              </>
+            }
+              
 
               <DeleteDialog 
                 deleteFunction={deleteDesignation}

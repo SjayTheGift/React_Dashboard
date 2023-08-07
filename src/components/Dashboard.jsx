@@ -89,13 +89,13 @@ const Dashboard = ({userLeaveApi, setUserLeaveApi}) => {
                         }/>
                         <Route path='/apply-leave'  element={
                             <PrivateRoute>
-                                <LeaveApplication userLeaveApi={userLeaveApi} setUserLeaveApi={setUserLeaveApi} />
+                                <LeaveApplication />
                             </PrivateRoute>
                         }/>
                         <Route path='/manage-stuff-leave'  element={
                             <PrivateRoute>
                                  <ForbiddenRoutes>
-                                    <ManageStuffLeave userLeaveApi={userLeaveApi} setUserLeaveApi={setUserLeaveApi}/>
+                                    <ManageStuffLeave />
                                  </ForbiddenRoutes>
                             </PrivateRoute>
                         }/>

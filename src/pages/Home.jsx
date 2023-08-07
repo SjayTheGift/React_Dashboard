@@ -3,6 +3,8 @@ import { useDispatch, useSelector } from 'react-redux'
 import { decodeToken  } from "react-jwt";
 import axios from 'axios'
 
+import LoadingSpinner  from '../components/LoadingSpinner'
+
 const Home = () => {
 
 
@@ -42,8 +44,13 @@ const Home = () => {
             </header>
         </div>
 
-        {!isLoading && 
-        
+        {isLoading ? 
+            <>
+                <LoadingSpinner/>
+            </>
+           
+            :
+
             <>
                 <div className="col-span-full mr-8 md:mr-0 md:col-span-4 bg-white dark:bg-slate-800 shadow-lg rounded-sm border border-slate-200 dark:border-slate-700">
                     <header className="px-5 py-4 border-b border-slate-100 dark:border-slate-700">

@@ -13,6 +13,7 @@ import DeleteDialog from '../components/DeleteDialog'
 
 import { fetchDepartment, addDepartment, updateDepartment, deleteDepartment } from '../features/organization/orgActions'
 import { reset } from '../features/organization/orgSlice';
+import LoadingSpinner  from '../components/LoadingSpinner'
 
 const Departments = () => {
 
@@ -139,13 +140,14 @@ const Departments = () => {
                         <Button className="w-full" 
                         onClick={(e)=> onUpdate(e)}
                         >
-                          Update
+                          
+                          {isLoading ? <LoadingSpinner  className='w-20'/> : <>Update</>} 
                         </Button>
                     :
                         <Button className="w-full" 
                         onClick={(e)=> onSave(e)}
                         >
-                          Save
+                         {isLoading ? <LoadingSpinner /> : <>Save</>} 
                         </Button>
                     }
                       <Button className='w-full' 
@@ -170,15 +172,25 @@ const Departments = () => {
                 </div>
 
 
-              {departmentData.map((department) =>
-                  <div key={department.id} className="flex flex-row gap-3 mt-2 font-semibold items-center justify-between px-6 py-2 bg-gray-100 text-slate-800">  
-                      <p>{department.name}</p>
-                      <div className='flex gap-2 items-center'>
-                        <p className='cursor-pointer bg-white' onClick={() => onUpdateName(department)}><BiEdit  className='text-green-600' size={20}/></p>
-                        <p className='cursor-pointer bg-white' onClick={() => onDeleteName(department)}><MdOutlineDelete className='text-red-700' size={20}/></p>
-                      </div>
-                  </div>
-                )}
+{isLoading ? 
+   <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+      <LoadingSpinner />
+    </div>
+  : 
+  <>
+
+        {departmentData.map((department) =>
+          <div key={department.id} className="flex flex-row gap-3 mt-2 font-semibold items-center justify-between px-6 py-2 bg-gray-100 text-slate-800">  
+              <p>{department.name}</p>
+              <div className='flex gap-2 items-center'>
+                <p className='cursor-pointer bg-white' onClick={() => onUpdateName(department)}><BiEdit  className='text-green-600' size={20}/></p>
+                <p className='cursor-pointer bg-white' onClick={() => onDeleteName(department)}><MdOutlineDelete className='text-red-700' size={20}/></p>
+              </div>
+          </div>
+        )}  
+  </>
+}
+              
 
               
               <DeleteDialog 

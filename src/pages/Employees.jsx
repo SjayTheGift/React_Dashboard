@@ -16,6 +16,7 @@ import { registerEmployee, fetchEmployee, updateEmployeeAction, deleteEmployeeAc
 import { reset } from '../features/employee/employeeSlice';
 
 import { fetchDepartment, fetchDesignation } from '../features/organization/orgActions'
+import LoadingSpinner  from '../components/LoadingSpinner'
 
 const Employees = () => {
     let emptyEmployee = {
@@ -294,29 +295,38 @@ const Employees = () => {
       </div>
       <div className='col-span-full'>
       <Toast ref={toast} />
-        <div className="card">
-        <Toolbar className="mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
 
-            <DataTable ref={dt} value={employeeData} selection={selectedEmployees} onSelectionChange={(e) => setSelectedEmployees(e.value)}
-                    dataKey="id"  paginator rows={10} rowsPerPageOptions={[5, 10, 25]}
-                    paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                    currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" globalFilter={globalFilter} header={header}>
-                <Column selectionMode="multiple" exportable={false}></Column>
-                {/* <Column field="id" header="Code" sortable style={{ minWidth: '12rem' }}></Column> */}
-                <Column field="first_name" header="FirstName" sortable style={{ minWidth: '16rem' }}></Column>
-                <Column field="last_name" header="LastName" sortable style={{ minWidth: '16rem' }}></Column>
-                <Column field="gender" header="Gender" ></Column>
-                <Column field="email" header="Email" sortable style={{ minWidth: '16rem' }}></Column>
-                <Column field="phone" header="Phone" sortable style={{ minWidth: '16rem' }}></Column>
-                <Column field="date_of_birth" header="Date Of Birth" dataType="date" style={{ minWidth: '10rem' }}></Column>
-                <Column field="designation" header="Title" sortable style={{ minWidth: '16rem' }}></Column>
-                <Column field="start_date" header="Start Date" sortable style={{ minWidth: '16rem' }}></Column>
-                <Column field="is_hr" header="Is HR" sortable style={{ minWidth: '16rem' }}></Column>
-                <Column field="is_employee" header="Is Employee" sortable style={{ minWidth: '16rem' }}></Column>
-                {/* <Column field="image" header="Image" body={imageBodyTemplate}></Column> */}
-                <Column body={actionBodyTemplate} exportable={false} style={{ minWidth: '12rem' }}></Column>
-            </DataTable>
-        </div>
+        {isLoading ? 
+            <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+                <LoadingSpinner />
+            </div>
+         :
+            <div className="card">
+            <Toolbar className="mb-4" left={leftToolbarTemplate} right={rightToolbarTemplate}></Toolbar>
+
+                <DataTable ref={dt} value={employeeData} selection={selectedEmployees} onSelectionChange={(e) => setSelectedEmployees(e.value)}
+                        dataKey="id"  paginator rows={5} rowsPerPageOptions={[5, 10, 25]}
+                        paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
+                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" globalFilter={globalFilter} header={header} loading={isLoading}>
+                    <Column selectionMode="multiple" exportable={false}></Column>
+                    {/* <Column field="id" header="Code" sortable style={{ minWidth: '12rem' }}></Column> */}
+                    <Column field="first_name" header="FirstName" sortable style={{ minWidth: '16rem' }}></Column>
+                    <Column field="last_name" header="LastName" sortable style={{ minWidth: '16rem' }}></Column>
+                    <Column field="gender" header="Gender" ></Column>
+                    <Column field="email" header="Email" sortable style={{ minWidth: '16rem' }}></Column>
+                    <Column field="phone" header="Phone" sortable style={{ minWidth: '16rem' }}></Column>
+                    <Column field="date_of_birth" header="Date Of Birth" dataType="date" style={{ minWidth: '10rem' }}></Column>
+                    <Column field="designation" header="Title" sortable style={{ minWidth: '16rem' }}></Column>
+                    <Column field="start_date" header="Start Date" sortable style={{ minWidth: '16rem' }}></Column>
+                    <Column field="is_hr" header="Is HR" sortable style={{ minWidth: '16rem' }}></Column>
+                    <Column field="is_employee" header="Is Employee" sortable style={{ minWidth: '16rem' }}></Column>
+                    {/* <Column field="image" header="Image" body={imageBodyTemplate}></Column> */}
+                    <Column body={actionBodyTemplate} exportable={false} style={{ minWidth: '12rem' }}></Column>
+                </DataTable>
+            </div>
+        }
+
+        
 
         {/* Edit Dialog modal  */}
         <Dialog visible={employeeDialog} style={{ width: '50em' }} breakpoints={{ '960px': '75vw', '641px': '90vw' }} header="Employee Details" modal className="p-fluid" footer={employeeDialogFooter} onHide={hideDialog}>

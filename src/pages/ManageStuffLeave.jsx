@@ -8,14 +8,11 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { fetchNewLeaves, updateNewLeaves } from '../features/leaves/leaveActions'
 import { reset } from '../features/leaves/leaveSlice';
+import LoadingSpinner  from '../components/LoadingSpinner'
 
-const ManageStuffLeave = ({userLeaveApi, setUserLeaveApi}) => {
+const ManageStuffLeave = () => {
   const [globalFilter, setGlobalFilter] = useState(null);
 
-
-  let filteredLeaves = userLeaveApi.filter((leave) => {
-    return leave.status === 'new';
-  });
 
 
   const dispatch = useDispatch()
@@ -91,11 +88,16 @@ const ManageStuffLeave = ({userLeaveApi, setUserLeaveApi}) => {
       </div>
 
       <div className='col-span-full mr-8 md:mr-0'>
-          <div className="card">
+        {isLeaveLoading ?
+          <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+              <LoadingSpinner />
+          </div>
+         : 
+         <div className="card">
               <DataTable value={leavesData}
                         dataKey="id"  paginator rows={5} rowsPerPageOptions={[5, 10, 25]}
                         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} leaves" globalFilter={globalFilter} header={header}>
+                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} leaves" globalFilter={globalFilter} header={header} loading={isLeaveLoading}>
                     <Column field="full_name" header="Stuff Name" sortable style={{ minWidth: '12rem' }}></Column>
                     {/* <Column field="department" header="Department" sortable style={{ minWidth: '12rem' }}></Column> */}
                     <Column field="title" header="Reason" sortable style={{ minWidth: '12rem' }}></Column>
@@ -108,6 +110,9 @@ const ManageStuffLeave = ({userLeaveApi, setUserLeaveApi}) => {
                     <Column header="Approve or Reject" body={actionBodyTemplate} style={{ minWidth: '12rem' }}></Column>
               </DataTable>
           </div>
+         
+         }
+          
       </div>
     </>
   )

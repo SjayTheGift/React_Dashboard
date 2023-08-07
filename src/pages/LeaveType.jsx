@@ -8,7 +8,7 @@ import { useDispatch, useSelector } from 'react-redux'
 
 import { fetchLeaveType, addLeaveType, updateLeaveType, deleteLeaveType } from '../features/leaves/leaveActions'
 import { reset } from '../features/leaves/leaveSlice';
-
+import LoadingSpinner  from '../components/LoadingSpinner'
 
 
 const LeaveType = () => {
@@ -144,20 +144,25 @@ const LeaveType = () => {
                 
               </div>
               <div className="card flex flex-col sm:flex-row justify-between gap-3 text-white mr-5">
-                {leaveTypeData.map((leaveType) =>
-                  <Card key={leaveType.id} title={leaveType.title} className="gap-3 mr-3 bg-slate-800 text-gray-400 md:w-[20%]">
-                    <p className="m-0">
-                        {leaveType.number_of_leaves_per_year}
-                    </p>
-                    <div className='flex flex-row mt-6'>
-                      <p className='mr-3 cursor-pointer' onClick={()=> onEdit(leaveType)}>Edit</p>
-                      {/* <p className='cursor-pointer' onClick={() => confirmDeleteEmployee(leaveType)}>Delete</p> */}
-                    </div>
-                  </Card>
-                )}
 
+                {isLeaveLoading ?
+                  <LoadingSpinner />
+                :
 
-
+                <>
+                  {leaveTypeData.map((leaveType) =>
+                      <Card key={leaveType.id} title={leaveType.title} className="gap-3 mr-3 bg-slate-800 text-gray-400 md:w-[20%]">
+                        <p className="m-0">
+                            {leaveType.number_of_leaves_per_year}
+                        </p>
+                        <div className='flex flex-row mt-6'>
+                          <p className='mr-3 cursor-pointer' onClick={()=> onEdit(leaveType)}>Edit</p>
+                          {/* <p className='cursor-pointer' onClick={() => confirmDeleteEmployee(leaveType)}>Delete</p> */}
+                        </div>
+                      </Card>
+                    )}
+                </>
+              }
               </div>
 
 

@@ -6,7 +6,7 @@ const homeData = localStorage.getItem('homeData')
 : null
 
 const initialState = {
-  homeData: [],
+  homeData,
   isError: false,
   isSuccess: false,
   isLoading: false,
@@ -18,7 +18,7 @@ export const homeSlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
-      state.homeData = state.homeData
+      // state.homeData = state.homeData
       state.isLoading = false
       state.isSuccess = false
       state.isError = false
@@ -34,8 +34,8 @@ export const homeSlice = createSlice({
       .addCase(fetchHomeData.fulfilled, (state, action) => {
         state.isLoading = false;
         state.isSuccess = true;
-        // state.departmentData = localStorage.getItem('departmentData');
-        state.homeData = action.payload
+        state.homeData = localStorage.getItem('homeData');
+        // state.homeData = action.payload
       })
       .addCase(fetchHomeData.rejected, (state, action) => {
         state.isLoading = false;

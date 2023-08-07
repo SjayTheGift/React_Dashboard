@@ -3,6 +3,7 @@ import authReducer from '../features/auth/authSlice'
 import organizationReducer from '../features/organization/orgSlice'
 import employeeReducer from '../features/employee/employeeSlice'
 import leaveReducer from '../features/leaves/leaveSlice'
+import homeReducer from '../features/home/homeSlice'
 
 export const store = configureStore({
   reducer: {
@@ -10,5 +11,6 @@ export const store = configureStore({
     organization: organizationReducer,
     employee: employeeReducer,
     leave: leaveReducer,
+    home: homeReducer,
   },
 })

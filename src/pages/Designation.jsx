@@ -141,13 +141,13 @@ const Designations = () => {
                         <Button className="w-full" 
                         onClick={(e) => onUpdate(e)}
                         >
-                         {isLoading ? <LoadingSpinner /> : <>Update</>} 
+                          Update
                         </Button>
                     :
                         <Button className="w-full" 
                         onClick={(e) => onSave(e)}
                         >
-                         {isLoading ? <LoadingSpinner /> : <>Save</>} 
+                         Save
                         </Button>
                     }
                       <Button className='w-full' 
@@ -171,13 +171,13 @@ const Designations = () => {
                       <p>Action</p>
                 </div>
 
-            {isLoading ? 
+            {/* {isLoading ? 
                 <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
                   <LoadingSpinner />
                 </div>
               :
 
-              <>
+              <> */}
                 {designationData.map((obj) =>
                     <div key={obj.id} className="flex flex-row gap-3 mt-2 font-semibold items-center justify-between px-6 py-2 bg-gray-100 text-slate-800">  
                         <p>{obj.name}</p>
@@ -187,8 +187,8 @@ const Designations = () => {
                         </div>
                     </div>
                   )}
-              </>
-            }
+              {/* </>
+            } */}
               
 
               <DeleteDialog 

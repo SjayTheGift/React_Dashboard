@@ -141,13 +141,13 @@ const Departments = () => {
                         onClick={(e)=> onUpdate(e)}
                         >
                           
-                          {isLoading ? <LoadingSpinner  className='w-20'/> : <>Update</>} 
+                           Update
                         </Button>
                     :
                         <Button className="w-full" 
                         onClick={(e)=> onSave(e)}
                         >
-                         {isLoading ? <LoadingSpinner /> : <>Save</>} 
+                         Save
                         </Button>
                     }
                       <Button className='w-full' 
@@ -172,12 +172,12 @@ const Departments = () => {
                 </div>
 
 
-{isLoading ? 
+{/* {isLoading ? 
    <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
       <LoadingSpinner />
     </div>
   : 
-  <>
+  <> */}
 
         {departmentData.map((department) =>
           <div key={department.id} className="flex flex-row gap-3 mt-2 font-semibold items-center justify-between px-6 py-2 bg-gray-100 text-slate-800">  
@@ -188,8 +188,8 @@ const Departments = () => {
               </div>
           </div>
         )}  
-  </>
-}
+  {/* </>
+} */}
               
 
               

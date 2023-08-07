@@ -1,4 +1,4 @@
-import React, {useState, useEffect, useRef} from 'react'
+import React, {useState, useEffect} from 'react'
 import { Calendar } from 'primereact/calendar';
 import { Dropdown } from 'primereact/dropdown';
 import { InputText  } from 'primereact/inputtext';
@@ -24,8 +24,6 @@ const LeaveApplication = () => {
     const [formData, setFormData] = useState(leaveEmpty)
     const { leaveFrom, leaveTo, leaveReason, description } = formData
     const [leaveTypes, setLeaveTypes] = useState([]);
-    const [leaveBalance, setLeaveBalance] = useState([])
-    const toast = useRef(null);
 
 
     const leaves = []
@@ -33,8 +31,6 @@ const LeaveApplication = () => {
     leaveTypes.map((leave) => {
       leaves.push(leave.title)
     })
-
-  
 
     const onChange = (e) => {
       setFormData((prevState) => ({
@@ -53,8 +49,6 @@ const LeaveApplication = () => {
     const token = JSON.parse(userToken)
     const user_id = decodeToken(token.access)['user_id']
 
-    const [isLeaveType, setIsLeaveType] = useState(true)
-
     
     const leave = leaveTypeData.filter((data) =>{
       if (leaveReason === data.title){
@@ -70,8 +64,6 @@ const LeaveApplication = () => {
 
       // if(leaveFromDate !== 'Invalid Date' && leaveToDate !== 'Invalid Date' && formData.description && formData.leaveReason.name){
 
-        
-
       const data = {
         "from_date": leaveFromDate,
         "to_date": leaveToDate,
@@ -79,8 +71,6 @@ const LeaveApplication = () => {
         "user": user_id,
         "leave_type": leave[0]['id']
       }
-
-
 
       dispatch(addUserLeaves(data))
       formData.description = ''
@@ -95,7 +85,6 @@ const LeaveApplication = () => {
       dispatch(fetchUserLeaveBalance(token))
       if(isLeaveSuccess){
         setLeaveTypes(leaveTypeData)
-        setIsLeaveType(false)
       }
       
     }, [isLeaveError, isLeaveSuccess]);
@@ -125,12 +114,12 @@ const LeaveApplication = () => {
       <div className='col-span-full mr-8 md:mr-0'>
         <div className="card flex flex-col sm:flex-row justify-between gap-3 text-white mb-8">
 
-        {isLeaveLoading ?
+        {/* {isLeaveLoading ?
           <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
             <LoadingSpinner />
           </div>
           : 
-            <>
+            <> */}
               {array.map((arr_data) =>
                 <Card key={arr_data.leave_types.id} title={arr_data.leave_types.title} className="gap-3 mr-3 bg-slate-800 text-gray-400 md:w-[20%]">
                   <p className="m-0">
@@ -138,8 +127,8 @@ const LeaveApplication = () => {
                   </p>
                 </Card>
               )}
-            </>
-            }
+            {/* </>
+            } */}
         </div>
 
           <div className='grid sm:grid-cols-2 gap-4'>

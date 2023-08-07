@@ -146,23 +146,25 @@ const LeaveType = () => {
               <div className="card flex flex-col sm:flex-row justify-between gap-3 text-white mr-5">
 
                 {isLeaveLoading ?
-                  <LoadingSpinner />
-                :
+                    <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
+                      <LoadingSpinner />
+                    </div>
+                  :
 
-                <>
-                  {leaveTypeData.map((leaveType) =>
-                      <Card key={leaveType.id} title={leaveType.title} className="gap-3 mr-3 bg-slate-800 text-gray-400 md:w-[20%]">
-                        <p className="m-0">
-                            {leaveType.number_of_leaves_per_year}
-                        </p>
-                        <div className='flex flex-row mt-6'>
-                          <p className='mr-3 cursor-pointer' onClick={()=> onEdit(leaveType)}>Edit</p>
-                          {/* <p className='cursor-pointer' onClick={() => confirmDeleteEmployee(leaveType)}>Delete</p> */}
-                        </div>
-                      </Card>
-                    )}
-                </>
-              }
+                  <>
+                    {leaveTypeData.map((leaveType) =>
+                        <Card key={leaveType.id} title={leaveType.title} className="gap-3 mr-3 bg-slate-800 text-gray-400 md:w-[20%]">
+                          <p className="m-0">
+                              {leaveType.number_of_leaves_per_year}
+                          </p>
+                          <div className='flex flex-row mt-6'>
+                            <p className='mr-3 cursor-pointer' onClick={()=> onEdit(leaveType)}>Edit</p>
+                            {/* <p className='cursor-pointer' onClick={() => confirmDeleteEmployee(leaveType)}>Delete</p> */}
+                          </div>
+                        </Card>
+                      )}
+                  </>
+                }
               </div>
 
 

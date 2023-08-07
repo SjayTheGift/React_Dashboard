@@ -65,7 +65,7 @@ const Employees = () => {
 
     const dispatch = useDispatch()
     // Get data from state
-    const {employeeData, isEmployeeError, isLoading, isEmployeeSuccess, message}  = useSelector((state) => state.employee)
+    const {employeeData, isEmployeeError, isEmployeeLoading, isEmployeeSuccess, message}  = useSelector((state) => state.employee)
 
 
     // const initFetch = useCallback(() => {
@@ -296,7 +296,7 @@ const Employees = () => {
       <div className='col-span-full'>
       <Toast ref={toast} />
 
-        {isLoading ? 
+        {isEmployeeLoading ? 
             <div className='absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2'>
                 <LoadingSpinner />
             </div>

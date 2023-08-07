@@ -21,7 +21,7 @@ import Forbidden from '../pages/Forbidden'
 import { PrivateRoute } from '../utils/PrivateRoute'
 import { ForbiddenRoutes } from '../utils/ForbiddenRoutes';
 
-const Dashboard = ({userLeaveApi, setUserLeaveApi}) => {
+const Dashboard = () => {
 
     const [nav, setNav] = useState(false)
     const location = useLocation()
@@ -102,7 +102,7 @@ const Dashboard = ({userLeaveApi, setUserLeaveApi}) => {
                         {/* <Route path='/stuff-leave-history'  element={<LeaveApplication/>}/> */}
                         <Route path='/view-my-leave'  element={
                             <PrivateRoute>
-                                <ViewUserLeave userLeaveApi={userLeaveApi}/>
+                                <ViewUserLeave />
                             </PrivateRoute>
                         }/>
                         <Route path='/leave-type'  element={

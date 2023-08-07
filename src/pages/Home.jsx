@@ -12,11 +12,11 @@ const Home = () => {
     const data = decodeToken(token.access)
 
     const { homeData, isLoading, isSuccess} = useSelector((state) => state.home)
-    const [totalData, setTotalData] = useState(false)
+    const [totalData, setTotalData] = useState([])
 
     const dispatch = useDispatch()
 
-    let count_data = JSON.parse(homeData)
+    
 
     console.log(data)
 
@@ -26,13 +26,14 @@ const Home = () => {
       dispatch(fetchHomeData())
 
       if(isSuccess){
-        setTotalData(true)
+        setTotalData(homeData)
       }
 
 
     },[homeData, isSuccess])
 
     
+    let count_data = JSON.parse(totalData)
 
   return (
     <>

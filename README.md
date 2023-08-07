@@ -20,7 +20,15 @@ HR system that allows HR and Admin Personal to manage users for a company.
   2. React and tailwind for the front end.
   3. PostgresSQL Database is used to store the data.
 
-## Demo
+## Demo Gif
+HR Login
+![picture alt](https://github.com/SjayTheGift/React_Dashboard/blob/main/public/gif/HR%20Core.gif "HR Login")
+
+Employee apply for leave 
+
+![picture alt](https://github.com/SjayTheGift/React_Dashboard/blob/main/public/gif/apply_leave.gif "Employee apply for leave")
+
+## Screen Shorts
 Login Screen
 ![picture alt](https://github.com/SjayTheGift/React_Dashboard/blob/main/public/HR%20System%20images/Login_screen.png "Login Screen")
 

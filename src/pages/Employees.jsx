@@ -307,7 +307,7 @@ const Employees = () => {
                 <DataTable ref={dt} value={employeeData} selection={selectedEmployees} onSelectionChange={(e) => setSelectedEmployees(e.value)}
                         dataKey="id"  paginator rows={5} rowsPerPageOptions={[5, 10, 25]}
                         paginatorTemplate="FirstPageLink PrevPageLink PageLinks NextPageLink LastPageLink CurrentPageReport RowsPerPageDropdown"
-                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" globalFilter={globalFilter} header={header} loading={isLoading}>
+                        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} products" globalFilter={globalFilter} header={header} loading={isEmployeeLoading}>
                     <Column selectionMode="multiple" exportable={false}></Column>
                     {/* <Column field="id" header="Code" sortable style={{ minWidth: '12rem' }}></Column> */}
                     <Column field="first_name" header="FirstName" sortable style={{ minWidth: '16rem' }}></Column>
